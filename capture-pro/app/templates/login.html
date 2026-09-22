@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Login{% endblock %}
+{% block body %}
+<div class="login-wrap">
+  <form method="POST" class="login-card">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <h2>Login Dashboard</h2>
+    {% if error %}<div class="error">{{ error }}</div>{% endif %}
+    <input type="text" name="user" placeholder="Username" required autofocus>
+    <input type="password" name="pass" placeholder="Password" required>
+    <button type="submit">Masuk</button>
+  </form>
+</div>
+{% endblock %}

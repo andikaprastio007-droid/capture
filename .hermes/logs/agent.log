@@ -1,0 +1,1112 @@
+2026-09-04 21:24:58,864 INFO hermes_cli.main: Checkout changed since last launch (unknown -> git:refs/heads/main:d3630f853239e8c41ce7201e09fbdf39bcbc5431): cleared 46 stale __pycache__ directories
+2026-09-04 21:29:55,293 INFO hermes_cli.plugins: Plugin 'browser-browser-use' registered browser provider: browser-use
+2026-09-04 21:29:55,313 INFO hermes_cli.plugins: Plugin 'browser-browserbase' registered browser provider: browserbase
+2026-09-04 21:29:55,326 INFO hermes_cli.plugins: Plugin 'browser-firecrawl' registered browser provider: firecrawl
+2026-09-04 21:29:55,542 INFO hermes_cli.plugins: Plugin 'deepinfra' registered image_gen provider: deepinfra
+2026-09-04 21:29:55,550 INFO hermes_cli.plugins: Plugin 'fal' registered image_gen provider: fal
+2026-09-04 21:29:55,572 INFO hermes_cli.plugins: Plugin 'krea' registered image_gen provider: krea
+2026-09-04 21:29:55,580 INFO hermes_cli.plugins: Plugin 'meta-ai-image-gen' registered image_gen provider: meta-ai
+2026-09-04 21:29:55,591 INFO hermes_cli.plugins: Plugin 'openai' registered image_gen provider: openai
+2026-09-04 21:29:55,609 INFO hermes_cli.plugins: Plugin 'openai-codex' registered image_gen provider: openai-codex
+2026-09-04 21:29:55,643 INFO hermes_cli.plugins: Plugin 'openrouter' registered image_gen provider: openrouter
+2026-09-04 21:29:55,644 INFO hermes_cli.plugins: Plugin 'openrouter' registered image_gen provider: nous
+2026-09-04 21:29:55,672 INFO hermes_cli.plugins: Plugin 'xai' registered image_gen provider: xai
+2026-09-04 21:29:55,729 INFO hermes_cli.plugins: Plugin 'deepinfra' registered video_gen provider: deepinfra
+2026-09-04 21:29:55,750 INFO hermes_cli.plugins: Plugin 'fal' registered video_gen provider: fal
+2026-09-04 21:29:55,771 INFO hermes_cli.plugins: Plugin 'xai' registered video_gen provider: xai
+2026-09-04 21:29:55,812 INFO hermes_cli.plugins: Plugin 'web-brave-free' registered web provider: brave-free
+2026-09-04 21:29:55,829 INFO hermes_cli.plugins: Plugin 'web-ddgs' registered web provider: ddgs
+2026-09-04 21:29:55,844 INFO hermes_cli.plugins: Plugin 'web-exa' registered web provider: exa
+2026-09-04 21:29:55,895 INFO hermes_cli.plugins: Plugin 'web-firecrawl' registered web provider: firecrawl
+2026-09-04 21:29:55,914 INFO hermes_cli.plugins: Plugin 'web-keenable' registered web provider: keenable
+2026-09-04 21:29:55,928 INFO hermes_cli.plugins: Plugin 'web-parallel' registered web provider: parallel
+2026-09-04 21:29:55,939 INFO hermes_cli.plugins: Plugin 'web-searxng' registered web provider: searxng
+2026-09-04 21:29:55,954 INFO hermes_cli.plugins: Plugin 'web-tavily' registered web provider: tavily
+2026-09-04 21:29:55,980 INFO hermes_cli.plugins: Plugin 'web-xai' registered web provider: xai
+2026-09-04 21:29:57,146 INFO hermes_cli.plugins: Plugin discovery complete: 56 found, 50 enabled
+2026-09-04 22:30:01,811 WARNING hermes_cli.plugins: Failed to load plugin 'wecom-platform': dlopen failed: cannot locate symbol "PyModule_Type" referenced by "/data/data/com.termux/files/home/.hermes/hermes-agent/venv/lib/python3.13/site-packages/cryptography/hazmat/bindings/_rust.abi3.so"...
+2026-09-04 22:40:18,932 INFO tools.lazy_deps: Lazy-installing boto3==1.42.89 for feature 'provider.bedrock'
+2026-09-04 22:40:35,816 INFO tools.lazy_deps: Lazy install complete for feature 'provider.bedrock'
+2026-09-04 22:40:42,903 WARNING agent.auxiliary_client: Auxiliary: marking openrouter unhealthy for 60s (payment / credit error). Subsequent auxiliary calls will skip it until 22:41:42.
+2026-09-04 22:40:42,926 WARNING agent.auxiliary_client: Auxiliary Nous client unavailable: no Nous authentication found (run: hermes auth).
+2026-09-04 22:40:42,927 WARNING agent.auxiliary_client: Auxiliary: marking nous unhealthy for 60s (payment / credit error). Subsequent auxiliary calls will skip it until 22:41:42.
+2026-09-04 22:40:42,928 WARNING agent.auxiliary_client: resolve_provider_client: nous requested but Nous Portal not configured (run: hermes auth)
+2026-09-04 22:40:43,199 INFO agent.credential_pool: credential pool: no available entries (all exhausted or empty)
+2026-09-04 22:40:43,218 INFO agent.credential_pool: credential pool: no available entries (all exhausted or empty)
+2026-09-04 22:51:48,080 INFO hermes_cli.plugins: Plugin 'browser-browser-use' registered browser provider: browser-use
+2026-09-04 22:51:48,090 INFO hermes_cli.plugins: Plugin 'browser-browserbase' registered browser provider: browserbase
+2026-09-04 22:51:48,101 INFO hermes_cli.plugins: Plugin 'browser-firecrawl' registered browser provider: firecrawl
+2026-09-04 22:51:48,408 INFO hermes_cli.plugins: Plugin 'deepinfra' registered image_gen provider: deepinfra
+2026-09-04 22:51:48,413 INFO hermes_cli.plugins: Plugin 'fal' registered image_gen provider: fal
+2026-09-04 22:51:48,418 INFO hermes_cli.plugins: Plugin 'krea' registered image_gen provider: krea
+2026-09-04 22:51:48,423 INFO hermes_cli.plugins: Plugin 'meta-ai-image-gen' registered image_gen provider: meta-ai
+2026-09-04 22:51:48,428 INFO hermes_cli.plugins: Plugin 'openai' registered image_gen provider: openai
+2026-09-04 22:51:48,434 INFO hermes_cli.plugins: Plugin 'openai-codex' registered image_gen provider: openai-codex
+2026-09-04 22:51:48,440 INFO hermes_cli.plugins: Plugin 'openrouter' registered image_gen provider: openrouter
+2026-09-04 22:51:48,441 INFO hermes_cli.plugins: Plugin 'openrouter' registered image_gen provider: nous
+2026-09-04 22:51:48,449 INFO hermes_cli.plugins: Plugin 'xai' registered image_gen provider: xai
+2026-09-04 22:51:48,465 INFO hermes_cli.plugins: Plugin 'deepinfra' registered video_gen provider: deepinfra
+2026-09-04 22:51:48,470 INFO hermes_cli.plugins: Plugin 'fal' registered video_gen provider: fal
+2026-09-04 22:51:48,475 INFO hermes_cli.plugins: Plugin 'xai' registered video_gen provider: xai
+2026-09-04 22:51:48,487 INFO hermes_cli.plugins: Plugin 'web-brave-free' registered web provider: brave-free
+2026-09-04 22:51:48,495 INFO hermes_cli.plugins: Plugin 'web-ddgs' registered web provider: ddgs
+2026-09-04 22:51:48,502 INFO hermes_cli.plugins: Plugin 'web-exa' registered web provider: exa
+2026-09-04 22:51:48,554 INFO hermes_cli.plugins: Plugin 'web-firecrawl' registered web provider: firecrawl
+2026-09-04 22:51:48,567 INFO hermes_cli.plugins: Plugin 'web-keenable' registered web provider: keenable
+2026-09-04 22:51:48,579 INFO hermes_cli.plugins: Plugin 'web-parallel' registered web provider: parallel
+2026-09-04 22:51:48,589 INFO hermes_cli.plugins: Plugin 'web-searxng' registered web provider: searxng
+2026-09-04 22:51:48,599 INFO hermes_cli.plugins: Plugin 'web-tavily' registered web provider: tavily
+2026-09-04 22:51:48,609 INFO hermes_cli.plugins: Plugin 'web-xai' registered web provider: xai
+2026-09-04 22:51:48,766 INFO hermes_cli.plugins: Plugin discovery complete: 56 found, 50 enabled
+2026-09-05 11:08:47,653 INFO hermes_cli.plugins: Plugin 'browser-browser-use' registered browser provider: browser-use
+2026-09-05 11:08:47,658 INFO hermes_cli.plugins: Plugin 'browser-browserbase' registered browser provider: browserbase
+2026-09-05 11:08:47,662 INFO hermes_cli.plugins: Plugin 'browser-firecrawl' registered browser provider: firecrawl
+2026-09-05 11:08:47,894 INFO hermes_cli.plugins: Plugin 'deepinfra' registered image_gen provider: deepinfra
+2026-09-05 11:08:47,898 INFO hermes_cli.plugins: Plugin 'fal' registered image_gen provider: fal
+2026-09-05 11:08:47,902 INFO hermes_cli.plugins: Plugin 'krea' registered image_gen provider: krea
+2026-09-05 11:08:47,906 INFO hermes_cli.plugins: Plugin 'meta-ai-image-gen' registered image_gen provider: meta-ai
+2026-09-05 11:08:47,909 INFO hermes_cli.plugins: Plugin 'openai' registered image_gen provider: openai
+2026-09-05 11:08:47,912 INFO hermes_cli.plugins: Plugin 'openai-codex' registered image_gen provider: openai-codex
+2026-09-05 11:08:47,918 INFO hermes_cli.plugins: Plugin 'openrouter' registered image_gen provider: openrouter
+2026-09-05 11:08:47,918 INFO hermes_cli.plugins: Plugin 'openrouter' registered image_gen provider: nous
+2026-09-05 11:08:47,922 INFO hermes_cli.plugins: Plugin 'xai' registered image_gen provider: xai
+2026-09-05 11:08:47,944 INFO hermes_cli.plugins: Plugin 'deepinfra' registered video_gen provider: deepinfra
+2026-09-05 11:08:47,948 INFO hermes_cli.plugins: Plugin 'fal' registered video_gen provider: fal
+2026-09-05 11:08:47,952 INFO hermes_cli.plugins: Plugin 'xai' registered video_gen provider: xai
+2026-09-05 11:08:47,962 INFO hermes_cli.plugins: Plugin 'web-brave-free' registered web provider: brave-free
+2026-09-05 11:08:47,966 INFO hermes_cli.plugins: Plugin 'web-ddgs' registered web provider: ddgs
+2026-09-05 11:08:47,971 INFO hermes_cli.plugins: Plugin 'web-exa' registered web provider: exa
+2026-09-05 11:08:47,981 INFO hermes_cli.plugins: Plugin 'web-firecrawl' registered web provider: firecrawl
+2026-09-05 11:08:47,986 INFO hermes_cli.plugins: Plugin 'web-keenable' registered web provider: keenable
+2026-09-05 11:08:47,990 INFO hermes_cli.plugins: Plugin 'web-parallel' registered web provider: parallel
+2026-09-05 11:08:47,994 INFO hermes_cli.plugins: Plugin 'web-searxng' registered web provider: searxng
+2026-09-05 11:08:47,998 INFO hermes_cli.plugins: Plugin 'web-tavily' registered web provider: tavily
+2026-09-05 11:08:48,003 INFO hermes_cli.plugins: Plugin 'web-xai' registered web provider: xai
+2026-09-05 11:08:48,112 INFO hermes_cli.plugins: Plugin discovery complete: 56 found, 50 enabled
+2026-09-05 11:08:48,805 INFO hermes_cli.active_sessions: Pruned 1 stale active session lease(s)
+2026-09-07 18:52:32,658 INFO hermes_cli.plugins: Plugin 'browser-browser-use' registered browser provider: browser-use
+2026-09-07 18:52:32,663 INFO hermes_cli.plugins: Plugin 'browser-browserbase' registered browser provider: browserbase
+2026-09-07 18:52:32,668 INFO hermes_cli.plugins: Plugin 'browser-firecrawl' registered browser provider: firecrawl
+2026-09-07 18:52:32,930 INFO hermes_cli.plugins: Plugin 'deepinfra' registered image_gen provider: deepinfra
+2026-09-07 18:52:32,933 INFO hermes_cli.plugins: Plugin 'fal' registered image_gen provider: fal
+2026-09-07 18:52:32,937 INFO hermes_cli.plugins: Plugin 'krea' registered image_gen provider: krea
+2026-09-07 18:52:32,941 INFO hermes_cli.plugins: Plugin 'meta-ai-image-gen' registered image_gen provider: meta-ai
+2026-09-07 18:52:32,945 INFO hermes_cli.plugins: Plugin 'openai' registered image_gen provider: openai
+2026-09-07 18:52:32,948 INFO hermes_cli.plugins: Plugin 'openai-codex' registered image_gen provider: openai-codex
+2026-09-07 18:52:32,952 INFO hermes_cli.plugins: Plugin 'openrouter' registered image_gen provider: openrouter
+2026-09-07 18:52:32,952 INFO hermes_cli.plugins: Plugin 'openrouter' registered image_gen provider: nous
+2026-09-07 18:52:32,957 INFO hermes_cli.plugins: Plugin 'xai' registered image_gen provider: xai
+2026-09-07 18:52:32,979 INFO hermes_cli.plugins: Plugin 'deepinfra' registered video_gen provider: deepinfra
+2026-09-07 18:52:32,982 INFO hermes_cli.plugins: Plugin 'fal' registered video_gen provider: fal
+2026-09-07 18:52:32,986 INFO hermes_cli.plugins: Plugin 'xai' registered video_gen provider: xai
+2026-09-07 18:52:32,995 INFO hermes_cli.plugins: Plugin 'web-brave-free' registered web provider: brave-free
+2026-09-07 18:52:33,000 INFO hermes_cli.plugins: Plugin 'web-ddgs' registered web provider: ddgs
+2026-09-07 18:52:33,005 INFO hermes_cli.plugins: Plugin 'web-exa' registered web provider: exa
+2026-09-07 18:52:33,015 INFO hermes_cli.plugins: Plugin 'web-firecrawl' registered web provider: firecrawl
+2026-09-07 18:52:33,020 INFO hermes_cli.plugins: Plugin 'web-keenable' registered web provider: keenable
+2026-09-07 18:52:33,025 INFO hermes_cli.plugins: Plugin 'web-parallel' registered web provider: parallel
+2026-09-07 18:52:33,029 INFO hermes_cli.plugins: Plugin 'web-searxng' registered web provider: searxng
+2026-09-07 18:52:33,033 INFO hermes_cli.plugins: Plugin 'web-tavily' registered web provider: tavily
+2026-09-07 18:52:33,037 INFO hermes_cli.plugins: Plugin 'web-xai' registered web provider: xai
+2026-09-07 18:52:33,142 INFO hermes_cli.plugins: Plugin discovery complete: 56 found, 50 enabled
+2026-09-07 23:18:09,650 INFO hermes_cli.plugins: Plugin 'browser-browser-use' registered browser provider: browser-use
+2026-09-07 23:18:09,656 INFO hermes_cli.plugins: Plugin 'browser-browserbase' registered browser provider: browserbase
+2026-09-07 23:18:09,662 INFO hermes_cli.plugins: Plugin 'browser-firecrawl' registered browser provider: firecrawl
+2026-09-07 23:18:09,932 INFO hermes_cli.plugins: Plugin 'deepinfra' registered image_gen provider: deepinfra
+2026-09-07 23:18:09,936 INFO hermes_cli.plugins: Plugin 'fal' registered image_gen provider: fal
+2026-09-07 23:18:09,941 INFO hermes_cli.plugins: Plugin 'krea' registered image_gen provider: krea
+2026-09-07 23:18:09,944 INFO hermes_cli.plugins: Plugin 'meta-ai-image-gen' registered image_gen provider: meta-ai
+2026-09-07 23:18:09,948 INFO hermes_cli.plugins: Plugin 'openai' registered image_gen provider: openai
+2026-09-07 23:18:09,952 INFO hermes_cli.plugins: Plugin 'openai-codex' registered image_gen provider: openai-codex
+2026-09-07 23:18:09,957 INFO hermes_cli.plugins: Plugin 'openrouter' registered image_gen provider: openrouter
+2026-09-07 23:18:09,957 INFO hermes_cli.plugins: Plugin 'openrouter' registered image_gen provider: nous
+2026-09-07 23:18:09,962 INFO hermes_cli.plugins: Plugin 'xai' registered image_gen provider: xai
+2026-09-07 23:18:09,988 INFO hermes_cli.plugins: Plugin 'deepinfra' registered video_gen provider: deepinfra
+2026-09-07 23:18:09,992 INFO hermes_cli.plugins: Plugin 'fal' registered video_gen provider: fal
+2026-09-07 23:18:09,997 INFO hermes_cli.plugins: Plugin 'xai' registered video_gen provider: xai
+2026-09-07 23:18:10,015 INFO hermes_cli.plugins: Plugin 'web-brave-free' registered web provider: brave-free
+2026-09-07 23:18:10,023 INFO hermes_cli.plugins: Plugin 'web-ddgs' registered web provider: ddgs
+2026-09-07 23:18:10,028 INFO hermes_cli.plugins: Plugin 'web-exa' registered web provider: exa
+2026-09-07 23:18:10,039 INFO hermes_cli.plugins: Plugin 'web-firecrawl' registered web provider: firecrawl
+2026-09-07 23:18:10,044 INFO hermes_cli.plugins: Plugin 'web-keenable' registered web provider: keenable
+2026-09-07 23:18:10,050 INFO hermes_cli.plugins: Plugin 'web-parallel' registered web provider: parallel
+2026-09-07 23:18:10,056 INFO hermes_cli.plugins: Plugin 'web-searxng' registered web provider: searxng
+2026-09-07 23:18:10,061 INFO hermes_cli.plugins: Plugin 'web-tavily' registered web provider: tavily
+2026-09-07 23:18:10,067 INFO hermes_cli.plugins: Plugin 'web-xai' registered web provider: xai
+2026-09-07 23:18:10,182 INFO hermes_cli.plugins: Plugin discovery complete: 56 found, 50 enabled
+2026-09-07 23:18:10,875 INFO hermes_cli.active_sessions: Pruned 1 stale active session lease(s)
+2026-09-22 20:37:09,086 INFO hermes_cli.plugins: Plugin 'browser-browser-use' registered browser provider: browser-use
+2026-09-22 20:37:09,092 INFO hermes_cli.plugins: Plugin 'browser-browserbase' registered browser provider: browserbase
+2026-09-22 20:37:09,098 INFO hermes_cli.plugins: Plugin 'browser-firecrawl' registered browser provider: firecrawl
+2026-09-22 20:37:09,368 INFO hermes_cli.plugins: Plugin 'deepinfra' registered image_gen provider: deepinfra
+2026-09-22 20:37:09,372 INFO hermes_cli.plugins: Plugin 'fal' registered image_gen provider: fal
+2026-09-22 20:37:09,378 INFO hermes_cli.plugins: Plugin 'krea' registered image_gen provider: krea
+2026-09-22 20:37:09,382 INFO hermes_cli.plugins: Plugin 'meta-ai-image-gen' registered image_gen provider: meta-ai
+2026-09-22 20:37:09,385 INFO hermes_cli.plugins: Plugin 'openai' registered image_gen provider: openai
+2026-09-22 20:37:09,389 INFO hermes_cli.plugins: Plugin 'openai-codex' registered image_gen provider: openai-codex
+2026-09-22 20:37:09,395 INFO hermes_cli.plugins: Plugin 'openrouter' registered image_gen provider: openrouter
+2026-09-22 20:37:09,395 INFO hermes_cli.plugins: Plugin 'openrouter' registered image_gen provider: nous
+2026-09-22 20:37:09,402 INFO hermes_cli.plugins: Plugin 'xai' registered image_gen provider: xai
+2026-09-22 20:37:09,426 INFO hermes_cli.plugins: Plugin 'deepinfra' registered video_gen provider: deepinfra
+2026-09-22 20:37:09,430 INFO hermes_cli.plugins: Plugin 'fal' registered video_gen provider: fal
+2026-09-22 20:37:09,435 INFO hermes_cli.plugins: Plugin 'xai' registered video_gen provider: xai
+2026-09-22 20:37:09,446 INFO hermes_cli.plugins: Plugin 'web-brave-free' registered web provider: brave-free
+2026-09-22 20:37:09,452 INFO hermes_cli.plugins: Plugin 'web-ddgs' registered web provider: ddgs
+2026-09-22 20:37:09,457 INFO hermes_cli.plugins: Plugin 'web-exa' registered web provider: exa
+2026-09-22 20:37:09,469 INFO hermes_cli.plugins: Plugin 'web-firecrawl' registered web provider: firecrawl
+2026-09-22 20:37:09,474 INFO hermes_cli.plugins: Plugin 'web-keenable' registered web provider: keenable
+2026-09-22 20:37:09,480 INFO hermes_cli.plugins: Plugin 'web-parallel' registered web provider: parallel
+2026-09-22 20:37:09,486 INFO hermes_cli.plugins: Plugin 'web-searxng' registered web provider: searxng
+2026-09-22 20:37:09,492 INFO hermes_cli.plugins: Plugin 'web-tavily' registered web provider: tavily
+2026-09-22 20:37:09,498 INFO hermes_cli.plugins: Plugin 'web-xai' registered web provider: xai
+2026-09-22 20:37:09,616 INFO hermes_cli.plugins: Plugin discovery complete: 56 found, 50 enabled
+2026-09-22 20:57:00,856 INFO run_agent: Loaded environment variables from /data/data/com.termux/files/home/.hermes/.env
+2026-09-22 20:57:04,519 INFO tools.tirith_security: tirith not found — downloading latest release for aarch64-unknown-linux-gnu...
+2026-09-22 20:57:04,685 WARNING cli: Background MCP discovery previously exited with no connected servers; retrying discovery thread
+2026-09-22 20:57:07,597 INFO run_agent: OpenAI client created (agent_init, shared=True) thread=Thread-4 (_tui_process_loop):515130014976 provider=deepseek base_url=https://api.deepseek.com/v1 model=deepseek-v4-flash-vision-exp
+2026-09-22 20:57:08,364 INFO tools.tirith_security: cosign not on PATH — installing tirith with SHA-256 verification only (install cosign for full supply chain verification)
+2026-09-22 20:57:08,774 WARNING tools.registry: check_fn check_browser_back_requirements returned False; dependent tools will be unavailable this turn
+2026-09-22 20:57:09,043 INFO tools.tirith_security: tirith installed to /data/data/com.termux/files/home/.hermes/bin/tirith (SHA-256 only)
+2026-09-22 20:57:09,520 WARNING tools.registry: check_fn _browser_cdp_check returned False; dependent tools will be unavailable this turn
+2026-09-22 20:57:10,250 WARNING tools.registry: check_fn check_browser_click_requirements returned False; dependent tools will be unavailable this turn
+2026-09-22 20:57:10,962 WARNING tools.registry: check_fn check_browser_requirements returned False; dependent tools will be unavailable this turn
+2026-09-22 20:57:11,718 WARNING tools.registry: check_fn _browser_dialog_check returned False; dependent tools will be unavailable this turn
+2026-09-22 20:57:11,733 WARNING tools.registry: check_fn is_browser_use_cli_mode returned False; dependent tools will be unavailable this turn
+2026-09-22 20:57:12,473 WARNING tools.registry: check_fn check_browser_navigate_requirements returned False; dependent tools will be unavailable this turn
+2026-09-22 20:57:13,241 WARNING tools.registry: check_fn check_browser_press_requirements returned False; dependent tools will be unavailable this turn
+2026-09-22 20:57:13,970 WARNING tools.registry: check_fn check_browser_scroll_requirements returned False; dependent tools will be unavailable this turn
+2026-09-22 20:57:14,697 WARNING tools.registry: check_fn check_browser_snapshot_requirements returned False; dependent tools will be unavailable this turn
+2026-09-22 20:57:15,480 WARNING tools.registry: check_fn check_browser_type_requirements returned False; dependent tools will be unavailable this turn
+2026-09-22 20:57:16,219 WARNING tools.registry: check_fn check_browser_vision_requirements returned False; dependent tools will be unavailable this turn
+2026-09-22 20:57:16,220 WARNING tools.registry: check_fn check_computer_use_requirements returned False; dependent tools will be unavailable this turn
+2026-09-22 20:57:16,251 WARNING tools.registry: check_fn check_image_generation_requirements returned False; dependent tools will be unavailable this turn
+2026-09-22 20:57:16,261 WARNING tools.registry: check_fn _check_kanban_mode returned False; dependent tools will be unavailable this turn
+2026-09-22 20:57:16,269 WARNING tools.registry: check_fn _check_kanban_orchestrator_mode returned False; dependent tools will be unavailable this turn
+2026-09-22 20:57:16,333 INFO tools.lazy_deps: Lazy-installing edge-tts==7.2.7 for feature 'tts.edge'
+2026-09-22 20:57:20,747 INFO tools.lazy_deps: Lazy install complete for feature 'tts.edge'
+2026-09-22 20:57:21,182 INFO agent.auxiliary_client: Vision auto-detect: using main provider deepseek (deepseek-v4-flash-vision-exp)
+2026-09-22 20:57:21,403 INFO tools.tool_search: tool_search activated (tier 1): 16 core/visible tools kept, 4 deferred (~2820 tokens), listing full (budget ~4000 tokens)
+2026-09-22 20:57:21,994 WARNING agent.relay_runtime: Hermes Relay runtime initialization failed
+Traceback (most recent call last):
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/relay_runtime.py", line 775, in for_profile
+    host = RelayRuntime(profile_key=key)
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/relay_runtime.py", line 333, in __init__
+    self.relay = relay or _load_nemo_relay()
+                          ~~~~~~~~~~~~~~~~^^
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/relay_runtime.py", line 1199, in _load_nemo_relay
+    return importlib.import_module("nemo_relay")
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/importlib/__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1395, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'nemo_relay'
+2026-09-22 20:57:22,002 INFO [20260922_203710_fe67ab] agent.turn_context: conversation turn: session=20260922_203710_fe67ab model=deepseek-v4-flash-vision-exp provider=deepseek platform=cli history=0 msg='hy'
+2026-09-22 20:57:23,700 INFO agent.auxiliary_client: Auxiliary auto-detect: using main provider deepseek (deepseek-v4-flash-vision-exp)
+2026-09-22 20:57:23,712 INFO agent.auxiliary_client: Auxiliary title_generation: using deepseek (deepseek-v4-flash-vision-exp) at https://api.deepseek.com/v1/
+2026-09-22 20:57:24,219 INFO run_agent: OpenAI client created (chat_completion_stream_request, shared=False) thread=Thread-18 (<lambda>):514906778880 provider=deepseek base_url=https://api.deepseek.com/v1 model=deepseek-v4-flash-vision-exp
+2026-09-22 20:57:25,195 INFO agent.credential_pool: credential pool: marking DEEPSEEK_API_KEY exhausted (status=401), rotating
+2026-09-22 20:57:25,196 INFO agent.credential_pool: credential pool: no available entries (all exhausted or empty)
+2026-09-22 20:57:25,197 INFO agent.auxiliary_client: Auxiliary title_generation: auth error on auto (Error code: 401 - {'error': {'message': 'Authentication Fails, Your api key: ****Xg== is invalid', 'type': 'authentication_error', 'param': None, 'code': 'invalid_request_error'}}), trying fallback
+2026-09-22 20:57:25,203 WARNING agent.auxiliary_client: Auxiliary: marking openrouter unhealthy for 60s (payment / credit error). Subsequent auxiliary calls will skip it until 20:58:25.
+2026-09-22 20:57:25,217 WARNING agent.auxiliary_client: Auxiliary Nous client unavailable: no Nous authentication found (run: hermes auth).
+2026-09-22 20:57:25,217 WARNING agent.auxiliary_client: Auxiliary: marking nous unhealthy for 60s (payment / credit error). Subsequent auxiliary calls will skip it until 20:58:25.
+2026-09-22 20:57:25,318 INFO agent.credential_pool: credential pool: no available entries (all exhausted or empty)
+2026-09-22 20:57:25,363 ERROR agent.chat_completion_helpers: Streaming failed before delivery: Error code: 401 - {'error': {'message': 'Authentication Fails, Your api key: ****Xg== is invalid', 'type': 'authentication_error', 'param': None, 'code': 'invalid_request_error'}}
+Traceback (most recent call last):
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/chat_completion_helpers.py", line 3330, in _call
+    self.result["response"] = _with_stream_emitters(
+                              ~~~~~~~~~~~~~~~~~~~~~^
+        self.agent, lambda: self._call_wire(stream_attempt_id))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/chat_completion_helpers.py", line 2433, in _with_stream_emitters
+    response = run()
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/chat_completion_helpers.py", line 3331, in <lambda>
+    self.agent, lambda: self._call_wire(stream_attempt_id))
+                        ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/chat_completion_helpers.py", line 3313, in _call_wire
+    return self._call_chat_completions(stream_attempt_id)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/chat_completion_helpers.py", line 2948, in _call_chat_completions
+    stream = self._set_managed_stream(relay_llm.stream(self.api_kwargs, _open_stream,
+                                      ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        **_relay_stream_identity(self.agent, "provider"), finalizer=_relay_final_response,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+        completed_response_predicate=lambda value: hasattr(value, "choices"),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        metadata=_relay_stream_metadata(self.agent, "chat_completions"), defer_logical_completion=True))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/relay_llm.py", line 297, in __init__
+    self._start_unmanaged(request)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/relay_llm.py", line 303, in _start_unmanaged
+    raw_stream = self._stream_factory(request)
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/chat_completion_helpers.py", line 2931, in _open_stream
+    return self._open_chat_stream({**next_api_kwargs, "stream": True, "timeout": timeout})
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/chat_completion_helpers.py", line 2872, in _open_chat_stream
+    return request_client.chat.completions.create(**stream_kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/venv/lib/python3.13/site-packages/openai/_utils/_utils.py", line 286, in wrapper
+    return func(*args, **kwargs)
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/venv/lib/python3.13/site-packages/openai/resources/chat/completions/completions.py", line 1204, in create
+    return self._post(
+           ~~~~~~~~~~^
+        "/chat/completions",
+        ^^^^^^^^^^^^^^^^^^^^
+    ...<47 lines>...
+        stream_cls=Stream[ChatCompletionChunk],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/venv/lib/python3.13/site-packages/openai/_base_client.py", line 1297, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/venv/lib/python3.13/site-packages/openai/_base_client.py", line 1070, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.AuthenticationError: Error code: 401 - {'error': {'message': 'Authentication Fails, Your api key: ****Xg== is invalid', 'type': 'authentication_error', 'param': None, 'code': 'invalid_request_error'}}
+2026-09-22 20:57:25,371 INFO run_agent: OpenAI client closed (stream_error_cleanup, shared=False, tcp_force_closed=0) thread=Thread-18 (<lambda>):514906778880 provider=deepseek base_url=https://api.deepseek.com/v1 model=deepseek-v4-flash-vision-exp
+2026-09-22 20:57:25,552 INFO [20260922_203710_fe67ab] agent.credential_pool: credential pool: marking DEEPSEEK_API_KEY exhausted (status=401), rotating
+2026-09-22 20:57:25,553 INFO [20260922_203710_fe67ab] agent.credential_pool: credential pool: no available entries (all exhausted or empty)
+2026-09-22 20:57:25,554 WARNING [20260922_203710_fe67ab] agent.conversation_loop: API call failed (attempt 1/3) error_type=AuthenticationError thread=Thread-17 (_chat_run_agent):514958839040 provider=deepseek base_url=https://api.deepseek.com/v1 model=deepseek-v4-flash-vision-exp summary=HTTP 401: Authentication Fails, Your api key: ****Xg== is invalid
+2026-09-22 20:57:25,808 ERROR [20260922_203710_fe67ab] agent.conversation_loop: Non-retryable client error: Error code: 401 - {'error': {'message': 'Authentication Fails, Your api key: ****Xg== is invalid', 'type': 'authentication_error', 'param': None, 'code': 'invalid_request_error'}}
+2026-09-22 20:57:26,257 INFO agent.auxiliary_client: Auxiliary title_generation: auth error on auto — falling back to api-key (deepseek/deepseek-v4-flash)
+2026-09-22 20:57:55,285 WARNING agent.auxiliary_client: Auxiliary: marking api-key unhealthy for 600s (payment / credit error). Subsequent auxiliary calls will skip it until 21:07:55.
+2026-09-22 20:57:55,286 WARNING agent.auxiliary_client: Auxiliary title_generation: fallback candidate api-key has a stale/unrefreshable credential (Error code: 401 - {'error': {'message': "Invalid 'Authorization' header or token.", 'type': 'authentication_error', 'code': 'UNAUTHORIZED'}}) — skipping to next fallback
+2026-09-22 20:57:55,296 INFO agent.auxiliary_client: Auxiliary title_generation: skipping openrouter (recently returned payment error, retry in 29s)
+2026-09-22 20:57:55,299 INFO agent.auxiliary_client: Auxiliary title_generation: skipping nous (recently returned payment error, retry in 29s)
+2026-09-22 20:57:55,367 INFO agent.auxiliary_client: Auxiliary title_generation: skipping api-key (recently returned payment error, retry in 599s)
+2026-09-22 20:57:55,368 WARNING agent.auxiliary_client: Auxiliary title_generation: stale fallback credential on auto and no fallback available (tried: openrouter (unhealthy), nous (unhealthy), local/custom, api-key (unhealthy))
+2026-09-22 20:57:55,369 WARNING agent.auxiliary_client: Auxiliary title_generation: auth error on auto and all fallbacks exhausted (fallback_chain + main agent model). Raising original error.
+2026-09-22 20:57:55,372 WARNING agent.title_generator: Title generation failed: Error code: 401 - {'error': {'message': 'Authentication Fails, Your api key: ****Xg== is invalid', 'type': 'authentication_error', 'param': None, 'code': 'invalid_request_error'}}
+2026-09-22 20:59:00,746 INFO cli: CLI cleanup calling memory shutdown for session 20260922_203710_fe67ab with 1 message(s)
+2026-09-22 20:59:28,347 INFO hermes_cli.plugins: Plugin 'browser-browser-use' registered browser provider: browser-use
+2026-09-22 20:59:28,352 INFO hermes_cli.plugins: Plugin 'browser-browserbase' registered browser provider: browserbase
+2026-09-22 20:59:28,359 INFO hermes_cli.plugins: Plugin 'browser-firecrawl' registered browser provider: firecrawl
+2026-09-22 20:59:28,617 INFO hermes_cli.plugins: Plugin 'deepinfra' registered image_gen provider: deepinfra
+2026-09-22 20:59:28,622 INFO hermes_cli.plugins: Plugin 'fal' registered image_gen provider: fal
+2026-09-22 20:59:28,627 INFO hermes_cli.plugins: Plugin 'krea' registered image_gen provider: krea
+2026-09-22 20:59:28,632 INFO hermes_cli.plugins: Plugin 'meta-ai-image-gen' registered image_gen provider: meta-ai
+2026-09-22 20:59:28,636 INFO hermes_cli.plugins: Plugin 'openai' registered image_gen provider: openai
+2026-09-22 20:59:28,640 INFO hermes_cli.plugins: Plugin 'openai-codex' registered image_gen provider: openai-codex
+2026-09-22 20:59:28,645 INFO hermes_cli.plugins: Plugin 'openrouter' registered image_gen provider: openrouter
+2026-09-22 20:59:28,645 INFO hermes_cli.plugins: Plugin 'openrouter' registered image_gen provider: nous
+2026-09-22 20:59:28,651 INFO hermes_cli.plugins: Plugin 'xai' registered image_gen provider: xai
+2026-09-22 20:59:28,678 INFO hermes_cli.plugins: Plugin 'deepinfra' registered video_gen provider: deepinfra
+2026-09-22 20:59:28,682 INFO hermes_cli.plugins: Plugin 'fal' registered video_gen provider: fal
+2026-09-22 20:59:28,686 INFO hermes_cli.plugins: Plugin 'xai' registered video_gen provider: xai
+2026-09-22 20:59:28,695 INFO hermes_cli.plugins: Plugin 'web-brave-free' registered web provider: brave-free
+2026-09-22 20:59:28,701 INFO hermes_cli.plugins: Plugin 'web-ddgs' registered web provider: ddgs
+2026-09-22 20:59:28,706 INFO hermes_cli.plugins: Plugin 'web-exa' registered web provider: exa
+2026-09-22 20:59:28,716 INFO hermes_cli.plugins: Plugin 'web-firecrawl' registered web provider: firecrawl
+2026-09-22 20:59:28,722 INFO hermes_cli.plugins: Plugin 'web-keenable' registered web provider: keenable
+2026-09-22 20:59:28,727 INFO hermes_cli.plugins: Plugin 'web-parallel' registered web provider: parallel
+2026-09-22 20:59:28,731 INFO hermes_cli.plugins: Plugin 'web-searxng' registered web provider: searxng
+2026-09-22 20:59:28,737 INFO hermes_cli.plugins: Plugin 'web-tavily' registered web provider: tavily
+2026-09-22 20:59:28,742 INFO hermes_cli.plugins: Plugin 'web-xai' registered web provider: xai
+2026-09-22 20:59:28,855 INFO hermes_cli.plugins: Plugin discovery complete: 56 found, 50 enabled
+2026-09-22 20:59:29,415 INFO agent.credential_pool: credential pool: no available entries (all exhausted or empty)
+2026-09-22 20:59:33,300 INFO agent.credential_pool: credential pool: no available entries (all exhausted or empty)
+2026-09-22 20:59:33,399 INFO run_agent: Loaded environment variables from /data/data/com.termux/files/home/.hermes/.env
+2026-09-22 20:59:33,987 INFO agent.credential_pool: credential pool: no available entries (all exhausted or empty)
+2026-09-22 20:59:34,043 WARNING cli: Background MCP discovery previously exited with no connected servers; retrying discovery thread
+2026-09-22 20:59:37,035 INFO run_agent: OpenAI client created (agent_init, shared=True) thread=Thread-4 (_tui_process_loop):511548615936 provider=deepseek base_url=https://api.deepseek.com/v1 model=deepseek-v4-flash-vision-exp
+2026-09-22 20:59:38,008 WARNING tools.registry: check_fn check_browser_back_requirements returned False; dependent tools will be unavailable this turn
+2026-09-22 20:59:38,996 WARNING tools.registry: check_fn _browser_cdp_check returned False; dependent tools will be unavailable this turn
+2026-09-22 20:59:39,912 WARNING tools.registry: check_fn check_browser_click_requirements returned False; dependent tools will be unavailable this turn
+2026-09-22 20:59:40,873 WARNING tools.registry: check_fn check_browser_requirements returned False; dependent tools will be unavailable this turn
+2026-09-22 20:59:41,804 WARNING tools.registry: check_fn _browser_dialog_check returned False; dependent tools will be unavailable this turn
+2026-09-22 20:59:41,816 WARNING tools.registry: check_fn is_browser_use_cli_mode returned False; dependent tools will be unavailable this turn
+2026-09-22 20:59:42,731 WARNING tools.registry: check_fn check_browser_navigate_requirements returned False; dependent tools will be unavailable this turn
+2026-09-22 20:59:43,685 WARNING tools.registry: check_fn check_browser_press_requirements returned False; dependent tools will be unavailable this turn
+2026-09-22 20:59:44,645 WARNING tools.registry: check_fn check_browser_scroll_requirements returned False; dependent tools will be unavailable this turn
+2026-09-22 20:59:45,657 WARNING tools.registry: check_fn check_browser_snapshot_requirements returned False; dependent tools will be unavailable this turn
+2026-09-22 20:59:46,661 WARNING tools.registry: check_fn check_browser_type_requirements returned False; dependent tools will be unavailable this turn
+2026-09-22 20:59:47,713 WARNING tools.registry: check_fn check_browser_vision_requirements returned False; dependent tools will be unavailable this turn
+2026-09-22 20:59:47,715 WARNING tools.registry: check_fn check_computer_use_requirements returned False; dependent tools will be unavailable this turn
+2026-09-22 20:59:47,739 WARNING tools.registry: check_fn check_image_generation_requirements returned False; dependent tools will be unavailable this turn
+2026-09-22 20:59:47,747 WARNING tools.registry: check_fn _check_kanban_mode returned False; dependent tools will be unavailable this turn
+2026-09-22 20:59:47,756 WARNING tools.registry: check_fn _check_kanban_orchestrator_mode returned False; dependent tools will be unavailable this turn
+2026-09-22 20:59:48,225 INFO agent.auxiliary_client: Vision auto-detect: using main provider deepseek (deepseek-v4-flash-vision-exp)
+2026-09-22 20:59:48,417 INFO agent.credential_pool: credential pool: no available entries (all exhausted or empty)
+2026-09-22 20:59:48,424 INFO tools.tool_search: tool_search activated (tier 1): 16 core/visible tools kept, 4 deferred (~2820 tokens), listing full (budget ~4000 tokens)
+2026-09-22 20:59:48,771 WARNING agent.relay_runtime: Hermes Relay runtime initialization failed
+Traceback (most recent call last):
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/relay_runtime.py", line 775, in for_profile
+    host = RelayRuntime(profile_key=key)
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/relay_runtime.py", line 333, in __init__
+    self.relay = relay or _load_nemo_relay()
+                          ~~~~~~~~~~~~~~~~^^
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/relay_runtime.py", line 1199, in _load_nemo_relay
+    return importlib.import_module("nemo_relay")
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/importlib/__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1395, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'nemo_relay'
+2026-09-22 20:59:48,793 INFO [20260922_205928_313af4] agent.turn_context: conversation turn: session=20260922_205928_313af4 model=deepseek-v4-flash-vision-exp provider=deepseek platform=cli history=0 msg='ls'
+2026-09-22 20:59:50,914 INFO agent.auxiliary_client: Auxiliary auto-detect: using main provider deepseek (deepseek-v4-flash-vision-exp)
+2026-09-22 20:59:50,922 INFO agent.auxiliary_client: Auxiliary title_generation: using deepseek (deepseek-v4-flash-vision-exp) at https://api.deepseek.com/v1/
+2026-09-22 20:59:51,045 INFO run_agent: OpenAI client created (chat_completion_stream_request, shared=False) thread=Thread-7 (<lambda>):511434329344 provider=deepseek base_url=https://api.deepseek.com/v1 model=deepseek-v4-flash-vision-exp
+2026-09-22 20:59:52,383 INFO agent.credential_pool: credential pool: marking DEEPSEEK_API_KEY exhausted (status=401), rotating
+2026-09-22 20:59:52,384 INFO agent.credential_pool: credential pool: no available entries (all exhausted or empty)
+2026-09-22 20:59:52,387 INFO agent.auxiliary_client: Auxiliary title_generation: auth error on auto (Error code: 401 - {'error': {'message': 'Authentication Fails, Your api key: ****Xg== is invalid', 'type': 'authentication_error', 'param': None, 'code': 'invalid_request_error'}}), trying fallback
+2026-09-22 20:59:52,403 WARNING agent.auxiliary_client: Auxiliary: marking openrouter unhealthy for 60s (payment / credit error). Subsequent auxiliary calls will skip it until 21:00:52.
+2026-09-22 20:59:52,430 WARNING agent.auxiliary_client: Auxiliary Nous client unavailable: no Nous authentication found (run: hermes auth).
+2026-09-22 20:59:52,431 WARNING agent.auxiliary_client: Auxiliary: marking nous unhealthy for 60s (payment / credit error). Subsequent auxiliary calls will skip it until 21:00:52.
+2026-09-22 20:59:52,583 INFO agent.credential_pool: credential pool: no available entries (all exhausted or empty)
+2026-09-22 20:59:52,673 ERROR agent.chat_completion_helpers: Streaming failed before delivery: Error code: 401 - {'error': {'message': 'Authentication Fails, Your api key: ****Xg== is invalid', 'type': 'authentication_error', 'param': None, 'code': 'invalid_request_error'}}
+Traceback (most recent call last):
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/chat_completion_helpers.py", line 3330, in _call
+    self.result["response"] = _with_stream_emitters(
+                              ~~~~~~~~~~~~~~~~~~~~~^
+        self.agent, lambda: self._call_wire(stream_attempt_id))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/chat_completion_helpers.py", line 2433, in _with_stream_emitters
+    response = run()
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/chat_completion_helpers.py", line 3331, in <lambda>
+    self.agent, lambda: self._call_wire(stream_attempt_id))
+                        ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/chat_completion_helpers.py", line 3313, in _call_wire
+    return self._call_chat_completions(stream_attempt_id)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/chat_completion_helpers.py", line 2948, in _call_chat_completions
+    stream = self._set_managed_stream(relay_llm.stream(self.api_kwargs, _open_stream,
+                                      ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        **_relay_stream_identity(self.agent, "provider"), finalizer=_relay_final_response,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+        completed_response_predicate=lambda value: hasattr(value, "choices"),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        metadata=_relay_stream_metadata(self.agent, "chat_completions"), defer_logical_completion=True))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/relay_llm.py", line 297, in __init__
+    self._start_unmanaged(request)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/relay_llm.py", line 303, in _start_unmanaged
+    raw_stream = self._stream_factory(request)
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/chat_completion_helpers.py", line 2931, in _open_stream
+    return self._open_chat_stream({**next_api_kwargs, "stream": True, "timeout": timeout})
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/chat_completion_helpers.py", line 2872, in _open_chat_stream
+    return request_client.chat.completions.create(**stream_kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/venv/lib/python3.13/site-packages/openai/_utils/_utils.py", line 286, in wrapper
+    return func(*args, **kwargs)
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/venv/lib/python3.13/site-packages/openai/resources/chat/completions/completions.py", line 1204, in create
+    return self._post(
+           ~~~~~~~~~~^
+        "/chat/completions",
+        ^^^^^^^^^^^^^^^^^^^^
+    ...<47 lines>...
+        stream_cls=Stream[ChatCompletionChunk],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/venv/lib/python3.13/site-packages/openai/_base_client.py", line 1297, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/venv/lib/python3.13/site-packages/openai/_base_client.py", line 1070, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.AuthenticationError: Error code: 401 - {'error': {'message': 'Authentication Fails, Your api key: ****Xg== is invalid', 'type': 'authentication_error', 'param': None, 'code': 'invalid_request_error'}}
+2026-09-22 20:59:52,676 INFO run_agent: OpenAI client closed (stream_error_cleanup, shared=False, tcp_force_closed=0) thread=Thread-7 (<lambda>):511434329344 provider=deepseek base_url=https://api.deepseek.com/v1 model=deepseek-v4-flash-vision-exp
+2026-09-22 20:59:52,703 WARNING [20260922_205928_313af4] agent.conversation_loop: API call failed (attempt 1/3) error_type=AuthenticationError thread=Thread-6 (_chat_run_agent):511419636992 provider=deepseek base_url=https://api.deepseek.com/v1 model=deepseek-v4-flash-vision-exp summary=HTTP 401: Authentication Fails, Your api key: ****Xg== is invalid
+2026-09-22 20:59:52,845 ERROR [20260922_205928_313af4] agent.conversation_loop: Non-retryable client error: Error code: 401 - {'error': {'message': 'Authentication Fails, Your api key: ****Xg== is invalid', 'type': 'authentication_error', 'param': None, 'code': 'invalid_request_error'}}
+2026-09-22 20:59:53,506 INFO agent.auxiliary_client: Auxiliary title_generation: auth error on auto — falling back to api-key (deepseek/deepseek-v4-flash)
+2026-09-22 21:00:02,355 WARNING agent.auxiliary_client: Auxiliary: marking api-key unhealthy for 600s (payment / credit error). Subsequent auxiliary calls will skip it until 21:10:02.
+2026-09-22 21:00:02,357 WARNING agent.auxiliary_client: Auxiliary title_generation: fallback candidate api-key has a stale/unrefreshable credential (Error code: 401 - {'error': {'message': "Invalid 'Authorization' header or token.", 'type': 'authentication_error', 'code': 'UNAUTHORIZED'}}) — skipping to next fallback
+2026-09-22 21:00:02,363 INFO agent.auxiliary_client: Auxiliary title_generation: skipping openrouter (recently returned payment error, retry in 50s)
+2026-09-22 21:00:02,366 INFO agent.auxiliary_client: Auxiliary title_generation: skipping nous (recently returned payment error, retry in 50s)
+2026-09-22 21:00:02,411 INFO agent.auxiliary_client: Auxiliary title_generation: skipping api-key (recently returned payment error, retry in 599s)
+2026-09-22 21:00:02,412 WARNING agent.auxiliary_client: Auxiliary title_generation: stale fallback credential on auto and no fallback available (tried: openrouter (unhealthy), nous (unhealthy), local/custom, api-key (unhealthy))
+2026-09-22 21:00:02,414 WARNING agent.auxiliary_client: Auxiliary title_generation: auth error on auto and all fallbacks exhausted (fallback_chain + main agent model). Raising original error.
+2026-09-22 21:00:02,416 WARNING agent.title_generator: Title generation failed: Error code: 401 - {'error': {'message': 'Authentication Fails, Your api key: ****Xg== is invalid', 'type': 'authentication_error', 'param': None, 'code': 'invalid_request_error'}}
+2026-09-22 21:01:46,695 INFO cli: CLI cleanup calling memory shutdown for session 20260922_210105_150702 with 1 message(s)
+2026-09-22 21:01:52,424 INFO hermes_cli.plugins: Plugin 'browser-browser-use' registered browser provider: browser-use
+2026-09-22 21:01:52,429 INFO hermes_cli.plugins: Plugin 'browser-browserbase' registered browser provider: browserbase
+2026-09-22 21:01:52,434 INFO hermes_cli.plugins: Plugin 'browser-firecrawl' registered browser provider: firecrawl
+2026-09-22 21:01:52,680 INFO hermes_cli.plugins: Plugin 'deepinfra' registered image_gen provider: deepinfra
+2026-09-22 21:01:52,685 INFO hermes_cli.plugins: Plugin 'fal' registered image_gen provider: fal
+2026-09-22 21:01:52,690 INFO hermes_cli.plugins: Plugin 'krea' registered image_gen provider: krea
+2026-09-22 21:01:52,696 INFO hermes_cli.plugins: Plugin 'meta-ai-image-gen' registered image_gen provider: meta-ai
+2026-09-22 21:01:52,699 INFO hermes_cli.plugins: Plugin 'openai' registered image_gen provider: openai
+2026-09-22 21:01:52,703 INFO hermes_cli.plugins: Plugin 'openai-codex' registered image_gen provider: openai-codex
+2026-09-22 21:01:52,709 INFO hermes_cli.plugins: Plugin 'openrouter' registered image_gen provider: openrouter
+2026-09-22 21:01:52,709 INFO hermes_cli.plugins: Plugin 'openrouter' registered image_gen provider: nous
+2026-09-22 21:01:52,715 INFO hermes_cli.plugins: Plugin 'xai' registered image_gen provider: xai
+2026-09-22 21:01:52,738 INFO hermes_cli.plugins: Plugin 'deepinfra' registered video_gen provider: deepinfra
+2026-09-22 21:01:52,742 INFO hermes_cli.plugins: Plugin 'fal' registered video_gen provider: fal
+2026-09-22 21:01:52,745 INFO hermes_cli.plugins: Plugin 'xai' registered video_gen provider: xai
+2026-09-22 21:01:52,752 INFO hermes_cli.plugins: Plugin 'web-brave-free' registered web provider: brave-free
+2026-09-22 21:01:52,756 INFO hermes_cli.plugins: Plugin 'web-ddgs' registered web provider: ddgs
+2026-09-22 21:01:52,761 INFO hermes_cli.plugins: Plugin 'web-exa' registered web provider: exa
+2026-09-22 21:01:52,772 INFO hermes_cli.plugins: Plugin 'web-firecrawl' registered web provider: firecrawl
+2026-09-22 21:01:52,777 INFO hermes_cli.plugins: Plugin 'web-keenable' registered web provider: keenable
+2026-09-22 21:01:52,783 INFO hermes_cli.plugins: Plugin 'web-parallel' registered web provider: parallel
+2026-09-22 21:01:52,788 INFO hermes_cli.plugins: Plugin 'web-searxng' registered web provider: searxng
+2026-09-22 21:01:52,794 INFO hermes_cli.plugins: Plugin 'web-tavily' registered web provider: tavily
+2026-09-22 21:01:52,798 INFO hermes_cli.plugins: Plugin 'web-xai' registered web provider: xai
+2026-09-22 21:01:52,903 INFO hermes_cli.plugins: Plugin discovery complete: 56 found, 50 enabled
+2026-09-22 21:01:53,423 INFO agent.credential_pool: credential pool: no available entries (all exhausted or empty)
+2026-09-22 21:02:00,428 INFO agent.credential_pool: credential pool: no available entries (all exhausted or empty)
+2026-09-22 21:02:00,543 INFO run_agent: Loaded environment variables from /data/data/com.termux/files/home/.hermes/.env
+2026-09-22 21:02:01,413 INFO agent.credential_pool: credential pool: no available entries (all exhausted or empty)
+2026-09-22 21:02:01,510 WARNING cli: Background MCP discovery previously exited with no connected servers; retrying discovery thread
+2026-09-22 21:02:03,304 INFO run_agent: OpenAI client created (agent_init, shared=True) thread=Thread-4 (_tui_process_loop):488261455104 provider=deepseek base_url=https://api.deepseek.com/v1 model=deepseek-v4-flash-vision-exp
+2026-09-22 21:02:04,056 WARNING tools.registry: check_fn check_browser_back_requirements returned False; dependent tools will be unavailable this turn
+2026-09-22 21:02:04,803 WARNING tools.registry: check_fn _browser_cdp_check returned False; dependent tools will be unavailable this turn
+2026-09-22 21:02:05,548 WARNING tools.registry: check_fn check_browser_click_requirements returned False; dependent tools will be unavailable this turn
+2026-09-22 21:02:06,289 WARNING tools.registry: check_fn check_browser_requirements returned False; dependent tools will be unavailable this turn
+2026-09-22 21:02:06,975 WARNING tools.registry: check_fn _browser_dialog_check returned False; dependent tools will be unavailable this turn
+2026-09-22 21:02:06,979 WARNING tools.registry: check_fn is_browser_use_cli_mode returned False; dependent tools will be unavailable this turn
+2026-09-22 21:02:07,690 WARNING tools.registry: check_fn check_browser_navigate_requirements returned False; dependent tools will be unavailable this turn
+2026-09-22 21:02:08,423 WARNING tools.registry: check_fn check_browser_press_requirements returned False; dependent tools will be unavailable this turn
+2026-09-22 21:02:09,135 WARNING tools.registry: check_fn check_browser_scroll_requirements returned False; dependent tools will be unavailable this turn
+2026-09-22 21:02:09,862 WARNING tools.registry: check_fn check_browser_snapshot_requirements returned False; dependent tools will be unavailable this turn
+2026-09-22 21:02:10,549 WARNING tools.registry: check_fn check_browser_type_requirements returned False; dependent tools will be unavailable this turn
+2026-09-22 21:02:11,280 WARNING tools.registry: check_fn check_browser_vision_requirements returned False; dependent tools will be unavailable this turn
+2026-09-22 21:02:11,281 WARNING tools.registry: check_fn check_computer_use_requirements returned False; dependent tools will be unavailable this turn
+2026-09-22 21:02:11,324 WARNING tools.registry: check_fn check_image_generation_requirements returned False; dependent tools will be unavailable this turn
+2026-09-22 21:02:11,334 WARNING tools.registry: check_fn _check_kanban_mode returned False; dependent tools will be unavailable this turn
+2026-09-22 21:02:11,341 WARNING tools.registry: check_fn _check_kanban_orchestrator_mode returned False; dependent tools will be unavailable this turn
+2026-09-22 21:02:11,602 INFO agent.auxiliary_client: Vision auto-detect: using main provider deepseek (deepseek-v4-flash-vision-exp)
+2026-09-22 21:02:11,716 INFO agent.credential_pool: credential pool: no available entries (all exhausted or empty)
+2026-09-22 21:02:11,719 INFO tools.tool_search: tool_search activated (tier 1): 16 core/visible tools kept, 4 deferred (~2820 tokens), listing full (budget ~4000 tokens)
+2026-09-22 21:02:11,953 WARNING agent.relay_runtime: Hermes Relay runtime initialization failed
+Traceback (most recent call last):
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/relay_runtime.py", line 775, in for_profile
+    host = RelayRuntime(profile_key=key)
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/relay_runtime.py", line 333, in __init__
+    self.relay = relay or _load_nemo_relay()
+                          ~~~~~~~~~~~~~~~~^^
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/relay_runtime.py", line 1199, in _load_nemo_relay
+    return importlib.import_module("nemo_relay")
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/importlib/__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1395, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'nemo_relay'
+2026-09-22 21:02:11,964 INFO [20260922_210152_e81677] agent.turn_context: conversation turn: session=20260922_210152_e81677 model=deepseek-v4-flash-vision-exp provider=deepseek platform=cli history=0 msg='ls'
+2026-09-22 21:02:13,505 INFO agent.auxiliary_client: Auxiliary auto-detect: using main provider deepseek (deepseek-v4-flash-vision-exp)
+2026-09-22 21:02:13,512 INFO agent.auxiliary_client: Auxiliary title_generation: using deepseek (deepseek-v4-flash-vision-exp) at https://api.deepseek.com/v1/
+2026-09-22 21:02:13,605 INFO run_agent: OpenAI client created (chat_completion_stream_request, shared=False) thread=Thread-7 (<lambda>):488146476288 provider=deepseek base_url=https://api.deepseek.com/v1 model=deepseek-v4-flash-vision-exp
+2026-09-22 21:02:14,361 INFO agent.credential_pool: credential pool: marking DEEPSEEK_API_KEY exhausted (status=401), rotating
+2026-09-22 21:02:14,362 INFO agent.credential_pool: credential pool: no available entries (all exhausted or empty)
+2026-09-22 21:02:14,363 INFO agent.auxiliary_client: Auxiliary title_generation: auth error on auto (Error code: 401 - {'error': {'message': 'Authentication Fails, Your api key: ****Xg== is invalid', 'type': 'authentication_error', 'param': None, 'code': 'invalid_request_error'}}), trying fallback
+2026-09-22 21:02:14,375 WARNING agent.auxiliary_client: Auxiliary: marking openrouter unhealthy for 60s (payment / credit error). Subsequent auxiliary calls will skip it until 21:03:14.
+2026-09-22 21:02:14,398 WARNING agent.auxiliary_client: Auxiliary Nous client unavailable: no Nous authentication found (run: hermes auth).
+2026-09-22 21:02:14,399 WARNING agent.auxiliary_client: Auxiliary: marking nous unhealthy for 60s (payment / credit error). Subsequent auxiliary calls will skip it until 21:03:14.
+2026-09-22 21:02:14,541 ERROR agent.chat_completion_helpers: Streaming failed before delivery: Error code: 401 - {'error': {'message': 'Authentication Fails, Your api key: ****Xg== is invalid', 'type': 'authentication_error', 'param': None, 'code': 'invalid_request_error'}}
+Traceback (most recent call last):
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/chat_completion_helpers.py", line 3330, in _call
+    self.result["response"] = _with_stream_emitters(
+                              ~~~~~~~~~~~~~~~~~~~~~^
+        self.agent, lambda: self._call_wire(stream_attempt_id))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/chat_completion_helpers.py", line 2433, in _with_stream_emitters
+    response = run()
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/chat_completion_helpers.py", line 3331, in <lambda>
+    self.agent, lambda: self._call_wire(stream_attempt_id))
+                        ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/chat_completion_helpers.py", line 3313, in _call_wire
+    return self._call_chat_completions(stream_attempt_id)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/chat_completion_helpers.py", line 2948, in _call_chat_completions
+    stream = self._set_managed_stream(relay_llm.stream(self.api_kwargs, _open_stream,
+                                      ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        **_relay_stream_identity(self.agent, "provider"), finalizer=_relay_final_response,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+        completed_response_predicate=lambda value: hasattr(value, "choices"),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        metadata=_relay_stream_metadata(self.agent, "chat_completions"), defer_logical_completion=True))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/relay_llm.py", line 297, in __init__
+    self._start_unmanaged(request)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/relay_llm.py", line 303, in _start_unmanaged
+    raw_stream = self._stream_factory(request)
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/chat_completion_helpers.py", line 2931, in _open_stream
+    return self._open_chat_stream({**next_api_kwargs, "stream": True, "timeout": timeout})
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/chat_completion_helpers.py", line 2872, in _open_chat_stream
+    return request_client.chat.completions.create(**stream_kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/venv/lib/python3.13/site-packages/openai/_utils/_utils.py", line 286, in wrapper
+    return func(*args, **kwargs)
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/venv/lib/python3.13/site-packages/openai/resources/chat/completions/completions.py", line 1204, in create
+    return self._post(
+           ~~~~~~~~~~^
+        "/chat/completions",
+        ^^^^^^^^^^^^^^^^^^^^
+    ...<47 lines>...
+        stream_cls=Stream[ChatCompletionChunk],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/venv/lib/python3.13/site-packages/openai/_base_client.py", line 1297, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/venv/lib/python3.13/site-packages/openai/_base_client.py", line 1070, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.AuthenticationError: Error code: 401 - {'error': {'message': 'Authentication Fails, Your api key: ****Xg== is invalid', 'type': 'authentication_error', 'param': None, 'code': 'invalid_request_error'}}
+2026-09-22 21:02:14,542 INFO run_agent: OpenAI client closed (stream_error_cleanup, shared=False, tcp_force_closed=0) thread=Thread-7 (<lambda>):488146476288 provider=deepseek base_url=https://api.deepseek.com/v1 model=deepseek-v4-flash-vision-exp
+2026-09-22 21:02:14,569 WARNING [20260922_210152_e81677] agent.conversation_loop: API call failed (attempt 1/3) error_type=AuthenticationError thread=Thread-6 (_chat_run_agent):488130735360 provider=deepseek base_url=https://api.deepseek.com/v1 model=deepseek-v4-flash-vision-exp summary=HTTP 401: Authentication Fails, Your api key: ****Xg== is invalid
+2026-09-22 21:02:14,686 ERROR [20260922_210152_e81677] agent.conversation_loop: Non-retryable client error: Error code: 401 - {'error': {'message': 'Authentication Fails, Your api key: ****Xg== is invalid', 'type': 'authentication_error', 'param': None, 'code': 'invalid_request_error'}}
+2026-09-22 21:02:14,684 INFO agent.credential_pool: credential pool: no available entries (all exhausted or empty)
+2026-09-22 21:02:16,460 INFO agent.auxiliary_client: Auxiliary title_generation: auth error on auto — falling back to api-key (deepseek/deepseek-v4-flash)
+2026-09-22 21:02:36,782 WARNING agent.title_generator: Title generation failed: Connection error.
+2026-09-22 21:02:41,498 INFO cli: CLI cleanup calling memory shutdown for session 20260922_210218_9aa82f with 1 message(s)
+2026-09-22 21:02:47,618 INFO hermes_cli.plugins: Plugin 'browser-browser-use' registered browser provider: browser-use
+2026-09-22 21:02:47,625 INFO hermes_cli.plugins: Plugin 'browser-browserbase' registered browser provider: browserbase
+2026-09-22 21:02:47,629 INFO hermes_cli.plugins: Plugin 'browser-firecrawl' registered browser provider: firecrawl
+2026-09-22 21:02:47,819 INFO hermes_cli.plugins: Plugin 'deepinfra' registered image_gen provider: deepinfra
+2026-09-22 21:02:47,821 INFO hermes_cli.plugins: Plugin 'fal' registered image_gen provider: fal
+2026-09-22 21:02:47,823 INFO hermes_cli.plugins: Plugin 'krea' registered image_gen provider: krea
+2026-09-22 21:02:47,826 INFO hermes_cli.plugins: Plugin 'meta-ai-image-gen' registered image_gen provider: meta-ai
+2026-09-22 21:02:47,829 INFO hermes_cli.plugins: Plugin 'openai' registered image_gen provider: openai
+2026-09-22 21:02:47,833 INFO hermes_cli.plugins: Plugin 'openai-codex' registered image_gen provider: openai-codex
+2026-09-22 21:02:47,837 INFO hermes_cli.plugins: Plugin 'openrouter' registered image_gen provider: openrouter
+2026-09-22 21:02:47,838 INFO hermes_cli.plugins: Plugin 'openrouter' registered image_gen provider: nous
+2026-09-22 21:02:47,842 INFO hermes_cli.plugins: Plugin 'xai' registered image_gen provider: xai
+2026-09-22 21:02:47,861 INFO hermes_cli.plugins: Plugin 'deepinfra' registered video_gen provider: deepinfra
+2026-09-22 21:02:47,864 INFO hermes_cli.plugins: Plugin 'fal' registered video_gen provider: fal
+2026-09-22 21:02:47,867 INFO hermes_cli.plugins: Plugin 'xai' registered video_gen provider: xai
+2026-09-22 21:02:47,874 INFO hermes_cli.plugins: Plugin 'web-brave-free' registered web provider: brave-free
+2026-09-22 21:02:47,879 INFO hermes_cli.plugins: Plugin 'web-ddgs' registered web provider: ddgs
+2026-09-22 21:02:47,884 INFO hermes_cli.plugins: Plugin 'web-exa' registered web provider: exa
+2026-09-22 21:02:47,891 INFO hermes_cli.plugins: Plugin 'web-firecrawl' registered web provider: firecrawl
+2026-09-22 21:02:47,894 INFO hermes_cli.plugins: Plugin 'web-keenable' registered web provider: keenable
+2026-09-22 21:02:47,898 INFO hermes_cli.plugins: Plugin 'web-parallel' registered web provider: parallel
+2026-09-22 21:02:47,903 INFO hermes_cli.plugins: Plugin 'web-searxng' registered web provider: searxng
+2026-09-22 21:02:47,909 INFO hermes_cli.plugins: Plugin 'web-tavily' registered web provider: tavily
+2026-09-22 21:02:47,915 INFO hermes_cli.plugins: Plugin 'web-xai' registered web provider: xai
+2026-09-22 21:02:47,995 INFO hermes_cli.plugins: Plugin discovery complete: 56 found, 50 enabled
+2026-09-22 21:02:48,432 INFO agent.credential_pool: credential pool: no available entries (all exhausted or empty)
+2026-09-22 21:05:56,659 WARNING agent.model_metadata: Could not determine context length for model 'jev-1.13-free' (base_url=https://opencode.ai/zen/v1) — falling back to 256,000 tokens. Set model.context_length in config.yaml to override.
+2026-09-22 21:09:10,689 INFO run_agent: Loaded environment variables from /data/data/com.termux/files/home/.hermes/.env
+2026-09-22 21:09:11,986 WARNING cli: Background MCP discovery previously exited with no connected servers; retrying discovery thread
+2026-09-22 21:09:13,981 INFO run_agent: OpenAI client created (agent_init, shared=True) thread=Thread-4 (_tui_process_loop):527662378240 provider=opencode-free base_url=https://opencode.ai/zen/v1 model=jev-1.13-free
+2026-09-22 21:09:15,102 WARNING tools.registry: check_fn check_browser_back_requirements returned False; dependent tools will be unavailable this turn
+2026-09-22 21:09:15,883 WARNING tools.registry: check_fn _browser_cdp_check returned False; dependent tools will be unavailable this turn
+2026-09-22 21:09:16,721 WARNING tools.registry: check_fn check_browser_click_requirements returned False; dependent tools will be unavailable this turn
+2026-09-22 21:09:17,651 WARNING tools.registry: check_fn check_browser_requirements returned False; dependent tools will be unavailable this turn
+2026-09-22 21:09:18,369 WARNING tools.registry: check_fn _browser_dialog_check returned False; dependent tools will be unavailable this turn
+2026-09-22 21:09:18,372 WARNING tools.registry: check_fn is_browser_use_cli_mode returned False; dependent tools will be unavailable this turn
+2026-09-22 21:09:19,048 WARNING tools.registry: check_fn check_browser_navigate_requirements returned False; dependent tools will be unavailable this turn
+2026-09-22 21:09:19,701 WARNING tools.registry: check_fn check_browser_press_requirements returned False; dependent tools will be unavailable this turn
+2026-09-22 21:09:20,380 WARNING tools.registry: check_fn check_browser_scroll_requirements returned False; dependent tools will be unavailable this turn
+2026-09-22 21:09:21,246 WARNING tools.registry: check_fn check_browser_snapshot_requirements returned False; dependent tools will be unavailable this turn
+2026-09-22 21:09:22,003 WARNING tools.registry: check_fn check_browser_type_requirements returned False; dependent tools will be unavailable this turn
+2026-09-22 21:09:22,745 WARNING tools.registry: check_fn check_browser_vision_requirements returned False; dependent tools will be unavailable this turn
+2026-09-22 21:09:22,746 WARNING tools.registry: check_fn check_computer_use_requirements returned False; dependent tools will be unavailable this turn
+2026-09-22 21:09:22,783 WARNING tools.registry: check_fn check_image_generation_requirements returned False; dependent tools will be unavailable this turn
+2026-09-22 21:09:22,790 WARNING tools.registry: check_fn _check_kanban_mode returned False; dependent tools will be unavailable this turn
+2026-09-22 21:09:22,799 WARNING tools.registry: check_fn _check_kanban_orchestrator_mode returned False; dependent tools will be unavailable this turn
+2026-09-22 21:09:23,237 INFO agent.auxiliary_client: Vision auto-detect: using main provider deepseek (deepseek-v4-flash-vision-exp)
+2026-09-22 21:09:23,381 INFO tools.tool_search: tool_search activated (tier 1): 16 core/visible tools kept, 4 deferred (~2820 tokens), listing full (budget ~4000 tokens)
+2026-09-22 21:09:23,672 WARNING agent.relay_runtime: Hermes Relay runtime initialization failed
+Traceback (most recent call last):
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/relay_runtime.py", line 775, in for_profile
+    host = RelayRuntime(profile_key=key)
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/relay_runtime.py", line 333, in __init__
+    self.relay = relay or _load_nemo_relay()
+                          ~~~~~~~~~~~~~~~~^^
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/relay_runtime.py", line 1199, in _load_nemo_relay
+    return importlib.import_module("nemo_relay")
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/importlib/__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1395, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'nemo_relay'
+2026-09-22 21:09:23,688 INFO [20260922_210322_bc12c1] agent.turn_context: conversation turn: session=20260922_210322_bc12c1 model=jev-1.13-free provider=opencode-free platform=cli history=0 msg='[Note: model was just switched from deepseek-v4-flash-vision-exp to jev-1.13-fre...'
+2026-09-22 21:09:25,539 INFO agent.auxiliary_client: Auxiliary auto-detect: using main provider opencode-free (jev-1.13-free)
+2026-09-22 21:09:25,555 INFO agent.auxiliary_client: Auxiliary title_generation: using opencode-free (jev-1.13-free) at https://opencode.ai/zen/v1/
+2026-09-22 21:09:25,623 INFO run_agent: OpenAI client created (chat_completion_stream_request, shared=False) thread=Thread-55 (<lambda>):527538404608 provider=opencode-free base_url=https://opencode.ai/zen/v1 model=jev-1.13-free
+2026-09-22 21:09:26,913 INFO agent.auxiliary_client: Auxiliary title_generation: transient transport error (attempt 1/2); retrying same provider after 1.0s before fallback: Error code: 500 - {'type': 'error', 'error': {'type': 'error', 'message': 'Internal server error'}}
+2026-09-22 21:09:26,961 ERROR agent.chat_completion_helpers: Streaming failed before delivery: Error code: 500 - {'type': 'error', 'error': {'type': 'error', 'message': 'Internal server error'}}
+Traceback (most recent call last):
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/chat_completion_helpers.py", line 3330, in _call
+    self.result["response"] = _with_stream_emitters(
+                              ~~~~~~~~~~~~~~~~~~~~~^
+        self.agent, lambda: self._call_wire(stream_attempt_id))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/chat_completion_helpers.py", line 2433, in _with_stream_emitters
+    response = run()
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/chat_completion_helpers.py", line 3331, in <lambda>
+    self.agent, lambda: self._call_wire(stream_attempt_id))
+                        ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/chat_completion_helpers.py", line 3313, in _call_wire
+    return self._call_chat_completions(stream_attempt_id)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/chat_completion_helpers.py", line 2948, in _call_chat_completions
+    stream = self._set_managed_stream(relay_llm.stream(self.api_kwargs, _open_stream,
+                                      ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        **_relay_stream_identity(self.agent, "provider"), finalizer=_relay_final_response,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+        completed_response_predicate=lambda value: hasattr(value, "choices"),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        metadata=_relay_stream_metadata(self.agent, "chat_completions"), defer_logical_completion=True))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/relay_llm.py", line 297, in __init__
+    self._start_unmanaged(request)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/relay_llm.py", line 303, in _start_unmanaged
+    raw_stream = self._stream_factory(request)
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/chat_completion_helpers.py", line 2931, in _open_stream
+    return self._open_chat_stream({**next_api_kwargs, "stream": True, "timeout": timeout})
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/chat_completion_helpers.py", line 2872, in _open_chat_stream
+    return request_client.chat.completions.create(**stream_kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/venv/lib/python3.13/site-packages/openai/_utils/_utils.py", line 286, in wrapper
+    return func(*args, **kwargs)
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/venv/lib/python3.13/site-packages/openai/resources/chat/completions/completions.py", line 1204, in create
+    return self._post(
+           ~~~~~~~~~~^
+        "/chat/completions",
+        ^^^^^^^^^^^^^^^^^^^^
+    ...<47 lines>...
+        stream_cls=Stream[ChatCompletionChunk],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/venv/lib/python3.13/site-packages/openai/_base_client.py", line 1297, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/venv/lib/python3.13/site-packages/openai/_base_client.py", line 1070, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.InternalServerError: Error code: 500 - {'type': 'error', 'error': {'type': 'error', 'message': 'Internal server error'}}
+2026-09-22 21:09:26,964 INFO run_agent: OpenAI client closed (stream_error_cleanup, shared=False, tcp_force_closed=0) thread=Thread-55 (<lambda>):527538404608 provider=opencode-free base_url=https://opencode.ai/zen/v1 model=jev-1.13-free
+2026-09-22 21:09:26,976 WARNING [20260922_210322_bc12c1] agent.conversation_loop: API call failed (attempt 1/3) error_type=InternalServerError thread=Thread-54 (_chat_run_agent):527523712256 provider=opencode-free base_url=https://opencode.ai/zen/v1 model=jev-1.13-free summary=HTTP 500: Internal server error
+2026-09-22 21:09:26,977 WARNING [20260922_210322_bc12c1] agent.conversation_loop: Retrying API call in 2.081840183755692s (attempt 1/3) thread=Thread-54 (_chat_run_agent):527523712256 provider=opencode-free base_url=https://opencode.ai/zen/v1 model=jev-1.13-free policy=default error=Error code: 500 - {'type': 'error', 'error': {'type': 'error', 'message': 'Internal server error'}}
+2026-09-22 21:09:28,229 INFO agent.auxiliary_client: Auxiliary title_generation: transient transport error (attempt 2/2); retrying same provider after 2.0s before fallback: Error code: 500 - {'type': 'error', 'error': {'type': 'error', 'message': 'Internal server error'}}
+2026-09-22 21:09:29,200 INFO run_agent: OpenAI client created (chat_completion_stream_request, shared=False) thread=Thread-60 (<lambda>):527531076864 provider=opencode-free base_url=https://opencode.ai/zen/v1 model=jev-1.13-free
+2026-09-22 21:09:29,577 ERROR agent.chat_completion_helpers: Streaming failed before delivery: Error code: 500 - {'type': 'error', 'error': {'type': 'error', 'message': 'Internal server error'}}
+Traceback (most recent call last):
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/chat_completion_helpers.py", line 3330, in _call
+    self.result["response"] = _with_stream_emitters(
+                              ~~~~~~~~~~~~~~~~~~~~~^
+        self.agent, lambda: self._call_wire(stream_attempt_id))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/chat_completion_helpers.py", line 2433, in _with_stream_emitters
+    response = run()
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/chat_completion_helpers.py", line 3331, in <lambda>
+    self.agent, lambda: self._call_wire(stream_attempt_id))
+                        ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/chat_completion_helpers.py", line 3313, in _call_wire
+    return self._call_chat_completions(stream_attempt_id)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/chat_completion_helpers.py", line 2948, in _call_chat_completions
+    stream = self._set_managed_stream(relay_llm.stream(self.api_kwargs, _open_stream,
+                                      ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        **_relay_stream_identity(self.agent, "provider"), finalizer=_relay_final_response,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+        completed_response_predicate=lambda value: hasattr(value, "choices"),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        metadata=_relay_stream_metadata(self.agent, "chat_completions"), defer_logical_completion=True))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/relay_llm.py", line 297, in __init__
+    self._start_unmanaged(request)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/relay_llm.py", line 303, in _start_unmanaged
+    raw_stream = self._stream_factory(request)
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/chat_completion_helpers.py", line 2931, in _open_stream
+    return self._open_chat_stream({**next_api_kwargs, "stream": True, "timeout": timeout})
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/chat_completion_helpers.py", line 2872, in _open_chat_stream
+    return request_client.chat.completions.create(**stream_kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/venv/lib/python3.13/site-packages/openai/_utils/_utils.py", line 286, in wrapper
+    return func(*args, **kwargs)
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/venv/lib/python3.13/site-packages/openai/resources/chat/completions/completions.py", line 1204, in create
+    return self._post(
+           ~~~~~~~~~~^
+        "/chat/completions",
+        ^^^^^^^^^^^^^^^^^^^^
+    ...<47 lines>...
+        stream_cls=Stream[ChatCompletionChunk],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/venv/lib/python3.13/site-packages/openai/_base_client.py", line 1297, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/venv/lib/python3.13/site-packages/openai/_base_client.py", line 1070, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.InternalServerError: Error code: 500 - {'type': 'error', 'error': {'type': 'error', 'message': 'Internal server error'}}
+2026-09-22 21:09:29,577 INFO run_agent: OpenAI client closed (stream_error_cleanup, shared=False, tcp_force_closed=0) thread=Thread-60 (<lambda>):527531076864 provider=opencode-free base_url=https://opencode.ai/zen/v1 model=jev-1.13-free
+2026-09-22 21:09:29,613 WARNING [20260922_210322_bc12c1] agent.conversation_loop: API call failed (attempt 2/3) error_type=InternalServerError thread=Thread-54 (_chat_run_agent):527523712256 provider=opencode-free base_url=https://opencode.ai/zen/v1 model=jev-1.13-free summary=HTTP 500: Internal server error
+2026-09-22 21:09:29,614 WARNING [20260922_210322_bc12c1] agent.conversation_loop: Retrying API call in 5.758772579966806s (attempt 2/3) thread=Thread-54 (_chat_run_agent):527523712256 provider=opencode-free base_url=https://opencode.ai/zen/v1 model=jev-1.13-free policy=default error=Error code: 500 - {'type': 'error', 'error': {'type': 'error', 'message': 'Internal server error'}}
+2026-09-22 21:09:30,578 WARNING agent.title_generator: Title generation failed: Error code: 500 - {'type': 'error', 'error': {'type': 'error', 'message': 'Internal server error'}}
+2026-09-22 21:09:35,511 INFO run_agent: OpenAI client created (chat_completion_stream_request, shared=False) thread=Thread-61 (<lambda>):527528992000 provider=opencode-free base_url=https://opencode.ai/zen/v1 model=jev-1.13-free
+2026-09-22 21:09:35,901 ERROR agent.chat_completion_helpers: Streaming failed before delivery: Error code: 500 - {'type': 'error', 'error': {'type': 'error', 'message': 'Internal server error'}}
+Traceback (most recent call last):
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/chat_completion_helpers.py", line 3330, in _call
+    self.result["response"] = _with_stream_emitters(
+                              ~~~~~~~~~~~~~~~~~~~~~^
+        self.agent, lambda: self._call_wire(stream_attempt_id))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/chat_completion_helpers.py", line 2433, in _with_stream_emitters
+    response = run()
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/chat_completion_helpers.py", line 3331, in <lambda>
+    self.agent, lambda: self._call_wire(stream_attempt_id))
+                        ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/chat_completion_helpers.py", line 3313, in _call_wire
+    return self._call_chat_completions(stream_attempt_id)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/chat_completion_helpers.py", line 2948, in _call_chat_completions
+    stream = self._set_managed_stream(relay_llm.stream(self.api_kwargs, _open_stream,
+                                      ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        **_relay_stream_identity(self.agent, "provider"), finalizer=_relay_final_response,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+        completed_response_predicate=lambda value: hasattr(value, "choices"),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        metadata=_relay_stream_metadata(self.agent, "chat_completions"), defer_logical_completion=True))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/relay_llm.py", line 297, in __init__
+    self._start_unmanaged(request)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/relay_llm.py", line 303, in _start_unmanaged
+    raw_stream = self._stream_factory(request)
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/chat_completion_helpers.py", line 2931, in _open_stream
+    return self._open_chat_stream({**next_api_kwargs, "stream": True, "timeout": timeout})
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/chat_completion_helpers.py", line 2872, in _open_chat_stream
+    return request_client.chat.completions.create(**stream_kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/venv/lib/python3.13/site-packages/openai/_utils/_utils.py", line 286, in wrapper
+    return func(*args, **kwargs)
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/venv/lib/python3.13/site-packages/openai/resources/chat/completions/completions.py", line 1204, in create
+    return self._post(
+           ~~~~~~~~~~^
+        "/chat/completions",
+        ^^^^^^^^^^^^^^^^^^^^
+    ...<47 lines>...
+        stream_cls=Stream[ChatCompletionChunk],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/venv/lib/python3.13/site-packages/openai/_base_client.py", line 1297, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/venv/lib/python3.13/site-packages/openai/_base_client.py", line 1070, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.InternalServerError: Error code: 500 - {'type': 'error', 'error': {'type': 'error', 'message': 'Internal server error'}}
+2026-09-22 21:09:35,903 INFO run_agent: OpenAI client closed (stream_error_cleanup, shared=False, tcp_force_closed=0) thread=Thread-61 (<lambda>):527528992000 provider=opencode-free base_url=https://opencode.ai/zen/v1 model=jev-1.13-free
+2026-09-22 21:09:35,997 WARNING [20260922_210322_bc12c1] agent.conversation_loop: API call failed (attempt 3/3) error_type=InternalServerError thread=Thread-54 (_chat_run_agent):527523712256 provider=opencode-free base_url=https://opencode.ai/zen/v1 model=jev-1.13-free summary=HTTP 500: Internal server error
+2026-09-22 21:09:36,015 ERROR [20260922_210322_bc12c1] agent.conversation_loop: API call failed after 3 retries. HTTP 500: Internal server error | provider=opencode-free model=jev-1.13-free msgs=2 tokens=~3,322
+2026-09-22 21:11:10,583 INFO cli: CLI cleanup calling memory shutdown for session 20260922_210322_bc12c1 with 1 message(s)
+2026-09-22 21:12:57,752 INFO hermes_cli.plugins: Plugin 'browser-browser-use' registered browser provider: browser-use
+2026-09-22 21:12:57,758 INFO hermes_cli.plugins: Plugin 'browser-browserbase' registered browser provider: browserbase
+2026-09-22 21:12:57,765 INFO hermes_cli.plugins: Plugin 'browser-firecrawl' registered browser provider: firecrawl
+2026-09-22 21:12:57,962 INFO hermes_cli.plugins: Plugin 'deepinfra' registered image_gen provider: deepinfra
+2026-09-22 21:12:57,967 INFO hermes_cli.plugins: Plugin 'fal' registered image_gen provider: fal
+2026-09-22 21:12:57,973 INFO hermes_cli.plugins: Plugin 'krea' registered image_gen provider: krea
+2026-09-22 21:12:57,979 INFO hermes_cli.plugins: Plugin 'meta-ai-image-gen' registered image_gen provider: meta-ai
+2026-09-22 21:12:57,984 INFO hermes_cli.plugins: Plugin 'openai' registered image_gen provider: openai
+2026-09-22 21:12:57,990 INFO hermes_cli.plugins: Plugin 'openai-codex' registered image_gen provider: openai-codex
+2026-09-22 21:12:57,996 INFO hermes_cli.plugins: Plugin 'openrouter' registered image_gen provider: openrouter
+2026-09-22 21:12:57,997 INFO hermes_cli.plugins: Plugin 'openrouter' registered image_gen provider: nous
+2026-09-22 21:12:58,005 INFO hermes_cli.plugins: Plugin 'xai' registered image_gen provider: xai
+2026-09-22 21:12:58,026 INFO hermes_cli.plugins: Plugin 'deepinfra' registered video_gen provider: deepinfra
+2026-09-22 21:12:58,032 INFO hermes_cli.plugins: Plugin 'fal' registered video_gen provider: fal
+2026-09-22 21:12:58,039 INFO hermes_cli.plugins: Plugin 'xai' registered video_gen provider: xai
+2026-09-22 21:12:58,047 INFO hermes_cli.plugins: Plugin 'web-brave-free' registered web provider: brave-free
+2026-09-22 21:12:58,054 INFO hermes_cli.plugins: Plugin 'web-ddgs' registered web provider: ddgs
+2026-09-22 21:12:58,061 INFO hermes_cli.plugins: Plugin 'web-exa' registered web provider: exa
+2026-09-22 21:12:58,074 INFO hermes_cli.plugins: Plugin 'web-firecrawl' registered web provider: firecrawl
+2026-09-22 21:12:58,081 INFO hermes_cli.plugins: Plugin 'web-keenable' registered web provider: keenable
+2026-09-22 21:12:58,089 INFO hermes_cli.plugins: Plugin 'web-parallel' registered web provider: parallel
+2026-09-22 21:12:58,096 INFO hermes_cli.plugins: Plugin 'web-searxng' registered web provider: searxng
+2026-09-22 21:12:58,103 INFO hermes_cli.plugins: Plugin 'web-tavily' registered web provider: tavily
+2026-09-22 21:12:58,111 INFO hermes_cli.plugins: Plugin 'web-xai' registered web provider: xai
+2026-09-22 21:12:58,218 INFO hermes_cli.plugins: Plugin discovery complete: 56 found, 50 enabled
+2026-09-22 21:14:39,804 INFO run_agent: Loaded environment variables from /data/data/com.termux/files/home/.hermes/.env
+2026-09-22 21:14:41,178 WARNING cli: Background MCP discovery previously exited with no connected servers; retrying discovery thread
+2026-09-22 21:14:42,529 INFO run_agent: OpenAI client created (agent_init, shared=True) thread=Thread-4 (_tui_process_loop):479668653312 provider=deepseek base_url=https://api.deepseek.com/v1 model=openrouter:nousresearch/hermes-3-llama-3.1-405b:free
+2026-09-22 21:14:43,317 WARNING tools.registry: check_fn check_browser_back_requirements returned False; dependent tools will be unavailable this turn
+2026-09-22 21:14:44,149 WARNING tools.registry: check_fn _browser_cdp_check returned False; dependent tools will be unavailable this turn
+2026-09-22 21:14:44,948 WARNING tools.registry: check_fn check_browser_click_requirements returned False; dependent tools will be unavailable this turn
+2026-09-22 21:14:45,775 WARNING tools.registry: check_fn check_browser_requirements returned False; dependent tools will be unavailable this turn
+2026-09-22 21:14:46,652 WARNING tools.registry: check_fn _browser_dialog_check returned False; dependent tools will be unavailable this turn
+2026-09-22 21:14:46,680 WARNING tools.registry: check_fn is_browser_use_cli_mode returned False; dependent tools will be unavailable this turn
+2026-09-22 21:14:47,503 WARNING tools.registry: check_fn check_browser_navigate_requirements returned False; dependent tools will be unavailable this turn
+2026-09-22 21:14:48,317 WARNING tools.registry: check_fn check_browser_press_requirements returned False; dependent tools will be unavailable this turn
+2026-09-22 21:14:49,184 WARNING tools.registry: check_fn check_browser_scroll_requirements returned False; dependent tools will be unavailable this turn
+2026-09-22 21:14:50,011 WARNING tools.registry: check_fn check_browser_snapshot_requirements returned False; dependent tools will be unavailable this turn
+2026-09-22 21:14:50,837 WARNING tools.registry: check_fn check_browser_type_requirements returned False; dependent tools will be unavailable this turn
+2026-09-22 21:14:51,693 WARNING tools.registry: check_fn check_browser_vision_requirements returned False; dependent tools will be unavailable this turn
+2026-09-22 21:14:51,696 WARNING tools.registry: check_fn check_computer_use_requirements returned False; dependent tools will be unavailable this turn
+2026-09-22 21:14:51,758 WARNING tools.registry: check_fn check_image_generation_requirements returned False; dependent tools will be unavailable this turn
+2026-09-22 21:14:51,775 WARNING tools.registry: check_fn _check_kanban_mode returned False; dependent tools will be unavailable this turn
+2026-09-22 21:14:51,788 WARNING tools.registry: check_fn _check_kanban_orchestrator_mode returned False; dependent tools will be unavailable this turn
+2026-09-22 21:14:52,132 INFO agent.auxiliary_client: Vision auto-detect: using main provider deepseek (deepseek-v4-flash-vision-exp)
+2026-09-22 21:14:52,264 INFO tools.tool_search: tool_search activated (tier 1): 16 core/visible tools kept, 4 deferred (~2820 tokens), listing full (budget ~4000 tokens)
+2026-09-22 21:14:52,556 WARNING agent.relay_runtime: Hermes Relay runtime initialization failed
+Traceback (most recent call last):
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/relay_runtime.py", line 775, in for_profile
+    host = RelayRuntime(profile_key=key)
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/relay_runtime.py", line 333, in __init__
+    self.relay = relay or _load_nemo_relay()
+                          ~~~~~~~~~~~~~~~~^^
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/relay_runtime.py", line 1199, in _load_nemo_relay
+    return importlib.import_module("nemo_relay")
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/importlib/__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1395, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'nemo_relay'
+2026-09-22 21:14:52,562 INFO [20260922_211258_c48ed6] agent.turn_context: conversation turn: session=20260922_211258_c48ed6 model=openrouter:nousresearch/hermes-3-llama-3.1-405b:free provider=deepseek platform=cli history=0 msg='[Note: model was just switched from deepseek-v4-flash-vision-exp to openrouter:n...'
+2026-09-22 21:14:53,885 INFO agent.auxiliary_client: Auxiliary auto-detect: using main provider deepseek (openrouter:nousresearch/hermes-3-llama-3.1-405b:free)
+2026-09-22 21:14:53,889 INFO agent.auxiliary_client: Auxiliary title_generation: using deepseek (openrouter:nousresearch/hermes-3-llama-3.1-405b:free) at https://api.deepseek.com/v1/
+2026-09-22 21:14:54,080 INFO run_agent: OpenAI client created (chat_completion_stream_request, shared=False) thread=Thread-15 (<lambda>):479549222144 provider=deepseek base_url=https://api.deepseek.com/v1 model=openrouter:nousresearch/hermes-3-llama-3.1-405b:free
+2026-09-22 21:14:55,607 INFO agent.credential_pool: credential pool: marking DEEPSEEK_API_KEY exhausted (status=401), rotating
+2026-09-22 21:14:55,609 INFO agent.credential_pool: credential pool: no available entries (all exhausted or empty)
+2026-09-22 21:14:55,614 INFO agent.auxiliary_client: Auxiliary title_generation: auth error on auto (Error code: 401 - {'error': {'message': 'Authentication Fails, Your api key: ****Xg== is invalid', 'type': 'authentication_error', 'param': None, 'code': 'invalid_request_error'}}), trying fallback
+2026-09-22 21:14:55,645 WARNING agent.credential_pool: Ingested OPENROUTER_API_KEY from environment into the openrouter credential pool — this enables OpenRouter spend. Remove the key or run hermes auth remove openrouter <n> to suppress.
+2026-09-22 21:14:55,679 INFO agent.auxiliary_client: Auxiliary title_generation: auth error on auto — falling back to openrouter (nvidia/nemotron-3-ultra-550b-a55b:free)
+2026-09-22 21:14:55,771 ERROR agent.chat_completion_helpers: Streaming failed before delivery: Error code: 401 - {'error': {'message': 'Authentication Fails, Your api key: ****Xg== is invalid', 'type': 'authentication_error', 'param': None, 'code': 'invalid_request_error'}}
+Traceback (most recent call last):
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/chat_completion_helpers.py", line 3330, in _call
+    self.result["response"] = _with_stream_emitters(
+                              ~~~~~~~~~~~~~~~~~~~~~^
+        self.agent, lambda: self._call_wire(stream_attempt_id))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/chat_completion_helpers.py", line 2433, in _with_stream_emitters
+    response = run()
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/chat_completion_helpers.py", line 3331, in <lambda>
+    self.agent, lambda: self._call_wire(stream_attempt_id))
+                        ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/chat_completion_helpers.py", line 3313, in _call_wire
+    return self._call_chat_completions(stream_attempt_id)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/chat_completion_helpers.py", line 2948, in _call_chat_completions
+    stream = self._set_managed_stream(relay_llm.stream(self.api_kwargs, _open_stream,
+                                      ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        **_relay_stream_identity(self.agent, "provider"), finalizer=_relay_final_response,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+        completed_response_predicate=lambda value: hasattr(value, "choices"),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        metadata=_relay_stream_metadata(self.agent, "chat_completions"), defer_logical_completion=True))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/relay_llm.py", line 297, in __init__
+    self._start_unmanaged(request)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/relay_llm.py", line 303, in _start_unmanaged
+    raw_stream = self._stream_factory(request)
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/chat_completion_helpers.py", line 2931, in _open_stream
+    return self._open_chat_stream({**next_api_kwargs, "stream": True, "timeout": timeout})
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/chat_completion_helpers.py", line 2872, in _open_chat_stream
+    return request_client.chat.completions.create(**stream_kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/venv/lib/python3.13/site-packages/openai/_utils/_utils.py", line 286, in wrapper
+    return func(*args, **kwargs)
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/venv/lib/python3.13/site-packages/openai/resources/chat/completions/completions.py", line 1204, in create
+    return self._post(
+           ~~~~~~~~~~^
+        "/chat/completions",
+        ^^^^^^^^^^^^^^^^^^^^
+    ...<47 lines>...
+        stream_cls=Stream[ChatCompletionChunk],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/venv/lib/python3.13/site-packages/openai/_base_client.py", line 1297, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/venv/lib/python3.13/site-packages/openai/_base_client.py", line 1070, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.AuthenticationError: Error code: 401 - {'error': {'message': 'Authentication Fails, Your api key: ****Xg== is invalid', 'type': 'authentication_error', 'param': None, 'code': 'invalid_request_error'}}
+2026-09-22 21:14:55,807 INFO run_agent: OpenAI client closed (stream_error_cleanup, shared=False, tcp_force_closed=0) thread=Thread-15 (<lambda>):479549222144 provider=deepseek base_url=https://api.deepseek.com/v1 model=openrouter:nousresearch/hermes-3-llama-3.1-405b:free
+2026-09-22 21:14:55,912 WARNING [20260922_211258_c48ed6] agent.conversation_loop: API call failed (attempt 1/3) error_type=AuthenticationError thread=Thread-14 (_chat_run_agent):479533481216 provider=deepseek base_url=https://api.deepseek.com/v1 model=openrouter:nousresearch/hermes-3-llama-3.1-405b:free summary=HTTP 401: Authentication Fails, Your api key: ****Xg== is invalid
+2026-09-22 21:14:56,321 ERROR [20260922_211258_c48ed6] agent.conversation_loop: Non-retryable client error: Error code: 401 - {'error': {'message': 'Authentication Fails, Your api key: ****Xg== is invalid', 'type': 'authentication_error', 'param': None, 'code': 'invalid_request_error'}}
+2026-09-22 21:18:04,703 INFO cli: CLI cleanup calling memory shutdown for session 20260922_211258_c48ed6 with 1 message(s)
+2026-09-22 21:18:27,583 INFO hermes_cli.plugins: Plugin 'browser-browser-use' registered browser provider: browser-use
+2026-09-22 21:18:27,588 INFO hermes_cli.plugins: Plugin 'browser-browserbase' registered browser provider: browserbase
+2026-09-22 21:18:27,593 INFO hermes_cli.plugins: Plugin 'browser-firecrawl' registered browser provider: firecrawl
+2026-09-22 21:18:27,849 INFO hermes_cli.plugins: Plugin 'deepinfra' registered image_gen provider: deepinfra
+2026-09-22 21:18:27,856 INFO hermes_cli.plugins: Plugin 'fal' registered image_gen provider: fal
+2026-09-22 21:18:27,861 INFO hermes_cli.plugins: Plugin 'krea' registered image_gen provider: krea
+2026-09-22 21:18:27,866 INFO hermes_cli.plugins: Plugin 'meta-ai-image-gen' registered image_gen provider: meta-ai
+2026-09-22 21:18:27,872 INFO hermes_cli.plugins: Plugin 'openai' registered image_gen provider: openai
+2026-09-22 21:18:27,879 INFO hermes_cli.plugins: Plugin 'openai-codex' registered image_gen provider: openai-codex
+2026-09-22 21:18:27,885 INFO hermes_cli.plugins: Plugin 'openrouter' registered image_gen provider: openrouter
+2026-09-22 21:18:27,886 INFO hermes_cli.plugins: Plugin 'openrouter' registered image_gen provider: nous
+2026-09-22 21:18:27,895 INFO hermes_cli.plugins: Plugin 'xai' registered image_gen provider: xai
+2026-09-22 21:18:27,922 INFO hermes_cli.plugins: Plugin 'deepinfra' registered video_gen provider: deepinfra
+2026-09-22 21:18:27,926 INFO hermes_cli.plugins: Plugin 'fal' registered video_gen provider: fal
+2026-09-22 21:18:27,931 INFO hermes_cli.plugins: Plugin 'xai' registered video_gen provider: xai
+2026-09-22 21:18:27,941 INFO hermes_cli.plugins: Plugin 'web-brave-free' registered web provider: brave-free
+2026-09-22 21:18:27,947 INFO hermes_cli.plugins: Plugin 'web-ddgs' registered web provider: ddgs
+2026-09-22 21:18:27,954 INFO hermes_cli.plugins: Plugin 'web-exa' registered web provider: exa
+2026-09-22 21:18:27,966 INFO hermes_cli.plugins: Plugin 'web-firecrawl' registered web provider: firecrawl
+2026-09-22 21:18:27,973 INFO hermes_cli.plugins: Plugin 'web-keenable' registered web provider: keenable
+2026-09-22 21:18:27,980 INFO hermes_cli.plugins: Plugin 'web-parallel' registered web provider: parallel
+2026-09-22 21:18:27,988 INFO hermes_cli.plugins: Plugin 'web-searxng' registered web provider: searxng
+2026-09-22 21:18:27,996 INFO hermes_cli.plugins: Plugin 'web-tavily' registered web provider: tavily
+2026-09-22 21:18:28,004 INFO hermes_cli.plugins: Plugin 'web-xai' registered web provider: xai
+2026-09-22 21:18:28,121 INFO hermes_cli.plugins: Plugin discovery complete: 56 found, 50 enabled
+2026-09-22 21:18:28,650 INFO agent.credential_pool: credential pool: no available entries (all exhausted or empty)
+2026-09-22 21:19:46,826 WARNING agent.credential_pool: Ingested OPENROUTER_API_KEY from environment into the openrouter credential pool — this enables OpenRouter spend. Remove the key or run hermes auth remove openrouter <n> to suppress.
+2026-09-22 22:17:23,953 INFO agent.auxiliary_client: Auxiliary auto-detect: using main provider openrouter (nvidia/nemotron-3-super-120b-a12b:free)
+2026-09-22 22:17:23,954 INFO agent.auxiliary_client: Auxiliary side_question: using openrouter (nvidia/nemotron-3-super-120b-a12b:free)
+2026-09-22 22:17:25,311 INFO agent.credential_pool: credential pool: marking OPENROUTER_API_KEY exhausted (status=401), rotating
+2026-09-22 22:17:25,312 INFO agent.credential_pool: credential pool: no available entries (all exhausted or empty)
+2026-09-22 22:17:25,313 INFO agent.auxiliary_client: Auxiliary side_question: auth error on auto (Error code: 401 - {'error': {'message': 'User not found.', 'code': 401}}), trying fallback
+2026-09-22 22:17:25,321 INFO agent.credential_pool: credential pool: no available entries (all exhausted or empty)
+2026-09-22 22:17:25,326 INFO agent.auxiliary_client: Auxiliary side_question: auth error on auto — falling back to openrouter (nvidia/nemotron-3-ultra-550b-a55b:free)
+2026-09-22 22:17:25,571 WARNING agent.auxiliary_client: Auxiliary: marking openrouter unhealthy for 600s (payment / credit error). Subsequent auxiliary calls will skip it until 22:27:25.
+2026-09-22 22:17:25,572 WARNING agent.auxiliary_client: Auxiliary side_question: fallback candidate openrouter has a stale/unrefreshable credential (Error code: 401 - {'error': {'message': 'User not found.', 'code': 401}}) — skipping to next fallback
+2026-09-22 22:17:25,578 INFO agent.auxiliary_client: Auxiliary side_question: skipping openrouter (recently returned payment error, retry in 599s)
+2026-09-22 22:17:25,595 WARNING agent.auxiliary_client: Auxiliary Nous client unavailable: no Nous authentication found (run: hermes auth).
+2026-09-22 22:17:25,595 WARNING agent.auxiliary_client: Auxiliary: marking nous unhealthy for 60s (payment / credit error). Subsequent auxiliary calls will skip it until 22:18:25.
+2026-09-22 22:17:25,699 INFO agent.auxiliary_client: Auxiliary side_question: stale fallback credential on auto — falling back to api-key (deepseek-v4-flash)
+2026-09-22 22:17:27,262 WARNING agent.auxiliary_client: Auxiliary: marking api-key unhealthy for 600s (payment / credit error). Subsequent auxiliary calls will skip it until 22:27:27.
+2026-09-22 22:17:27,263 WARNING agent.auxiliary_client: Auxiliary side_question: fallback candidate api-key has a stale/unrefreshable credential (Error code: 401 - {'error': {'message': 'Authentication Fails, Your api key: ****Xg== is invalid', 'type': 'authentication_error', 'param': None, 'code': 'invalid_request_error'}}) — skipping to next fallback
+2026-09-22 22:17:27,265 WARNING agent.auxiliary_client: Auxiliary side_question: auth error on auto and all fallbacks exhausted (fallback_chain + main agent model). Raising original error.
+2026-09-22 22:24:28,573 INFO agent.auxiliary_client: Auxiliary side_question: using openrouter (nvidia/nemotron-3-super-120b-a12b:free)
+2026-09-22 22:24:29,562 INFO agent.credential_pool: credential pool: marking OPENROUTER_API_KEY exhausted (status=401), rotating
+2026-09-22 22:24:29,565 INFO agent.credential_pool: credential pool: no available entries (all exhausted or empty)
+2026-09-22 22:24:29,573 INFO agent.auxiliary_client: Auxiliary side_question: auth error on auto (Error code: 401 - {'error': {'message': 'User not found.', 'code': 401}}), trying fallback
+2026-09-22 22:24:29,599 INFO agent.auxiliary_client: Auxiliary side_question: skipping openrouter (recently returned payment error, retry in 175s)
+2026-09-22 22:24:29,650 WARNING agent.auxiliary_client: Auxiliary Nous client unavailable: no Nous authentication found (run: hermes auth).
+2026-09-22 22:24:29,652 WARNING agent.auxiliary_client: Auxiliary: marking nous unhealthy for 60s (payment / credit error). Subsequent auxiliary calls will skip it until 22:25:29.
+2026-09-22 22:24:29,752 INFO agent.auxiliary_client: Auxiliary side_question: skipping api-key (recently returned payment error, retry in 177s)
+2026-09-22 22:24:29,754 WARNING agent.auxiliary_client: Auxiliary side_question: auth error on auto and no fallback available (tried: openrouter (unhealthy), nous, local/custom, api-key (unhealthy))
+2026-09-22 22:24:29,757 WARNING agent.auxiliary_client: Auxiliary side_question: auth error on auto and all fallbacks exhausted (fallback_chain + main agent model). Raising original error.
+2026-09-22 22:34:29,050 INFO run_agent: Loaded environment variables from /data/data/com.termux/files/home/.hermes/.env
+2026-09-22 22:34:29,970 WARNING cli: Background MCP discovery previously exited with no connected servers; retrying discovery thread
+2026-09-22 22:34:30,088 INFO run_agent: OpenAI client created (agent_init, shared=True) thread=Thread-4 (_tui_process_loop):527954615552 provider=openrouter base_url=https://openrouter.ai/api/v1 model=nvidia/nemotron-3-super-120b-a12b:free
+2026-09-22 22:34:31,209 WARNING tools.registry: check_fn check_browser_back_requirements returned False; dependent tools will be unavailable this turn
+2026-09-22 22:34:31,984 WARNING tools.registry: check_fn _browser_cdp_check returned False; dependent tools will be unavailable this turn
+2026-09-22 22:34:32,718 WARNING tools.registry: check_fn check_browser_click_requirements returned False; dependent tools will be unavailable this turn
+2026-09-22 22:34:33,385 WARNING tools.registry: check_fn check_browser_requirements returned False; dependent tools will be unavailable this turn
+2026-09-22 22:34:34,127 WARNING tools.registry: check_fn _browser_dialog_check returned False; dependent tools will be unavailable this turn
+2026-09-22 22:34:34,151 WARNING tools.registry: check_fn is_browser_use_cli_mode returned False; dependent tools will be unavailable this turn
+2026-09-22 22:34:34,984 WARNING tools.registry: check_fn check_browser_navigate_requirements returned False; dependent tools will be unavailable this turn
+2026-09-22 22:34:35,791 WARNING tools.registry: check_fn check_browser_press_requirements returned False; dependent tools will be unavailable this turn
+2026-09-22 22:34:36,503 WARNING tools.registry: check_fn check_browser_scroll_requirements returned False; dependent tools will be unavailable this turn
+2026-09-22 22:34:37,294 WARNING tools.registry: check_fn check_browser_snapshot_requirements returned False; dependent tools will be unavailable this turn
+2026-09-22 22:34:38,080 WARNING tools.registry: check_fn check_browser_type_requirements returned False; dependent tools will be unavailable this turn
+2026-09-22 22:34:38,802 WARNING tools.registry: check_fn check_browser_vision_requirements returned False; dependent tools will be unavailable this turn
+2026-09-22 22:34:38,803 WARNING tools.registry: check_fn check_computer_use_requirements returned False; dependent tools will be unavailable this turn
+2026-09-22 22:34:38,831 WARNING tools.registry: check_fn check_image_generation_requirements returned False; dependent tools will be unavailable this turn
+2026-09-22 22:34:38,838 WARNING tools.registry: check_fn _check_kanban_mode returned False; dependent tools will be unavailable this turn
+2026-09-22 22:34:38,847 WARNING tools.registry: check_fn _check_kanban_orchestrator_mode returned False; dependent tools will be unavailable this turn
+2026-09-22 22:34:39,144 INFO agent.auxiliary_client: Vision auto-detect: using main provider deepseek (deepseek-v4-flash-vision-exp)
+2026-09-22 22:34:39,326 INFO tools.tool_search: tool_search activated (tier 1): 16 core/visible tools kept, 4 deferred (~2820 tokens), listing full (budget ~4000 tokens)
+2026-09-22 22:34:39,674 WARNING agent.relay_runtime: Hermes Relay runtime initialization failed
+Traceback (most recent call last):
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/relay_runtime.py", line 775, in for_profile
+    host = RelayRuntime(profile_key=key)
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/relay_runtime.py", line 333, in __init__
+    self.relay = relay or _load_nemo_relay()
+                          ~~~~~~~~~~~~~~~~^^
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/relay_runtime.py", line 1199, in _load_nemo_relay
+    return importlib.import_module("nemo_relay")
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/importlib/__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1395, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'nemo_relay'
+2026-09-22 22:34:39,683 INFO [20260922_211828_0210d5] agent.turn_context: conversation turn: session=20260922_211828_0210d5 model=nvidia/nemotron-3-super-120b-a12b:free provider=openrouter platform=cli history=0 msg='[Note: model was just switched from deepseek-v4-flash-vision-exp to nvidia/nemot...'
+2026-09-22 22:34:42,131 INFO agent.auxiliary_client: Auxiliary auto-detect: using main provider openrouter (nvidia/nemotron-3-super-120b-a12b:free)
+2026-09-22 22:34:42,166 INFO agent.auxiliary_client: Auxiliary title_generation: using openrouter (nvidia/nemotron-3-super-120b-a12b:free)
+2026-09-22 22:34:42,348 INFO run_agent: OpenAI client created (chat_completion_stream_request, shared=False) thread=Thread-44 (<lambda>):527839079680 provider=openrouter base_url=https://openrouter.ai/api/v1 model=nvidia/nemotron-3-super-120b-a12b:free
+2026-09-22 22:34:42,805 ERROR agent.chat_completion_helpers: Streaming failed before delivery: Error code: 401 - {'error': {'message': 'User not found.', 'code': 401}}
+Traceback (most recent call last):
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/chat_completion_helpers.py", line 3330, in _call
+    self.result["response"] = _with_stream_emitters(
+                              ~~~~~~~~~~~~~~~~~~~~~^
+        self.agent, lambda: self._call_wire(stream_attempt_id))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/chat_completion_helpers.py", line 2433, in _with_stream_emitters
+    response = run()
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/chat_completion_helpers.py", line 3331, in <lambda>
+    self.agent, lambda: self._call_wire(stream_attempt_id))
+                        ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/chat_completion_helpers.py", line 3313, in _call_wire
+    return self._call_chat_completions(stream_attempt_id)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/chat_completion_helpers.py", line 2948, in _call_chat_completions
+    stream = self._set_managed_stream(relay_llm.stream(self.api_kwargs, _open_stream,
+                                      ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        **_relay_stream_identity(self.agent, "provider"), finalizer=_relay_final_response,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+        completed_response_predicate=lambda value: hasattr(value, "choices"),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        metadata=_relay_stream_metadata(self.agent, "chat_completions"), defer_logical_completion=True))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/relay_llm.py", line 297, in __init__
+    self._start_unmanaged(request)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/relay_llm.py", line 303, in _start_unmanaged
+    raw_stream = self._stream_factory(request)
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/chat_completion_helpers.py", line 2931, in _open_stream
+    return self._open_chat_stream({**next_api_kwargs, "stream": True, "timeout": timeout})
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/agent/chat_completion_helpers.py", line 2872, in _open_chat_stream
+    return request_client.chat.completions.create(**stream_kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/venv/lib/python3.13/site-packages/openai/_utils/_utils.py", line 286, in wrapper
+    return func(*args, **kwargs)
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/venv/lib/python3.13/site-packages/openai/resources/chat/completions/completions.py", line 1204, in create
+    return self._post(
+           ~~~~~~~~~~^
+        "/chat/completions",
+        ^^^^^^^^^^^^^^^^^^^^
+    ...<47 lines>...
+        stream_cls=Stream[ChatCompletionChunk],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/venv/lib/python3.13/site-packages/openai/_base_client.py", line 1297, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/home/.hermes/hermes-agent/venv/lib/python3.13/site-packages/openai/_base_client.py", line 1070, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.AuthenticationError: Error code: 401 - {'error': {'message': 'User not found.', 'code': 401}}
+2026-09-22 22:34:42,810 INFO run_agent: OpenAI client closed (stream_error_cleanup, shared=False, tcp_force_closed=0) thread=Thread-44 (<lambda>):527839079680 provider=openrouter base_url=https://openrouter.ai/api/v1 model=nvidia/nemotron-3-super-120b-a12b:free
+2026-09-22 22:34:42,914 WARNING [20260922_211828_0210d5] agent.conversation_loop: API call failed (attempt 1/3) error_type=AuthenticationError thread=Thread-43 (_chat_run_agent):527824387328 provider=openrouter base_url=https://openrouter.ai/api/v1 model=nvidia/nemotron-3-super-120b-a12b:free summary=HTTP 401: User not found.
+2026-09-22 22:34:43,205 INFO agent.credential_pool: credential pool: marking OPENROUTER_API_KEY exhausted (status=401), rotating
+2026-09-22 22:34:43,240 INFO agent.credential_pool: credential pool: no available entries (all exhausted or empty)
+2026-09-22 22:34:43,314 INFO agent.auxiliary_client: Auxiliary title_generation: auth error on auto (Error code: 401 - {'error': {'message': 'User not found.', 'code': 401}}), trying fallback
+2026-09-22 22:34:44,096 INFO agent.credential_pool: credential pool: no available entries (all exhausted or empty)
+2026-09-22 22:34:44,141 INFO agent.auxiliary_client: Auxiliary title_generation: auth error on auto — falling back to openrouter (nvidia/nemotron-3-ultra-550b-a55b:free)
+2026-09-22 22:34:44,158 ERROR [20260922_211828_0210d5] agent.conversation_loop: Non-retryable client error: Error code: 401 - {'error': {'message': 'User not found.', 'code': 401}}
+2026-09-22 22:34:44,404 WARNING agent.auxiliary_client: Auxiliary: marking openrouter unhealthy for 600s (payment / credit error). Subsequent auxiliary calls will skip it until 22:44:44.
+2026-09-22 22:34:44,408 WARNING agent.auxiliary_client: Auxiliary title_generation: fallback candidate openrouter has a stale/unrefreshable credential (Error code: 401 - {'error': {'message': 'User not found.', 'code': 401}}) — skipping to next fallback
+2026-09-22 22:34:44,419 INFO agent.auxiliary_client: Auxiliary title_generation: skipping openrouter (recently returned payment error, retry in 599s)
+2026-09-22 22:34:44,482 WARNING agent.auxiliary_client: Auxiliary Nous client unavailable: no Nous authentication found (run: hermes auth).
+2026-09-22 22:34:44,489 WARNING agent.auxiliary_client: Auxiliary: marking nous unhealthy for 60s (payment / credit error). Subsequent auxiliary calls will skip it until 22:35:44.
+2026-09-22 22:34:45,418 INFO agent.auxiliary_client: Auxiliary title_generation: stale fallback credential on auto — falling back to api-key (deepseek-v4-flash)
+2026-09-22 22:34:46,303 WARNING agent.auxiliary_client: Auxiliary: marking api-key unhealthy for 600s (payment / credit error). Subsequent auxiliary calls will skip it until 22:44:46.
+2026-09-22 22:34:46,304 WARNING agent.auxiliary_client: Auxiliary title_generation: fallback candidate api-key has a stale/unrefreshable credential (Error code: 401 - {'error': {'message': 'Authentication Fails, Your api key: ****Xg== is invalid', 'type': 'authentication_error', 'param': None, 'code': 'invalid_request_error'}}) — skipping to next fallback
+2026-09-22 22:34:46,307 WARNING agent.auxiliary_client: Auxiliary title_generation: auth error on auto and all fallbacks exhausted (fallback_chain + main agent model). Raising original error.
+2026-09-22 22:34:46,313 WARNING agent.title_generator: Title generation failed: Error code: 401 - {'error': {'message': 'User not found.', 'code': 401}}
+2026-09-22 22:35:45,615 INFO cli: CLI cleanup calling memory shutdown for session 20260922_211828_0210d5 with 1 message(s)

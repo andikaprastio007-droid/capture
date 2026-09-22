@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Auto Capture</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <main class="app">
+    <h1>📷 Auto Capture</h1>
+
+    <div class="card">
+      <label>
+        URL server
+        <input id="serverUrl" type="text" placeholder="http://localhost:8000/upload">
+      </label>
+    </div>
+
+    <video id="video" autoplay playsinline muted></video>
+    <canvas id="canvas" hidden></canvas>
+
+    <p id="status" class="status">Memulai...</p>
+    <pre id="log" class="log"></pre>
+  </main>
+
+  <script src="/static/config.js"></script>
+  <script src="/static/app.js"></script>
+</body>
+</html>

