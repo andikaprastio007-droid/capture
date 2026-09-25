@@ -1,0 +1,389 @@
+
+
+/* ============================================================
+   TEMA TAMBAHAN — 8 TEMA
+   ============================================================ */
+
+/* ==== HACKER (Green Terminal) ==== */
+[data-theme="hacker"] {
+  --bg-primary: #000000;
+  --bg-secondary: #0a0f0a;
+  --bg-tertiary: #0f1a0f;
+  --bg-glass: rgba(0, 20, 0, 0.7);
+  --bg-glass-hover: rgba(0, 40, 0, 0.85);
+  --accent-primary: #00ff41;
+  --accent-secondary: #00cc33;
+  --accent-green: #00ff41;
+  --accent-red: #ff0040;
+  --accent-yellow: #ffff00;
+  --accent-cyan: #00ffff;
+  --text-primary: #00ff41;
+  --text-secondary: #00cc33;
+  --text-muted: #007a20;
+  --text-dim: #004d14;
+  --border-subtle: rgba(0, 255, 65, 0.15);
+  --border-strong: rgba(0, 255, 65, 0.35);
+  --gradient-primary: linear-gradient(135deg, #00ff41, #00cc33);
+  --shadow-glow: 0 0 20px rgba(0, 255, 65, 0.5);
+}
+
+[data-theme="hacker"] body::before {
+  background:
+    radial-gradient(circle at 20% 20%, rgba(0, 255, 65, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(0, 255, 65, 0.05) 0%, transparent 50%),
+    repeating-linear-gradient(0deg, rgba(0, 255, 65, 0.03) 0px, transparent 1px, transparent 2px, rgba(0, 255, 65, 0.03) 3px);
+}
+
+[data-theme="hacker"] body {
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+  text-shadow: 0 0 4px rgba(0, 255, 65, 0.4);
+}
+
+[data-theme="hacker"] .sidebar-logo .logo-icon {
+  background: #00ff41;
+  color: #000;
+  box-shadow: 0 0 20px #00ff41;
+}
+
+/* ==== RETRO AMBER (80s CRT) ==== */
+[data-theme="retro"] {
+  --bg-primary: #1a0e00;
+  --bg-secondary: #2a1500;
+  --bg-tertiary: #3a1e00;
+  --bg-glass: rgba(42, 21, 0, 0.7);
+  --bg-glass-hover: rgba(61, 30, 0, 0.85);
+  --accent-primary: #ffb000;
+  --accent-secondary: #ff8800;
+  --accent-green: #ffb000;
+  --accent-red: #ff4400;
+  --accent-yellow: #ffcc00;
+  --accent-cyan: #ffb000;
+  --text-primary: #ffb000;
+  --text-secondary: #cc8800;
+  --text-muted: #8a5c00;
+  --text-dim: #5c3a00;
+  --border-subtle: rgba(255, 176, 0, 0.15);
+  --border-strong: rgba(255, 176, 0, 0.35);
+  --gradient-primary: linear-gradient(135deg, #ffb000, #ff8800);
+  --shadow-glow: 0 0 20px rgba(255, 176, 0, 0.5);
+}
+
+[data-theme="retro"] body::before {
+  background:
+    radial-gradient(circle at 50% 50%, rgba(255, 176, 0, 0.06) 0%, transparent 70%),
+    repeating-linear-gradient(0deg, rgba(255, 176, 0, 0.04) 0px, transparent 1px, transparent 2px, rgba(255, 176, 0, 0.04) 3px);
+}
+
+[data-theme="retro"] body {
+  font-family: 'Courier New', monospace;
+  text-shadow: 0 0 6px rgba(255, 176, 0, 0.5);
+}
+
+/* ==== DRACULA ==== */
+[data-theme="dracula"] {
+  --bg-primary: #1e1f29;
+  --bg-secondary: #282a36;
+  --bg-tertiary: #343746;
+  --bg-glass: rgba(40, 42, 54, 0.7);
+  --bg-glass-hover: rgba(52, 55, 70, 0.85);
+  --accent-primary: #bd93f9;
+  --accent-secondary: #ff79c6;
+  --accent-green: #50fa7b;
+  --accent-red: #ff5555;
+  --accent-yellow: #f1fa8c;
+  --accent-cyan: #8be9fd;
+  --text-primary: #f8f8f2;
+  --text-secondary: #bfbfbf;
+  --text-muted: #6272a4;
+  --text-dim: #44475a;
+  --border-subtle: rgba(189, 147, 249, 0.15);
+  --border-strong: rgba(189, 147, 249, 0.3);
+  --gradient-primary: linear-gradient(135deg, #bd93f9, #ff79c6);
+  --shadow-glow: 0 0 20px rgba(189, 147, 249, 0.4);
+}
+
+/* ==== NORD ==== */
+[data-theme="nord"] {
+  --bg-primary: #2e3440;
+  --bg-secondary: #3b4252;
+  --bg-tertiary: #434c5e;
+  --bg-glass: rgba(59, 66, 82, 0.7);
+  --bg-glass-hover: rgba(67, 76, 94, 0.85);
+  --accent-primary: #88c0d0;
+  --accent-secondary: #81a1c1;
+  --accent-green: #a3be8c;
+  --accent-red: #bf616a;
+  --accent-yellow: #ebcb8b;
+  --accent-cyan: #8fbcbb;
+  --text-primary: #eceff4;
+  --text-secondary: #d8dee9;
+  --text-muted: #81a1c1;
+  --text-dim: #4c566a;
+  --border-subtle: rgba(136, 192, 208, 0.15);
+  --border-strong: rgba(136, 192, 208, 0.3);
+  --gradient-primary: linear-gradient(135deg, #88c0d0, #81a1c1);
+  --shadow-glow: 0 0 20px rgba(136, 192, 208, 0.35);
+}
+
+/* ==== TOKYO NIGHT ==== */
+[data-theme="tokyo"] {
+  --bg-primary: #1a1b26;
+  --bg-secondary: #24283b;
+  --bg-tertiary: #2f3549;
+  --bg-glass: rgba(36, 40, 59, 0.7);
+  --bg-glass-hover: rgba(47, 53, 73, 0.85);
+  --accent-primary: #7aa2f7;
+  --accent-secondary: #bb9af7;
+  --accent-green: #9ece6a;
+  --accent-red: #f7768e;
+  --accent-yellow: #e0af68;
+  --accent-cyan: #7dcfff;
+  --text-primary: #c0caf5;
+  --text-secondary: #a9b1d6;
+  --text-muted: #565f89;
+  --text-dim: #3b4261;
+  --border-subtle: rgba(122, 162, 247, 0.15);
+  --border-strong: rgba(122, 162, 247, 0.3);
+  --gradient-primary: linear-gradient(135deg, #7aa2f7, #bb9af7);
+  --shadow-glow: 0 0 20px rgba(122, 162, 247, 0.4);
+}
+
+/* ==== GRUVBOX ==== */
+[data-theme="gruvbox"] {
+  --bg-primary: #1d2021;
+  --bg-secondary: #282828;
+  --bg-tertiary: #3c3836;
+  --bg-glass: rgba(40, 40, 40, 0.7);
+  --bg-glass-hover: rgba(60, 56, 54, 0.85);
+  --accent-primary: #fabd2f;
+  --accent-secondary: #fe8019;
+  --accent-green: #b8bb26;
+  --accent-red: #fb4934;
+  --accent-yellow: #fabd2f;
+  --accent-cyan: #8ec07c;
+  --text-primary: #ebdbb2;
+  --text-secondary: #d5c4a1;
+  --text-muted: #a89984;
+  --text-dim: #665c54;
+  --border-subtle: rgba(250, 189, 47, 0.15);
+  --border-strong: rgba(250, 189, 47, 0.3);
+  --gradient-primary: linear-gradient(135deg, #fabd2f, #fe8019);
+  --shadow-glow: 0 0 20px rgba(250, 189, 47, 0.4);
+}
+
+/* ==== SYNTHWAVE (80s Neon) ==== */
+[data-theme="synthwave"] {
+  --bg-primary: #0d0221;
+  --bg-secondary: #190e3d;
+  --bg-tertiary: #261b57;
+  --bg-glass: rgba(25, 14, 61, 0.7);
+  --bg-glass-hover: rgba(38, 27, 87, 0.85);
+  --accent-primary: #ff2e97;
+  --accent-secondary: #00d9ff;
+  --accent-green: #05ffa1;
+  --accent-red: #ff3864;
+  --accent-yellow: #ffe74c;
+  --accent-cyan: #00d9ff;
+  --text-primary: #f0e9ff;
+  --text-secondary: #c3a8ff;
+  --text-muted: #7a5cba;
+  --text-dim: #4a2f8a;
+  --border-subtle: rgba(255, 46, 151, 0.15);
+  --border-strong: rgba(255, 46, 151, 0.35);
+  --gradient-primary: linear-gradient(135deg, #ff2e97, #00d9ff);
+  --shadow-glow: 0 0 20px rgba(255, 46, 151, 0.5);
+}
+
+[data-theme="synthwave"] body::before {
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255, 46, 151, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(0, 217, 255, 0.15) 0%, transparent 50%),
+    linear-gradient(rgba(255, 46, 151, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 217, 255, 0.04) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+}
+
+/* ==== MATRIX (Digital Rain) ==== */
+[data-theme="matrix"] {
+  --bg-primary: #000000;
+  --bg-secondary: #0d0d0d;
+  --bg-tertiary: #1a1a1a;
+  --bg-glass: rgba(0, 10, 0, 0.8);
+  --bg-glass-hover: rgba(0, 30, 0, 0.9);
+  --accent-primary: #00ff00;
+  --accent-secondary: #00cc00;
+  --accent-green: #00ff00;
+  --accent-red: #ff0000;
+  --accent-yellow: #ffff00;
+  --accent-cyan: #00ffff;
+  --text-primary: #00ff00;
+  --text-secondary: #00cc00;
+  --text-muted: #008800;
+  --text-dim: #004400;
+  --border-subtle: rgba(0, 255, 0, 0.2);
+  --border-strong: rgba(0, 255, 0, 0.4);
+  --gradient-primary: linear-gradient(135deg, #00ff00, #00cc00);
+  --shadow-glow: 0 0 25px rgba(0, 255, 0, 0.6);
+}
+
+[data-theme="matrix"] body {
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+  text-shadow: 0 0 8px rgba(0, 255, 0, 0.6);
+}
+
+[data-theme="matrix"] body::before {
+  background:
+    radial-gradient(circle at 50% 0%, rgba(0, 255, 0, 0.15) 0%, transparent 60%),
+    repeating-linear-gradient(0deg, rgba(0, 255, 0, 0.05) 0px, transparent 2px, transparent 4px, rgba(0, 255, 0, 0.05) 5px);
+  animation: matrix-flicker 4s infinite;
+}
+
+@keyframes matrix-flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.85; }
+  75% { opacity: 0.95; }
+}
+
+[data-theme="matrix"] .sidebar-logo .logo-icon {
+  background: #00ff00;
+  color: #000;
+  box-shadow: 0 0 25px #00ff00;
+}
+
+/* ==== SWATCH COLORS ==== */
+.theme-option .swatch.hacker {
+  background: linear-gradient(135deg, #00ff41, #003300);
+}
+.theme-option .swatch.retro {
+  background: linear-gradient(135deg, #ffb000, #8a5c00);
+}
+.theme-option .swatch.dracula {
+  background: linear-gradient(135deg, #bd93f9, #ff79c6);
+}
+.theme-option .swatch.nord {
+  background: linear-gradient(135deg, #88c0d0, #5e81ac);
+}
+.theme-option .swatch.tokyo {
+  background: linear-gradient(135deg, #7aa2f7, #bb9af7);
+}
+.theme-option .swatch.gruvbox {
+  background: linear-gradient(135deg, #fabd2f, #fe8019);
+}
+.theme-option .swatch.synthwave {
+  background: linear-gradient(135deg, #ff2e97, #00d9ff);
+}
+.theme-option .swatch.matrix {
+  background: linear-gradient(135deg, #00ff00, #000000);
+}
+
+/* ==== PANEL LEBIH BESAR ==== */
+
+
+/* ============================================================
+   THEME SWITCHER — FIX POSISI
+   ============================================================ */
+.theme-switcher {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;   /* panel rata kanan */
+}
+
+.theme-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--bg-glass);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border-subtle);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: var(--text-primary);
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+
+.theme-btn:hover {
+  transform: rotate(20deg) scale(1.1);
+  box-shadow: var(--shadow-glow);
+}
+
+.theme-panel {
+  position: absolute;
+  top: 56px;
+  right: 0;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-strong);
+  border-radius: 12px;
+  padding: 12px;
+  min-width: 220px;
+  max-height: 70vh;
+  overflow-y: auto;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+  display: none;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.theme-panel.active {
+  display: block;
+  animation: fadeInUp 0.2s ease both;
+}
+
+.theme-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  color: var(--text-secondary);
+  font-size: 13px;
+  transition: all 0.15s;
+}
+
+.theme-option:hover {
+  background: var(--bg-glass-hover);
+  color: var(--text-primary);
+}
+
+.theme-option.active {
+  background: var(--gradient-primary);
+  color: #fff;
+  box-shadow: var(--shadow-glow);
+}
+
+.theme-option .swatch {
+  width: 20px;
+  height: 20px;
+  border-radius: 5px;
+  flex-shrink: 0;
+  border: 1px solid var(--border-subtle);
+}
+
+.theme-option .swatch.dark { background: linear-gradient(135deg, #6366f1, #a855f7); }
+.theme-option .swatch.light { background: linear-gradient(135deg, #e2e8f0, #94a3b8); }
+.theme-option .swatch.cyberpunk { background: linear-gradient(135deg, #ff00aa, #00ffff); }
+.theme-option .swatch.material { background: linear-gradient(135deg, #bb86fc, #03dac6); }
+.theme-option .swatch.ocean { background: linear-gradient(135deg, #00d4ff, #00b8d4); }
+.theme-option .swatch.sunset { background: linear-gradient(135deg, #ff6b35, #f7931e); }
+.theme-option .swatch.hacker { background: linear-gradient(135deg, #00ff41, #003300); }
+.theme-option .swatch.retro { background: linear-gradient(135deg, #ffb000, #8a5c00); }
+.theme-option .swatch.dracula { background: linear-gradient(135deg, #bd93f9, #ff79c6); }
+.theme-option .swatch.nord { background: linear-gradient(135deg, #88c0d0, #5e81ac); }
+.theme-option .swatch.tokyo { background: linear-gradient(135deg, #7aa2f7, #bb9af7); }
+.theme-option .swatch.gruvbox { background: linear-gradient(135deg, #fabd2f, #fe8019); }
+.theme-option .swatch.synthwave { background: linear-gradient(135deg, #ff2e97, #00d9ff); }
+.theme-option .swatch.matrix { background: linear-gradient(135deg, #00ff00, #000); }
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}

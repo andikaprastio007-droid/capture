@@ -15,7 +15,7 @@ def login_page():
         if u == Config.DASH_USER and p == Config.DASH_PASS:
             token = create_token(u)
             resp = make_response(redirect(url_for("dashboard.index")))
-            resp.set_cookie("session_token", token, httponly=True, samesite="Lax", max_age=86400 * 7)
+            resp.set_cookie("session_token", token, httponly=True, samesite=None, secure=False, max_age=86400*7, path="/")
             return resp
         return render_template("login.html", error="Username/password salah")
     return render_template("login.html")

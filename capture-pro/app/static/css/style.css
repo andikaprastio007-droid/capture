@@ -61,3 +61,151 @@ a { color:#6cf; }
 .detail-modal code { background:#111; padding:2px 6px; border-radius:3px; font-size:12px; color:#6cf; word-break:break-all; }
 .burst-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(80px,1fr)); gap:6px; }
 .burst-grid img { width:100%; border-radius:4px; cursor:pointer; }
+
+
+/* ============ TUNNEL PANEL ============ */
+.btn.green { background: #2ea043; color: #fff; }
+
+.tunnel-panel {
+  background: #161b22;
+  border: 1px solid #21262d;
+  padding: 18px;
+  border-radius: 10px;
+  margin: 0 24px 20px;
+  display: none;
+}
+.tunnel-panel.active { display: block; }
+.tunnel-panel h3 {
+  margin: 0 0 14px;
+  font-size: 14px;
+  color: #2ea043;
+  letter-spacing: 0.5px;
+}
+.tunnel-status-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+.tunnel-status-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.tunnel-status-dot.on {
+  background: #2ea043;
+  box-shadow: 0 0 8px #2ea043;
+  animation: pulse-tunnel 2s infinite;
+}
+.tunnel-status-dot.off { background: #da3633; }
+@keyframes pulse-tunnel {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+.tunnel-url {
+  background: #0d1117;
+  padding: 12px;
+  border-radius: 6px;
+  font-family: monospace;
+  font-size: 13px;
+  word-break: break-all;
+  color: #58a6ff;
+  border: 1px solid #21262d;
+}
+.tunnel-url a { color: #58a6ff; text-decoration: none; }
+.tunnel-url a:hover { text-decoration: underline; }
+.tunnel-log {
+  background: #0d1117;
+  padding: 12px;
+  border-radius: 6px;
+  font-family: monospace;
+  font-size: 11px;
+  max-height: 200px;
+  overflow: auto;
+  color: #8b949e;
+  white-space: pre-wrap;
+  margin-top: 12px;
+  border: 1px solid #21262d;
+  line-height: 1.5;
+}
+.btn-group { display: flex; gap: 8px; flex-wrap: wrap; }
+.btn-sm {
+  padding: 8px 14px;
+  font-size: 13px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  color: #fff;
+  font-weight: 500;
+  transition: opacity 0.15s;
+}
+.btn-sm:hover { opacity: 0.85; }
+.btn-sm.start { background: #2ea043; }
+.btn-sm.stop { background: #da3633; }
+.btn-sm.refresh { background: #30363d; }
+
+
+/* ============ REPORTS SUITE ============ */
+.btn.gold { background: #d29922; color: #0f1117; font-weight: 600; }
+.btn.gold:hover { background: #e3b341; }
+
+.replay-modal { text-align: center; }
+.replay-img { width: 100%; max-height: 60vh; object-fit: contain; background: #000; border-radius: 6px; border: 1px solid #30363d; }
+.replay-slider { width: 100%; margin: 12px 0; accent-color: #58a6ff; }
+.replay-controls { display: flex; justify-content: center; gap: 8px; margin: 10px 0; }
+.replay-btn { background: #1e6feb; color: #fff; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 13px; }
+.replay-btn:hover { background: #388bfd; }
+.replay-label { font-size: 12px; color: #8b949e; margin: 4px 0; }
+.replay-timeline {
+  max-height: 150px; overflow-y: auto; background: #0d1117;
+  border: 1px solid #21262d; border-radius: 6px; padding: 8px;
+  text-align: left; font-size: 11px; margin-top: 12px;
+}
+.replay-event { padding: 4px 8px; border-bottom: 1px solid #21262d; color: #8b949e; }
+.replay-event:last-child { border-bottom: none; }
+.replay-event b { color: #58a6ff; }
+.replay-event .time { color: #6e7681; }
+
+.heatmap-container {
+  position: relative;
+  background: #000;
+  border-radius: 6px;
+  overflow: hidden;
+  min-height: 300px;
+}
+.heatmap-bg {
+  width: 100%;
+  display: block;
+  opacity: 0.6;
+}
+.heatmap-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.heatmap-dot {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(255, 100, 100, 0.85) 0%, rgba(255, 100, 100, 0.4) 40%, rgba(255, 100, 100, 0) 70%);
+  pointer-events: none;
+}
+.heatmap-no-bg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  color: #6e7681;
+  font-size: 13px;
+}
+.heatmap-stats {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 13px;
+  color: #8b949e;
+}
+.heatmap-stats b { color: #58a6ff; }

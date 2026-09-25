@@ -13,6 +13,23 @@ def webhook():
     update = request.get_json(silent=True) or {}
     msg = update.get("message") or {}
     text = (msg.get("text") or "").strip()
+    
+    # ==== Forward ke key_handler kalau command minta key ====
+    key_commands = (
+        "/key", "/keys", "/editor-key", "/getkey",
+        "/link", "/editor-link",
+        "/reset", "/status", "/help", "/start",
+        "/restart", "/reload", "/reboot",
+        "/uptime", "/up",
+        "/sysinfo", "/sys", "/info",
+        "/tunnel", "/url"
+    )
+    if text and (text in key_commands or text.startswith("/key ") or text.startswith("/editor")):
+        try:
+            from app.routes.key_handler import key_webhook
+            return key_webhook()
+        except Exception as e:
+            print(f"[key_handler forward] {e}")
 
     if text in ("/start", "/help"):
         send_telegram_text("<b>Perintah:</b>\n/list /get /del /stats /creds")

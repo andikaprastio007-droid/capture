@@ -1,0 +1,232 @@
+{% extends "base_modern.html" %}
+{% set active = "admin_users" %}
+{% block title %}Admin - Users{% endblock %}
+{% block head %}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<style>
+.user-row {
+  background: var(--bg-glass);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  transition: all 0.15s;
+}
+.user-row:hover { border-color: var(--border-strong); transform: translateY(-1px); }
+.user-info { flex: 1; min-width: 220px; }
+.user-name { font-weight: 700; font-size: 15px; color: var(--text-primary); }
+.user-email { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+.user-meta { font-size: 11px; color: var(--text-muted); margin-top: 6px; }
+.badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-right: 4px;
+}
+.badge.plan { background: rgba(99,102,241,0.2); color: #a5b4fc; }
+.badge.active { background: rgba(16,185,129,0.2); color: #6ee7b7; }
+.badge.expired { background: rgba(245,158,11,0.2); color: #fbbf24; }
+.badge.suspended { background: rgba(239,68,68,0.2); color: #fca5a5; }
+
+.user-actions {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.user-actions input {
+  width: 70px;
+  padding: 6px 8px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  color: var(--text-primary);
+  font-size: 12px;
+}
+.btn-act {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  color: #fff;
+  transition: all 0.15s;
+}
+.btn-act:hover { opacity: 0.85; transform: translateY(-1px); }
+.btn-extend { background: var(--accent-green); }
+.btn-plan { background: var(--gradient-primary); }
+.btn-suspend { background: var(--accent-red); }
+
+.stats-mini {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.mini-stat {
+  background: var(--bg-glass);
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  padding: 14px;
+  text-align: center;
+}
+.mini-stat .num {
+  font-size: 22px;
+  font-weight: 800;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.mini-stat .lbl {
+  font-size: 10px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 4px;
+}
+</style>
+{% endblock %}
+{% block content %}
+<div style="max-width:1200px;margin:0 auto;padding:20px">
+
+  <div class="topbar">
+    <div class="topbar-title">
+      <h1>👥 Admin — Users</h1>
+      <p>Kelola user premium ({{ users|length }} total)</p>
+    </div>
+    <div class="topbar-actions">
+      <a class="btn" href="/dashboard">🏠 Dashboard</a>
+      <button class="btn" onclick="location.reload()">🔄 Refresh</button>
+    </div>
+  </div>
+
+  <!-- Stats -->
+  <div class="stats-mini">
+    <div class="mini-stat">
+      <div class="num">{{ users|length }}</div>
+      <div class="lbl">Total User</div>
+    </div>
+    <div class="mini-stat">
+      <div class="num">{{ users|selectattr('status', 'equalto', 'active')|list|length }}</div>
+      <div class="lbl">Aktif</div>
+    </div>
+    <div class="mini-stat">
+      <div class="num">{{ users|selectattr('plan', 'equalto', 'trial')|list|length }}</div>
+      <div class="lbl">Trial</div>
+    </div>
+    <div class="mini-stat">
+      <div class="num">{{ users|selectattr('plan', 'equalto', 'pro')|list|length }}</div>
+      <div class="lbl">Pro</div>
+    </div>
+  </div>
+
+  <!-- Users -->
+  {% if users %}
+  <div id="usersList">
+    {% for u in users %}
+    <div class="user-row">
+      <div class="user-info">
+        <div class="user-name">{{ u.name or '(tanpa nama)' }}</div>
+        <div class="user-email">📧 {{ u.email }}</div>
+        <div class="user-meta">
+          <span class="badge plan">{{ u.plan }}</span>
+          <span class="badge {% if u.status == 'active' %}active{% elif u.status == 'expired' %}expired{% else %}suspended{% endif %}">{{ u.status }}</span>
+          <span style="margin-left:8px">⏰ {{ u.days_left }} hari</span>
+          {% if u.last_login %}
+          <span style="margin-left:8px;font-size:10px">Last: {{ u.last_login[:10] }}</span>
+          {% endif %}
+        </div>
+      </div>
+      <div class="user-actions">
+        <input type="number" value="30" min="1" max="365" id="days-{{ u.id }}" title="Hari">
+        <button class="btn-act btn-extend" onclick="extend({{ u.id }})">+ Extend</button>
+        <button class="btn-act btn-plan" onclick="setPlan({{ u.id }})">Plan</button>
+        <button class="btn-act btn-suspend" onclick="suspend({{ u.id }})">Suspend</button>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  {% else %}
+  <div style="text-align:center;padding:60px 20px;background:var(--bg-glass);border-radius:12px;border:1px solid var(--border-subtle)">
+    <div style="font-size:60px;margin-bottom:16px">👥</div>
+    <h3 style="margin:0 0 8px">Belum Ada User</h3>
+    <p style="color:var(--text-muted);margin:0">User yang register akan muncul di sini.</p>
+  </div>
+  {% endif %}
+
+</div>
+
+<script>
+async function extend(uid) {
+  const days = parseInt(document.getElementById('days-' + uid).value) || 30;
+  try {
+    const r = await fetch('/api/admin/user/' + uid + '/extend', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({days: days}),
+    });
+    const d = await r.json();
+    Swal.fire({icon: d.ok ? 'success' : 'error', title: d.msg || 'Done', timer: 1500, showConfirmButton: false});
+    if (d.ok) setTimeout(() => location.reload(), 1500);
+  } catch (e) {
+    Swal.fire('Error', e.message, 'error');
+  }
+}
+
+async function suspend(uid) {
+  const c = await Swal.fire({
+    title: 'Suspend user?',
+    text: 'User tidak bisa login lagi',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Suspend',
+    confirmButtonColor: '#ef4444',
+  });
+  if (!c.isConfirmed) return;
+  try {
+    const r = await fetch('/api/admin/user/' + uid + '/suspend', {method: 'POST'});
+    const d = await r.json();
+    Swal.fire({icon: 'success', title: d.msg, timer: 1500, showConfirmButton: false});
+    setTimeout(() => location.reload(), 1500);
+  } catch (e) {
+    Swal.fire('Error', e.message, 'error');
+  }
+}
+
+async function setPlan(uid) {
+  const {value: plan} = await Swal.fire({
+    title: 'Pilih Plan',
+    input: 'select',
+    inputOptions: {trial: 'Trial', basic: 'Basic', pro: 'Pro', enterprise: 'Enterprise'},
+    inputPlaceholder: 'Pilih plan',
+    showCancelButton: true,
+    confirmButtonText: 'Simpan',
+  });
+  if (!plan) return;
+  try {
+    const r = await fetch('/api/admin/user/' + uid + '/plan', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({plan: plan}),
+    });
+    const d = await r.json();
+    Swal.fire({icon: 'success', title: d.msg, timer: 1500, showConfirmButton: false});
+    setTimeout(() => location.reload(), 1500);
+  } catch (e) {
+    Swal.fire('Error', e.message, 'error');
+  }
+}
+</script>
+{% endblock %}

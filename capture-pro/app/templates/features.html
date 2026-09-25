@@ -1,0 +1,56 @@
+{% extends "base_modern.html" %}
+{% set active = "features" %}
+{% block title %}Features - AndikaToolsV1{% endblock %}
+{% block head %}
+<style>
+.cat-section { margin-bottom:32px; }
+.cat-title { font-size:16px; color:var(--accent-primary); margin:0 0 14px; padding-bottom:8px; border-bottom:2px solid var(--border-subtle); text-transform:uppercase; letter-spacing:1px; }
+.feat-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:10px; }
+.feat-item { background:var(--bg-glass); backdrop-filter:blur(20px); border:1px solid var(--border-subtle); border-radius:var(--radius-md); padding:14px; display:flex; gap:12px; transition:var(--transition); animation:fadeInUp 0.3s ease both; }
+.feat-item:hover { border-color:var(--accent-primary); transform:translateY(-2px); box-shadow:var(--shadow-lg); }
+.feat-item.roadmap { opacity:0.75; }
+.feat-icon { font-size:24px; line-height:1; flex-shrink:0; }
+.feat-info { flex:1; }
+.feat-name { font-size:13px; font-weight:600; color:var(--text-primary); margin-bottom:4px; display:flex; align-items:center; gap:6px; flex-wrap:wrap; }
+.feat-desc { font-size:11px; color:var(--text-muted); line-height:1.4; }
+.badge-status { display:inline-block; padding:1px 6px; border-radius:8px; font-size:9px; text-transform:uppercase; font-weight:bold; }
+.badge-status.active { background:rgba(16,185,129,0.15); color:#10b981; }
+.badge-status.roadmap { background:rgba(245,158,11,0.15); color:#f59e0b; }
+.effort-badge { background:var(--bg-tertiary); padding:1px 6px; border-radius:8px; font-size:9px; color:var(--text-muted); }
+</style>
+{% endblock %}
+{% block content %}
+<div class="topbar">
+  <div class="topbar-title">
+    <h1>🚀 Fitur ReconPro</h1>
+    <p>Complete feature list — Active & Roadmap</p>
+  </div>
+</div>
+
+<div class="stats-grid">
+  <div class="stat-card"><div class="stat-value">{{ total }}</div><div class="stat-label">Total Fitur</div></div>
+  <div class="stat-card"><div class="stat-value" style="color:#10b981;-webkit-text-fill-color:#10b981">{{ active }}</div><div class="stat-label">Aktif</div></div>
+  <div class="stat-card"><div class="stat-value" style="color:#f59e0b;-webkit-text-fill-color:#f59e0b">{{ roadmap }}</div><div class="stat-label">Roadmap</div></div>
+</div>
+
+{% for category, items in grouped.items() %}
+<div class="cat-section">
+  <h2 class="cat-title">{{ category }}</h2>
+  <div class="feat-grid">
+    {% for item in items %}
+    <div class="feat-item {% if item.status == 'roadmap' %}roadmap{% endif %}">
+      <div class="feat-icon">{{ item.icon }}</div>
+      <div class="feat-info">
+        <div class="feat-name">
+          {{ item.name }}
+          {% if item.status == 'aktif' %}<span class="badge-status active">AKTIF</span>
+          {% else %}<span class="badge-status roadmap">ROADMAP</span>{% if item.effort %}<span class="effort-badge">{{ item.effort }}</span>{% endif %}{% endif %}
+        </div>
+        <div class="feat-desc">{{ item.desc }}</div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endfor %}
+{% endblock %}

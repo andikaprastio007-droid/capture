@@ -1,0 +1,205 @@
+{% extends "base_modern.html" %}
+{% set active = "template_links" %}
+{% block title %}Template Links{% endblock %}
+{% block content %}
+<div style="max-width:900px;margin:0 auto;padding:20px">
+
+  <h1 style="color:var(--accent-primary)">🔗 Template Link Manager</h1>
+  <p style="color:var(--text-muted);margin-bottom:20px">Pilih template + tunnel → generate link unik</p>
+
+  <div style="background:var(--bg-glass);padding:20px;border-radius:12px;margin-bottom:20px;border:1px solid var(--border-subtle)">
+    <h3 style="margin:0 0 16px;font-size:14px;color:var(--accent-primary);text-transform:uppercase">➕ Generate Link Baru</h3>
+
+    <label style="display:block;font-size:12px;color:var(--text-muted);margin-bottom:6px">TEMPLATE</label>
+    <select id="selTemplate" style="width:100%;padding:12px;background:var(--bg-secondary);border:1px solid var(--border-subtle);border-radius:8px;color:var(--text-primary);font-size:14px;margin-bottom:14px">
+      <option value="">Loading template...</option>
+    </select>
+
+    <label style="display:block;font-size:12px;color:var(--text-muted);margin-bottom:6px">TUNNEL AKTIF</label>
+    <select id="selTunnel" style="width:100%;padding:12px;background:var(--bg-secondary);border:1px solid var(--border-subtle);border-radius:8px;color:var(--text-primary);font-size:14px;margin-bottom:14px">
+      <option value="">Loading tunnel...</option>
+    </select>
+
+    <label style="display:block;font-size:12px;color:var(--text-muted);margin-bottom:6px">CAMPAIGN</label>
+    <input type="text" id="inpCampaign" placeholder="kuisioner / verifikasi" style="width:100%;padding:12px;background:var(--bg-secondary);border:1px solid var(--border-subtle);border-radius:8px;color:var(--text-primary);font-size:14px;margin-bottom:14px;box-sizing:border-box">
+
+    <label style="display:block;font-size:12px;color:var(--text-muted);margin-bottom:6px">CATATAN (opsional)</label>
+    <input type="text" id="inpNotes" placeholder="misal: untuk grup A" style="width:100%;padding:12px;background:var(--bg-secondary);border:1px solid var(--border-subtle);border-radius:8px;color:var(--text-primary);font-size:14px;margin-bottom:14px;box-sizing:border-box">
+
+    <button id="btnGen" style="width:100%;padding:14px;background:var(--gradient-primary);color:#fff;border:none;border-radius:10px;cursor:pointer;font-size:15px;font-weight:700">🚀 Generate Link</button>
+
+    <pre id="output" style="background:#000;color:#0f0;padding:12px;font-family:monospace;font-size:11px;border-radius:8px;white-space:pre-wrap;max-height:200px;overflow:auto;margin-top:12px;display:none"></pre>
+  </div>
+
+  <div style="background:var(--bg-glass);padding:20px;border-radius:12px;border:1px solid var(--border-subtle)">
+    <h3 style="margin:0 0 16px;font-size:14px;color:var(--accent-primary);text-transform:uppercase">📋 Link Tersimpan</h3>
+    <div id="linkList">Loading...</div>
+  </div>
+</div>
+
+<script>
+console.log("=== TEMPLATE LINKS JS LOADED ===");
+
+var API = "/api/template-links";
+
+function log(m) {
+  console.log(m);
+  var el = document.getElementById("output");
+  if (el) {
+    el.style.display = "block";
+    el.textContent += m + "\n";
+  }
+}
+
+function esc(s) {
+  if (s == null) return "";
+  return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+}
+
+function fetchJSON(url, opts) {
+  opts = opts || {};
+  opts.credentials = "same-origin";
+  return fetch(url, opts).then(function(r) {
+    return r.text().then(function(txt) {
+      if (txt.substring(0,15).toLowerCase().indexOf("<!doctype") === 0) {
+        throw new Error("Server balas HTML (belum login)");
+      }
+      try {
+        return JSON.parse(txt);
+      } catch(e) {
+        throw new Error("Bukan JSON: " + txt.substring(0,80));
+      }
+    });
+  });
+}
+
+function loadTemplates() {
+  log("[load] templates...");
+  fetchJSON(API + "/templates").then(function(data) {
+    log("[load] templates OK: " + (data.templates ? data.templates.length : 0));
+    var sel = document.getElementById("selTemplate");
+    if (!data.templates || !data.templates.length) {
+      sel.innerHTML = '<option value="">-- Kosong --</option>';
+      return;
+    }
+    var html = '<option value="">-- Pilih Template --</option>';
+    data.templates.forEach(function(t) {
+      html += '<option value="' + t.id + '" data-cat="' + esc(t.category||'') + '">' + esc(t.name) + ' (' + esc(t.category||'') + ')</option>';
+    });
+    sel.innerHTML = html;
+  }).catch(function(e) {
+    log("[load] templates ERROR: " + e.message);
+    document.getElementById("selTemplate").innerHTML = '<option value="">Error: ' + esc(e.message) + '</option>';
+  });
+}
+
+function loadTunnels() {
+  log("[load] tunnels...");
+  fetchJSON(API + "/tunnels").then(function(data) {
+    log("[load] tunnels OK: " + (data.tunnels ? data.tunnels.length : 0));
+    var sel = document.getElementById("selTunnel");
+    if (!data.tunnels || !data.tunnels.length) {
+      sel.innerHTML = '<option value="">-- Tidak ada tunnel aktif --</option>';
+      return;
+    }
+    var html = '<option value="">-- Pilih Tunnel --</option>';
+    data.tunnels.forEach(function(t) {
+      html += '<option value="' + t.name + '">' + esc(t.name) + ' — ' + esc(t.url) + '</option>';
+    });
+    sel.innerHTML = html;
+  }).catch(function(e) {
+    log("[load] tunnels ERROR: " + e.message);
+    document.getElementById("selTunnel").innerHTML = '<option value="">Error: ' + esc(e.message) + '</option>';
+  });
+}
+
+function loadLinks() {
+  log("[load] links...");
+  fetchJSON(API + "/list").then(function(data) {
+    log("[load] links OK: " + (data.links ? data.links.length : 0));
+    var el = document.getElementById("linkList");
+    if (!data.links || !data.links.length) {
+      el.innerHTML = '<p style="color:var(--text-muted)">Belum ada link.</p>';
+      return;
+    }
+    var html = "";
+    data.links.forEach(function(l) {
+      html += '<div style="background:var(--bg-secondary);padding:12px;border-radius:8px;margin-bottom:8px;border-left:3px solid var(--accent-primary)">';
+      html += '<div style="font-weight:700">' + esc(l.template_name) + ' <span style="font-size:11px;color:var(--accent-primary)">[' + esc(l.campaign) + ']</span></div>';
+      html += '<div style="font-size:11px;color:var(--text-muted);margin-top:4px">Tunnel: ' + esc(l.tunnel_name) + ' | Hits: ' + (l.hits || 0) + '</div>';
+      html += '<div onclick="copyUrl(\'' + esc(l.full_url) + '\')" style="font-family:monospace;font-size:11px;color:var(--accent-primary);word-break:break-all;margin-top:6px;cursor:pointer">🔗 ' + esc(l.full_url) + '</div>';
+      html += '<div style="margin-top:8px;display:flex;gap:6px;flex-wrap:wrap">';
+      html += '<a href="' + esc(l.full_url) + '" target="_blank" style="padding:6px 12px;background:var(--gradient-primary);color:#fff;border-radius:6px;font-size:11px;text-decoration:none">▶ Test</a>';
+      html += '<button onclick="copyUrl(\'' + esc(l.full_url) + '\')" style="padding:6px 12px;background:var(--accent-green);color:#fff;border:none;border-radius:6px;font-size:11px;cursor:pointer">📋 Copy</button>';
+      html += '<button onclick="delLink(' + l.id + ')" style="padding:6px 12px;background:var(--accent-red);color:#fff;border:none;border-radius:6px;font-size:11px;cursor:pointer">🗑</button>';
+      html += '</div></div>';
+    });
+    el.innerHTML = html;
+  }).catch(function(e) {
+    log("[load] links ERROR: " + e.message);
+    document.getElementById("linkList").innerHTML = '<p style="color:var(--accent-red)">Error: ' + esc(e.message) + '</p>';
+  });
+}
+
+function generateLink() {
+  var tid = document.getElementById("selTemplate").value;
+  var tun = document.getElementById("selTunnel").value;
+  var camp = document.getElementById("inpCampaign").value;
+  var notes = document.getElementById("inpNotes").value;
+
+  if (!tid) { alert("Pilih template dulu"); return; }
+  if (!tun) { alert("Pilih tunnel dulu"); return; }
+
+  log("[gen] template=" + tid + " tunnel=" + tun);
+
+  fetchJSON(API + "/generate", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      template_id: parseInt(tid),
+      tunnel_name: tun,
+      campaign: camp,
+      notes: notes
+    })
+  }).then(function(data) {
+    if (data.ok) {
+      log("[gen] OK: " + data.url);
+      alert("✅ Link dibuat:\n\n" + data.url);
+      loadLinks();
+    } else {
+      log("[gen] Gagal: " + data.msg);
+      alert("Gagal: " + data.msg);
+    }
+  }).catch(function(e) {
+    log("[gen] Error: " + e.message);
+    alert("Error: " + e.message);
+  });
+}
+
+function delLink(id) {
+  if (!confirm("Hapus link?")) return;
+  fetchJSON(API + "/delete/" + id, { method: "POST" }).then(function() {
+    setTimeout(loadLinks, 300);
+  });
+}
+
+function copyUrl(url) {
+  navigator.clipboard.writeText(url);
+  alert("Copied:\n" + url);
+}
+
+// Attach event listener
+document.getElementById("btnGen").addEventListener("click", generateLink);
+document.getElementById("selTemplate").addEventListener("change", function() {
+  var opt = this.options[this.selectedIndex];
+  var cat = opt.getAttribute("data-cat") || "";
+  document.getElementById("inpCampaign").value = cat;
+});
+
+// Init
+log("[init] loading...");
+loadTemplates();
+loadTunnels();
+loadLinks();
+</script>
+{% endblock %}

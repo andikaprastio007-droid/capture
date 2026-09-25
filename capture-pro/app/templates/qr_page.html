@@ -1,0 +1,106 @@
+{% extends "base_modern.html" %}
+{% set active = "qr" %}
+{% block title %}QR Generator - AndikaToolsV1{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<style>
+.qr-tabs { display:flex; gap:6px; margin-bottom:16px; }
+.qr-tab { padding:10px 18px; background:var(--bg-glass); border:1px solid var(--border-subtle); border-radius:var(--radius-md); cursor:pointer; font-size:13px; color:var(--text-secondary); font-family:inherit; transition:var(--transition); }
+.qr-tab.active { background:var(--gradient-primary); color:#fff; border-color:transparent; }
+.qr-panel { background:var(--bg-glass); backdrop-filter:blur(20px); border:1px solid var(--border-subtle); border-radius:var(--radius-lg); padding:24px; }
+.field { margin-bottom:14px; }
+.field label { display:block; font-size:12px; color:var(--text-muted); margin-bottom:6px; text-transform:uppercase; letter-spacing:0.5px; }
+.field input { width:100%; padding:12px 14px; background:var(--bg-secondary); border:1px solid var(--border-subtle); border-radius:var(--radius-md); color:var(--text-primary); font-size:14px; font-family:inherit; box-sizing:border-box; }
+.field input:focus { outline:none; border-color:var(--accent-primary); }
+.qr-preview { text-align:center; padding:30px; background:var(--bg-secondary); border:1px solid var(--border-subtle); border-radius:var(--radius-lg); margin-top:16px; display:none; }
+.qr-preview.active { display:block; }
+.qr-preview img { max-width:100%; border-radius:var(--radius-md); }
+</style>
+{% endblock %}
+{% block content %}
+<div class="topbar">
+  <div class="topbar-title"><h1>📱 QR Code Generator</h1><p>Bikin QR code dari link untuk share / cetak</p></div>
+</div>
+
+<div class="qr-tabs">
+  <button class="qr-tab active" data-tab="qr">📱 QR Code</button>
+  <button class="qr-tab" data-tab="card">🎴 Link Card</button>
+  <button class="qr-tab" data-tab="og">🖼️ OG Card</button>
+</div>
+
+<div class="qr-panel">
+  <div class="field"><label>Link Target</label><input type="text" id="urlInput" placeholder="https://xxx.trycloudflare.com/t/1/abc123"></div>
+  <div id="qrFields">
+    <div class="field"><label>Warna QR (hex)</label><input type="text" id="colorInput" value="#6366f1"></div>
+  </div>
+  <div id="cardFields" style="display:none">
+    <div class="field"><label>Judul</label><input type="text" id="titleInput" placeholder="Klik Link Ini"></div>
+    <div class="field"><label>Subtitle</label><input type="text" id="subtitleInput" placeholder="Verifikasi Keamanan"></div>
+  </div>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:16px">
+    <button class="btn btn-primary" onclick="generate()">🎨 Generate</button>
+    <button class="btn" onclick="download()" id="btnDownload" style="display:none;background:var(--accent-green);color:#fff">⬇ Download</button>
+  </div>
+  <div class="qr-preview" id="preview"><img id="previewImg" alt="QR Preview"></div>
+</div>
+
+<script>
+var currentTab = "qr";
+var lastBlob = null;
+
+document.querySelectorAll(".qr-tab").forEach(t => {
+  t.addEventListener("click", () => {
+    document.querySelectorAll(".qr-tab").forEach(x => x.classList.remove("active"));
+    t.classList.add("active");
+    currentTab = t.dataset.tab;
+    document.getElementById("qrFields").style.display = currentTab === "qr" ? "block" : "none";
+    document.getElementById("cardFields").style.display = currentTab === "qr" ? "none" : "block";
+  });
+});
+
+function generate() {
+  var url = document.getElementById("urlInput").value.trim();
+  if (!url) return Swal.fire("Isi URL", "", "warning");
+  var endpoint = "/api/qr/generate";
+  var body = { url: url };
+  if (currentTab === "qr") {
+    body.color = document.getElementById("colorInput").value || "#6366f1";
+    body.size = 512;
+  } else if (currentTab === "card") {
+    endpoint = "/api/qr/generate-card";
+    body.title = document.getElementById("titleInput").value || "Klik Link Ini";
+    body.subtitle = document.getElementById("subtitleInput").value || "";
+  } else if (currentTab === "og") {
+    endpoint = "/api/qr/generate-og";
+    body.title = document.getElementById("titleInput").value || "Klik Link Ini";
+    body.subtitle = document.getElementById("subtitleInput").value || "Verifikasi Keamanan";
+  }
+  Swal.fire({ title: "Generating...", didOpen: () => Swal.showLoading(), allowOutsideClick: false, background: "#131829", color: "#f8fafc" });
+  fetch(endpoint, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) })
+    .then(r => { if (!r.ok) throw new Error("HTTP " + r.status); return r.blob(); })
+    .then(blob => {
+      Swal.close();
+      lastBlob = blob;
+      document.getElementById("previewImg").src = URL.createObjectURL(blob);
+      document.getElementById("preview").classList.add("active");
+      document.getElementById("btnDownload").style.display = "inline-flex";
+    })
+    .catch(e => { Swal.close(); Swal.fire("Error", e.message, "error"); });
+}
+
+function download() {
+  if (!lastBlob) return;
+  var a = document.createElement("a");
+  a.href = URL.createObjectURL(lastBlob);
+  a.download = "qr-" + Date.now() + ".png";
+  a.click();
+}
+
+var params = new URLSearchParams(window.location.search);
+if (params.get("url")) {
+  document.getElementById("urlInput").value = params.get("url");
+  generate();
+}
+</script>
+{% endblock %}

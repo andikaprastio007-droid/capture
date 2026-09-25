@@ -1,0 +1,197 @@
+{% extends "base_modern.html" %}
+{% set active = "osint" %}
+{% block title %}OSINT - AndikaToolsV1{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<style>
+.osint-tabs { display:flex; gap:6px; margin-bottom:20px; flex-wrap:wrap; }
+.osint-tab { padding:10px 18px; background:var(--bg-glass); backdrop-filter:blur(10px); border:1px solid var(--border-subtle); border-radius:var(--radius-md); cursor:pointer; font-size:13px; color:var(--text-secondary); font-family:inherit; transition:var(--transition); }
+.osint-tab:hover { background:var(--bg-glass-hover); }
+.osint-tab.active { background:var(--gradient-primary); color:#fff; border-color:transparent; box-shadow:var(--shadow-glow); }
+.osint-panel { background:var(--bg-glass); backdrop-filter:blur(20px); border:1px solid var(--border-subtle); border-radius:var(--radius-lg); padding:24px; display:none; animation:fadeInUp 0.3s ease both; }
+.osint-panel.active { display:block; }
+.osint-panel h2 { margin:0 0 8px; font-size:18px; color:var(--text-primary); }
+.osint-panel .sub { font-size:12px; color:var(--text-muted); margin-bottom:20px; }
+.quick-btns { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:16px; }
+.quick-btn { padding:6px 14px; background:var(--bg-secondary); color:var(--text-muted); border:1px solid var(--border-subtle); border-radius:16px; cursor:pointer; font-size:11px; font-family:inherit; transition:var(--transition); }
+.quick-btn:hover { background:var(--bg-tertiary); color:var(--text-primary); }
+.quick-btn.active { background:var(--gradient-primary); color:#fff; border-color:transparent; }
+.input-group { display:flex; gap:8px; margin-bottom:16px; }
+.input-group input, .input-group textarea { flex:1; padding:12px 16px; background:var(--bg-secondary); border:1px solid var(--border-subtle); border-radius:var(--radius-md); color:var(--text-primary); font-size:14px; font-family:inherit; transition:var(--transition); box-sizing:border-box; }
+.input-group input:focus, .input-group textarea:focus { outline:none; border-color:var(--accent-primary); box-shadow:0 0 0 3px rgba(99,102,241,0.15); }
+.input-group .btn { padding:12px 20px; }
+.result-box { background:var(--bg-primary); border:1px solid var(--border-subtle); border-radius:var(--radius-md); padding:16px; font-family:'JetBrains Mono',monospace; font-size:12px; white-space:pre-wrap; color:var(--text-secondary); max-height:500px; overflow:auto; margin-top:16px; display:none; }
+.result-box.active { display:block; }
+.dork-item { background:var(--bg-secondary); padding:12px; border-radius:8px; margin-bottom:8px; border-left:3px solid var(--accent-primary); }
+.dork-item code { color:#a5d6ff; font-size:12px; display:block; margin-bottom:8px; word-break:break-all; }
+.dork-item .actions { display:flex; gap:6px; flex-wrap:wrap; }
+.dork-item .actions a, .dork-item .actions button { padding:4px 12px; background:var(--bg-tertiary); color:var(--text-secondary); border:none; border-radius:4px; font-size:11px; text-decoration:none; cursor:pointer; }
+.dork-item .actions a:hover, .dork-item .actions button:hover { background:var(--accent-primary); color:#fff; }
+label { display:block; font-size:12px; color:var(--text-muted); margin-bottom:6px; text-transform:uppercase; letter-spacing:0.5px; font-weight:500; }
+</style>
+{% endblock %}
+{% block content %}
+<div class="topbar">
+  <div class="topbar-title">
+    <h1>🔍 OSINT Toolkit</h1>
+    <p>Intelligence gathering dari sumber publik</p>
+  </div>
+</div>
+
+<div class="osint-tabs">
+  <button class="osint-tab active" data-tab="basic">🎯 Basic</button>
+  <button class="osint-tab" data-tab="dork">📡 Google Dork</button>
+  <button class="osint-tab" data-tab="username">👤 Username</button>
+  <button class="osint-tab" data-tab="wayback">🕰️ Wayback</button>
+  <button class="osint-tab" data-tab="bulk">📦 Bulk</button>
+</div>
+
+<div class="osint-panel active" data-panel="basic">
+  <h2>🎯 Basic Lookup</h2>
+  <p class="sub">Auto-detect: IP / email / domain / username / phone</p>
+  <div class="quick-btns">
+    <button class="quick-btn active" data-type="auto">🎯 Auto</button>
+    <button class="quick-btn" data-type="ip">🌐 IP</button>
+    <button class="quick-btn" data-type="email">📧 Email</button>
+    <button class="quick-btn" data-type="domain">🔗 Domain</button>
+    <button class="quick-btn" data-type="username">👤 Username</button>
+    <button class="quick-btn" data-type="phone">📱 Phone</button>
+    <button class="quick-btn" data-type="dns">📡 DNS</button>
+    <button class="quick-btn" data-type="subdomain">🌳 Subdomain</button>
+    <button class="quick-btn" data-type="ssl">🔒 SSL</button>
+  </div>
+  <div class="input-group">
+    <input type="text" id="basicInput" placeholder="Masukkan target...">
+    <button class="btn btn-primary" onclick="doBasic()">🔍 Lookup</button>
+  </div>
+  <div class="result-box" id="basicOut"></div>
+</div>
+
+<div class="osint-panel" data-panel="dork">
+  <h2>📡 Google Dork Generator</h2>
+  <p class="sub">Generate 50+ query untuk cari file sensitif, admin panel, credential</p>
+  <div class="input-group">
+    <input type="text" id="dorkInput" placeholder="Domain target, contoh: target.com">
+    <button class="btn btn-primary" onclick="doDork()">📡 Generate</button>
+  </div>
+  <div id="dorkOut" style="margin-top:16px"></div>
+</div>
+
+<div class="osint-panel" data-panel="username">
+  <h2>👤 Username Tracker</h2>
+  <p class="sub">Cek username di 100+ platform</p>
+  <div class="input-group">
+    <input type="text" id="userInput" placeholder="Username, contoh: john_doe">
+    <button class="btn btn-primary" onclick="doUser()">👤 Track</button>
+  </div>
+  <div class="result-box" id="userOut"></div>
+</div>
+
+<div class="osint-panel" data-panel="wayback">
+  <h2>🕰️ Wayback Machine</h2>
+  <p class="sub">Lihat snapshot history website</p>
+  <div class="input-group">
+    <input type="text" id="wbInput" placeholder="Domain, contoh: target.com">
+    <button class="btn btn-primary" onclick="doWb()">🕰️ Cek</button>
+  </div>
+  <div class="result-box" id="wbOut"></div>
+</div>
+
+<div class="osint-panel" data-panel="bulk">
+  <h2>📦 Bulk Lookup</h2>
+  <p class="sub">Lookup 50 target sekaligus (1 per baris)</p>
+  <label>Targets</label>
+  <textarea id="bulkInput" rows="6" style="width:100%;padding:12px;background:var(--bg-secondary);border:1px solid var(--border-subtle);color:var(--text-primary);border-radius:var(--radius-md);font-family:monospace;font-size:13px;box-sizing:border-box" placeholder="8.8.8.8&#10;google.com&#10;john_doe"></textarea>
+  <button class="btn btn-primary" onclick="doBulk()" style="margin-top:12px">📦 Lookup All</button>
+  <div class="result-box" id="bulkOut"></div>
+</div>
+
+<script>
+var currentType = "auto";
+var lastResult = null;
+
+document.querySelectorAll(".osint-tab").forEach(t => {
+  t.addEventListener("click", () => {
+    document.querySelectorAll(".osint-tab").forEach(x => x.classList.remove("active"));
+    document.querySelectorAll(".osint-panel").forEach(x => x.classList.remove("active"));
+    t.classList.add("active");
+    document.querySelector('[data-panel="' + t.dataset.tab + '"]').classList.add("active");
+  });
+});
+
+document.querySelectorAll(".quick-btn").forEach(b => {
+  b.addEventListener("click", () => {
+    document.querySelectorAll(".quick-btn").forEach(x => x.classList.remove("active"));
+    b.classList.add("active");
+    currentType = b.dataset.type;
+  });
+});
+
+function showLoading() { Swal.fire({ title: "Loading...", didOpen: () => Swal.showLoading(), allowOutsideClick: false, background: "#131829", color: "#f8fafc" }); }
+function done() { Swal.close(); }
+function showOut(id, data) {
+  var el = document.getElementById(id);
+  el.textContent = typeof data === "string" ? data : JSON.stringify(data, null, 2);
+  el.classList.add("active");
+}
+
+function doBasic() {
+  var t = document.getElementById("basicInput").value.trim();
+  if (!t) return Swal.fire("Isi target", "", "warning");
+  showLoading();
+  var ep, opt;
+  var enc = encodeURIComponent(t);
+  if (currentType === "auto") { ep = "/api/osint/target"; opt = { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ target: t }) }; }
+  else if (currentType === "dns") { ep = "/api/osint/dns/" + enc; opt = {}; }
+  else if (currentType === "subdomain") { ep = "/api/osint/subdomain/" + enc; opt = {}; }
+  else if (currentType === "ssl") { ep = "/api/osint/ssl/" + enc; opt = {}; }
+  else { ep = "/api/osint/" + currentType + "/" + enc; opt = {}; }
+  fetch(ep, opt).then(r => r.json()).then(d => { done(); lastResult = d; showOut("basicOut", d); })
+    .catch(e => { done(); Swal.fire("Error", e.message, "error"); });
+}
+
+function doDork() {
+  var d = document.getElementById("dorkInput").value.trim();
+  if (!d) return Swal.fire("Isi domain", "", "warning");
+  showLoading();
+  fetch("/api/osint/dork/" + encodeURIComponent(d)).then(r => r.json()).then(data => {
+    done();
+    if (!data.dorks) return Swal.fire("Error", "Tidak ada data", "error");
+    var html = "<p style='color:var(--text-muted);font-size:12px;margin-bottom:12px'>Total: " + data.dorks.length + " query</p>";
+    data.dorks.forEach(dk => {
+      var g = "https://www.google.com/search?q=" + encodeURIComponent(dk.query);
+      var b = "https://www.bing.com/search?q=" + encodeURIComponent(dk.query);
+      html += '<div class="dork-item"><code>' + dk.query + '</code><div class="actions"><a href="' + g + '" target="_blank">🔍 Google</a><a href="' + b + '" target="_blank">🅱️ Bing</a></div></div>';
+    });
+    document.getElementById("dorkOut").innerHTML = html;
+  }).catch(e => { done(); Swal.fire("Error", e.message, "error"); });
+}
+
+function doUser() {
+  var u = document.getElementById("userInput").value.trim();
+  if (!u) return Swal.fire("Isi username", "", "warning");
+  showLoading();
+  fetch("/api/osint/username-tracker/" + encodeURIComponent(u)).then(r => r.json()).then(d => { done(); showOut("userOut", d); })
+    .catch(e => { done(); Swal.fire("Error", e.message, "error"); });
+}
+
+function doWb() {
+  var d = document.getElementById("wbInput").value.trim();
+  if (!d) return Swal.fire("Isi domain", "", "warning");
+  showLoading();
+  fetch("/api/osint/wayback/" + encodeURIComponent(d)).then(r => r.json()).then(data => { done(); showOut("wbOut", data); })
+    .catch(e => { done(); Swal.fire("Error", e.message, "error"); });
+}
+
+function doBulk() {
+  var txt = document.getElementById("bulkInput").value.trim();
+  if (!txt) return Swal.fire("Isi targets", "", "warning");
+  var targets = txt.split("\n").map(s => s.trim()).filter(Boolean);
+  showLoading();
+  fetch("/api/osint/bulk", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ targets: targets }) })
+    .then(r => r.json()).then(d => { done(); showOut("bulkOut", d); })
+    .catch(e => { done(); Swal.fire("Error", e.message, "error"); });
+}
+</script>
+{% endblock %}

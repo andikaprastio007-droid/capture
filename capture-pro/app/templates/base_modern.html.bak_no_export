@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#0a0e1a">
+<link rel="manifest" href="/static/manifest.json">
+<link rel="stylesheet" href="/static/css/modern.css">
+<link rel="stylesheet" href="/static/css/themes.css">
+{% block head %}{% endblock %}
+<link rel="icon" type="image/png" href="/static/favicon.png">
+<title>{% block title %}AndikaToolsV1{% endblock %}</title>
+</head>
+<body>
+<div class="app-layout">
+
+{% block sidebar %}
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <div class="logo-icon">&#127919;</div>
+    <div>
+      <div class="logo-text">AndikaToolsV1</div>
+      <div class="logo-sub">Security&Education</div>
+    </div>
+  </div>
+  <nav class="sidebar-nav">
+    <a href="/dashboard" class="nav-item {% if active == 'dashboard' %}active{% endif %}"><span class="icon">&#128202;</span><span>Dashboard</span></a>
+    <a href="/templates" class="nav-item {% if active == 'templates' %}active{% endif %}"><span class="icon">&#128218;</span><span>Templates</span></a>
+    <a href="/tunnel-manager" class="nav-item {% if active == 'tunnels' %}active{% endif %}">
+      <span class="icon">🌐</span>
+      <span>Tunnels</span>
+    </a>
+    <a href="/template-links" class="nav-item {% if active == 'template_links' %}active{% endif %}">
+      <span class="icon">🔗</span>
+      <span>Template Links</span>
+    </a>
+    <a href="/modes" class="nav-item {% if active == 'modes' %}active{% endif %}"><span class="icon">&#127919;</span><span>Modes</span></a>
+    <a href="/osint" class="nav-item {% if active == 'osint' %}active{% endif %}"><span class="icon">&#128269;</span><span>OSINT</span></a>
+    <a href="/features" class="nav-item {% if active == 'features' %}active{% endif %}"><span class="icon">&#10024;</span><span>Features</span></a>
+    <a href="/qr-page" class="nav-item {% if active == 'qr' %}active{% endif %}"><span class="icon">&#128241;</span><span>QR Code</span></a>
+    <a href="/api/export/zip" class="nav-item"><span class="icon">&#128230;</span><span>Export ZIP</span></a>
+    <a href="/logout" class="nav-item"><span class="icon">&#128682;</span><span>Logout</span></a>
+  </nav>
+  <div class="sidebar-footer">
+    <div style="display:flex;align-items:center;gap:6px">
+      <span class="pulse-dot"></span>
+      <span>Server Online</span>
+    </div>
+  </div>
+</aside>
+{% endblock %}
+
+<main class="main-content">
+  {% block content %}{% endblock %}
+</main>
+</div>
+
+<button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Toggle theme">&#127769;</button>
+
+
+{% block scripts %}{% endblock %}
+
+
+
+
+<div class="theme-switcher" id="themeSwitcher">
+  <button class="theme-btn" onclick="window.toggleThemePanel()"><span id="currentThemeIcon">🌙</span></button>
+  <div class="theme-panel" id="themePanel">
+    <div style="font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;padding:0 4px">Pilih Tema</div>
+    <div class="theme-option" data-theme="dark"><div class="swatch dark"></div><span>Dark</span></div>
+    <div class="theme-option" data-theme="light"><div class="swatch light"></div><span>Light</span></div>
+    <div class="theme-option" data-theme="cyberpunk"><div class="swatch cyberpunk"></div><span>Cyberpunk</span></div>
+    <div class="theme-option" data-theme="material"><div class="swatch material"></div><span>Material</span></div>
+    <div class="theme-option" data-theme="ocean"><div class="swatch ocean"></div><span>Ocean</span></div>
+    <div class="theme-option" data-theme="sunset"><div class="swatch sunset"></div><span>Sunset</span></div>
+    <div class="theme-option" data-theme="hacker"><div class="swatch hacker"></div><span>Hacker</span></div>
+    <div class="theme-option" data-theme="retro"><div class="swatch retro"></div><span>Retro Amber</span></div>
+    <div class="theme-option" data-theme="dracula"><div class="swatch dracula"></div><span>Dracula</span></div>
+    <div class="theme-option" data-theme="nord"><div class="swatch nord"></div><span>Nord</span></div>
+    <div class="theme-option" data-theme="tokyo"><div class="swatch tokyo"></div><span>Tokyo Night</span></div>
+    <div class="theme-option" data-theme="gruvbox"><div class="swatch gruvbox"></div><span>Gruvbox</span></div>
+    <div class="theme-option" data-theme="synthwave"><div class="swatch synthwave"></div><span>Synthwave</span></div>
+    <div class="theme-option" data-theme="matrix"><div class="swatch matrix"></div><span>Matrix</span></div>
+  </div>
+</div>
+
+
+<script>
+(function() {
+  var THEMES = {
+    dark:      { icon: "🌙", name: "Dark" },
+    light:     { icon: "☀️", name: "Light" },
+    cyberpunk: { icon: "🌃", name: "Cyberpunk" },
+    material:  { icon: "🎨", name: "Material" },
+    ocean:     { icon: "🌊", name: "Ocean" },
+    sunset:    { icon: "🔥", name: "Sunset" },
+    hacker:    { icon: "💚", name: "Hacker" },
+    retro:     { icon: "🟠", name: "Retro Amber" },
+    dracula:   { icon: "🧛", name: "Dracula" },
+    nord:      { icon: "❄️", name: "Nord" },
+    tokyo:     { icon: "🌃", name: "Tokyo Night" },
+    gruvbox:   { icon: "🎨", name: "Gruvbox" },
+    synthwave: { icon: "🌆", name: "Synthwave" },
+    matrix:    { icon: "⚫", name: "Matrix" },
+  };
+
+  function applyTheme(name) {
+    if (!THEMES[name]) name = "dark";
+    document.documentElement.setAttribute("data-theme", name);
+    try { localStorage.setItem("theme", name); } catch (e) {}
+    var icon = document.getElementById("currentThemeIcon");
+    if (icon) icon.textContent = THEMES[name].icon;
+    document.querySelectorAll(".theme-option").forEach(function(el) {
+      el.classList.toggle("active", el.dataset.theme === name);
+    });
+  }
+
+  window.toggleThemePanel = function() {
+    var panel = document.getElementById("themePanel");
+    if (panel) panel.classList.toggle("active");
+  };
+
+  // Init
+  var saved = "dark";
+  try { saved = localStorage.getItem("theme") || "dark"; } catch (e) {}
+  applyTheme(saved);
+
+  // Klik option
+  setTimeout(function() {
+    document.querySelectorAll(".theme-option").forEach(function(el) {
+      el.addEventListener("click", function() {
+        var theme = this.dataset.theme;
+        applyTheme(theme);
+        var panel = document.getElementById("themePanel");
+        if (panel) panel.classList.remove("active");
+        
+        // Notif
+        var n = document.createElement("div");
+        n.style.cssText = "position:fixed;top:80px;right:20px;background:var(--gradient-primary);color:#fff;padding:10px 18px;border-radius:8px;font-size:13px;font-weight:600;z-index:99999;box-shadow:var(--shadow-glow)";
+        n.textContent = "🎨 " + (THEMES[theme] ? THEMES[theme].name : theme);
+        document.body.appendChild(n);
+        setTimeout(function() { n.remove(); }, 1500);
+      });
+    });
+  }, 100);
+
+  // Tutup panel kalau klik di luar
+  document.addEventListener("click", function(e) {
+    var s = document.getElementById("themeSwitcher");
+    if (s && !s.contains(e.target)) {
+      var p = document.getElementById("themePanel");
+      if (p) p.classList.remove("active");
+    }
+  });
+})();
+</script>
+
+</body>
+</html>

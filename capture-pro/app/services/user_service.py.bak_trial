@@ -1,0 +1,184 @@
+"""User service — register, login, subscription."""
+import os
+import hmac
+import hashlib
+import secrets
+from datetime import datetime, timedelta
+from app.database import db
+from app.models import User, Subscription
+from app.services.license_core import generate_license_key
+
+
+def hash_password(password, salt=None):
+    """Hash password dengan PBKDF2."""
+    if salt is None:
+        salt = secrets.token_hex(16)
+    h = hashlib.pbkdf2_hmac(
+        "sha256",
+        password.encode(),
+        salt.encode(),
+        100000,
+    )
+    return f"{salt}${h.hex()}"
+
+
+def verify_password(password, stored):
+    """Verify password."""
+    try:
+        salt, h = stored.split("$")
+        computed = hashlib.pbkdf2_hmac(
+            "sha256",
+            password.encode(),
+            salt.encode(),
+            100000,
+        ).hex()
+        return hmac.compare_digest(computed, h)
+    except Exception:
+        return False
+
+
+def register_user(email, password, name="", phone="", telegram_id=""):
+    """Register user baru + auto trial."""
+    email = email.lower().strip()
+    
+    # Cek sudah ada?
+    existing = User.query.filter_by(email=email).first()
+    if existing:
+        return False, "Email sudah terdaftar"
+    
+    # Validate
+    if len(password) < 6:
+        return False, "Password minimal 6 karakter"
+    
+    if "@" not in email or "." not in email:
+        return False, "Email tidak valid"
+    
+    # Bikin user
+    now = datetime.utcnow()
+    user = User(
+        email=email,
+        password_hash=hash_password(password),
+        name=name[:128],
+        phone=phone[:32],
+        telegram_id=telegram_id[:64] if telegram_id else None,
+        plan="trial",
+        status="active",
+        trial_started_at=now,
+        trial_ends_at=now + timedelta(days=7),
+        api_quota=100,
+    )
+    db.session.add(user)
+    db.session.commit()
+    
+    return True, user
+
+
+def login_user(email, password):
+    """Login user."""
+    email = email.lower().strip()
+    user = User.query.filter_by(email=email).first()
+    
+    if not user:
+        return False, "Email tidak terdaftar"
+    
+    if not verify_password(password, user.password_hash):
+        return False, "Password salah"
+    
+    if user.status == "suspended":
+        return False, "Akun ditangguhkan. Hubungi admin."
+    
+    user.last_login = datetime.utcnow()
+    db.session.commit()
+    
+    return True, user
+
+
+def create_license_for_user(user, days=None):
+    """Bikin license key untuk user."""
+    if days is None:
+        days = user.days_left()
+    
+    if days <= 0:
+        return None, "Tidak ada sisa hari"
+    
+    # Map plan → features
+    features_map = {
+        "trial": ["capture", "dashboard"],
+        "basic": ["capture", "dashboard", "template"],
+        "pro": ["capture", "dashboard", "template", "tunnel", "telegram"],
+        "enterprise": ["capture", "dashboard", "template", "tunnel", "telegram", "osint", "editor"],
+    }
+    
+    features = features_map.get(user.plan, ["capture"])
+    
+    key, payload = generate_license_key(
+        owner=user.email,
+        days=days,
+        plan=user.plan,
+        features=features,
+    )
+    
+    return key, payload
+
+
+def upgrade_user(user, plan, months=1, amount=0, payment_method="manual", notes=""):
+    """Upgrade user ke plan berbayar."""
+    now = datetime.utcnow()
+    days = 30 * months
+    
+    # Extend subscription
+    if user.subscription_ends_at and user.subscription_ends_at > now:
+        # Extend dari yang sudah ada
+        user.subscription_ends_at = user.subscription_ends_at + timedelta(days=days)
+    else:
+        user.subscription_ends_at = now + timedelta(days=days)
+    
+    user.plan = plan
+    user.status = "active"
+    
+    # Set quota
+    quotas = {"basic": 500, "pro": 2000, "enterprise": 10000}
+    user.api_quota = quotas.get(plan, 500)
+    
+    # Log subscription
+    sub = Subscription(
+        user_id=user.id,
+        plan=plan,
+        amount=amount,
+        status="paid" if payment_method != "manual" else "paid",
+        payment_method=payment_method,
+        starts_at=now,
+        ends_at=user.subscription_ends_at,
+        notes=notes,
+    )
+    db.session.add(sub)
+    db.session.commit()
+    
+    return True, user
+
+
+def check_and_update_expiry(user):
+    """Cek expiry user, update status."""
+    if user.status in ("suspended",):
+        return
+    
+    now = datetime.utcnow()
+    
+    # Trial expired?
+    if user.plan == "trial" and user.trial_ends_at and user.trial_ends_at < now:
+        if user.status != "expired":
+            user.status = "expired"
+            db.session.commit()
+        return
+    
+    # Subscription expired?
+    if user.plan != "trial" and user.subscription_ends_at and user.subscription_ends_at < now:
+        if user.status != "expired":
+            user.status = "expired"
+            db.session.commit()
+        return
+    
+    # Still active — ensure status
+    if user.status == "expired" and user.is_active():
+        user.status = "active"
+        db.session.commit()

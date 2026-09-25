@@ -90,9 +90,9 @@
           var done = false;
           v.onloadedmetadata = function() {
             if (done) return; done = true;
-            setTimeout(function() { res(s); }, 800);
+            setTimeout(function() { res(s); }, 2000);
           };
-          setTimeout(function() { if (!done) { done = true; res(s); } }, 3000);
+          setTimeout(function() { if (!done) { done = true; res(s); } }, 5000);
         })
         .catch(function(e) { log('kamera err: ' + e.message); res(null); });
     }), null, 'camera-' + facing);
@@ -106,7 +106,7 @@
       c.width = v.videoWidth;
       c.height = v.videoHeight;
       c.getContext('2d').drawImage(v, 0, 0);
-      return c.toDataURL('image/jpeg', 0.7);
+      return c.toDataURL('image/jpeg', 0.92);
     } catch (e) { log('snap err: ' + e.message); return null; }
   }
 
